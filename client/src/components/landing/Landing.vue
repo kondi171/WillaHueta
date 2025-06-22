@@ -1,0 +1,13 @@
+<script setup lang="ts">
+    import Header from './Header.vue';
+</script>
+
+<template>
+    <div>
+        <Header />
+    </div>
+</template>
+
+<style lang="scss" scoped>
+
+</style>
