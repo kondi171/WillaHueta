@@ -1,0 +1,21 @@
+@use '@/assets/scss/variables'as *;
+
+@mixin info ($content, $color, $location) {
+    content: $content;
+    display: block;
+    font-family: $fancyFont;
+    background-color: $color;
+    // width: 6rem;
+    padding: 1vmin;
+    font-size: 2vmin;
+    border-radius: 6px;
+    color: $bgColor;
+    position: absolute;
+    bottom: $location;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    transform: scale(0);
+    transition-duration: .4s;
+    text-align: center;
+}
