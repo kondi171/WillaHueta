@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import Header from "./Header.vue";
 import Nav from "./Nav.vue";
-// import News from "./News.vue";
 import Footer from "./footer/Footer.vue";
-import VillaHistory from "./villa-history/VillaHistory.vue";
+import Home from "./Home.vue";
 </script>
 
 <template>
@@ -12,7 +11,7 @@ import VillaHistory from "./villa-history/VillaHistory.vue";
       <Header />
       <Nav />
     </div>
-    <VillaHistory />
+    <Home />
     <Footer />
   </div>
 </template>

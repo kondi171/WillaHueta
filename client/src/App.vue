@@ -1,12 +1,11 @@
 <script setup lang="ts">
-  import Landing from './components/landing/Landing.vue';
-
+import Landing from "./components/Landing.vue";
 </script>
 
 <template>
   <Landing />
 </template>
 
-<style lang ="scss">
-  @use './assets/scss/variables.scss' as *;
+<style lang="scss">
+@use "@/assets/scss/variables.scss" as *;
 </style>
