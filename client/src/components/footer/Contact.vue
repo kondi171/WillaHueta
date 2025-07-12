@@ -2,7 +2,7 @@
   <section class="footer-contact">
     <div class="banner">
       <div class="banner-img">
-        <img src="@/assets/img/logo.png" alt="Willa Hueta Logo" />
+        <img src="@/assets/img/landing/logo.png" alt="Willa Hueta Logo" />
       </div>
       <h5 class="banner-text">Willa Hueta</h5>
     </div>

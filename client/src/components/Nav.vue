@@ -3,18 +3,18 @@ import { ref } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 const leftNavItems = [
-  { label: 'Hotel', icon: 'hotel' },
-  { label: 'Restauracja', icon: 'utensils' },
-  { label: 'Sale', icon: 'people-group' },
-  { label: 'Wesela', icon: 'champagne-glasses' },
-  { label: 'Catering', icon: 'concierge-bell' },
-  { label: 'Imprezy', icon: 'calendar-day' },
+  { label: 'Hotel', icon: 'hotel', to: '/hotel' },
+  { label: 'Restauracja', icon: 'utensils', to: '/restauracja' },
+  { label: 'Sale', icon: 'people-group', to: '/sale' },
+  { label: 'Wesela', icon: 'champagne-glasses', to: '/wesela' },
+  { label: 'Catering', icon: 'concierge-bell', to: '/catering' },
+  { label: 'Imprezy', icon: 'calendar-day', to: '/imprezy' },
 ];
 
 const rightNavItems = [
-  { label: 'Aktualności', icon: 'newspaper' },
-  { label: 'Historia', icon: 'clock' },
-  { label: 'Kontakt', icon: 'envelope' },
+  { label: 'Aktualności', icon: 'newspaper', to: '/aktualnosci' },
+  { label: 'Historia', icon: 'clock', to: '/historia' },
+  { label: 'Kontakt', icon: 'envelope', to: '/kontakt' },
 ];
 
 const hoveredItem = ref<string | null>(null);
@@ -32,14 +32,16 @@ const hoveredItem = ref<string | null>(null);
           @mouseleave="hoveredItem = null"
           :class="{ blurred: hoveredItem && hoveredItem !== item.label }"
         >
-          <font-awesome-icon :icon="['fas', item.icon]" class="nav-icon" />
-          {{ item.label }}
+          <router-link :to="item.to" class="nav-link">
+            <font-awesome-icon :icon="['fas', item.icon]" class="nav-icon" />
+            {{ item.label }}
+          </router-link>
         </li>
       </ul>
     </div>
 
     <div class="nav-logo">
-      <img src="@/assets/img/logo.png" alt="Logo Hueta" />
+      <img src="@/assets/img/landing/logo.png" alt="Logo Hueta" />
     </div>
 
     <div class="nav-side">
@@ -52,13 +54,16 @@ const hoveredItem = ref<string | null>(null);
           @mouseleave="hoveredItem = null"
           :class="{ blurred: hoveredItem && hoveredItem !== item.label }"
         >
-          <font-awesome-icon :icon="['fas', item.icon]" class="nav-icon" />
-          {{ item.label }}
+          <router-link :to="item.to" class="nav-link">
+            <font-awesome-icon :icon="['fas', item.icon]" class="nav-icon" />
+            {{ item.label }}
+          </router-link>
         </li>
       </ul>
     </div>
   </nav>
 </template>
+
 
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
@@ -131,6 +136,18 @@ const hoveredItem = ref<string | null>(null);
       .nav-icon {
         font-size: 2.5vmin;
       }
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 1vmin;
+        color: $primaryColor;
+        text-decoration: none;
+        transition: 0.3s;
+
+         &:hover {
+          color: $secondaryColor;
+         }
+       }
     }
   }
 }

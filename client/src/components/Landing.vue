@@ -1,24 +1,29 @@
 <script setup lang="ts">
-import Header from "./Header.vue";
+import { useRoute } from 'vue-router';
+import MainHeader from "./headers/MainHeader.vue";
+import SubHeader from "./headers/SubHeader.vue";
 import Nav from "./Nav.vue";
 import Footer from "./footer/Footer.vue";
-import Home from "./Home.vue";
+
+const route = useRoute();
 </script>
 
 <template>
   <div class="landing">
     <div class="wrapper">
-      <Header />
+      <MainHeader v-if="route.name === 'home'" />
+      <SubHeader v-else />
       <Nav />
     </div>
-    <Home />
+    <router-view />
     <Footer />
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .landing {
-  background-image: url("@/assets/img/bg/so-white.png");
+  background-image: url("@/assets/img/landing/background.png");
+
   .wrapper {
     display: flex;
     flex-direction: column;
