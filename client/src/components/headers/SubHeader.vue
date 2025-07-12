@@ -1,65 +1,152 @@
 <template>
-  <div class="sub-header">
-    <h1>{{ displayName }}</h1>
-    <img :src="headerImage" :alt="displayName" class="header-image" />
+  <div class="sub-header" v-if="headerImage">
+    <img class="background" :src="headerImage" :alt="displayName.title" />
+    <div class="overlay">
+      <h1>{{ displayName.title }}</h1>
+      <p class="subtitle" v-if="displayName.subtitle">
+        {{ displayName.subtitle }}
+      </p>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed } from "vue";
+import { useRoute } from "vue-router";
 
 const route = useRoute();
 
-const routeNames: Record<string, string> = {
-  hotel: 'Hotel',
-  restauracja: 'Restauracja',
-  sale: 'Sale Konferencyjne',
-  wesela: 'Wesela',
-  catering: 'Usługi Cateringowe',
-  imprezy: 'Imprezy Okolicznościowe',
-  aktualnosci: 'Aktualności',
-  historia: 'Nasza Historia',
-  kontakt: 'Kontakt',
+const routeNames: Record<string, { title: string; subtitle?: string }> = {
+  hotel: {
+    title: "Hotel",
+    subtitle: "Komfort i luksus w sercu miasta",
+  },
+  restauracja: {
+    title: "Restauracja",
+    subtitle: "Wyśmienite smaki i wyjątkowa atmosfera",
+  },
+  sale: {
+    title: "Sale Konferencyjne",
+    subtitle: "Idealne miejsce na Twoje wydarzenia",
+  },
+  wesela: {
+    title: "Wesela",
+    subtitle: "Romantyczna oprawa Twojego dnia",
+  },
+  catering: {
+    title: "Usługi Cateringowe",
+    subtitle: "Profesjonalna obsługa kulinarna",
+  },
+  imprezy: {
+    title: "Imprezy Okolicznościowe",
+    subtitle: "Zorganizuj niezapomniane wydarzenie",
+  },
+  aktualnosci: {
+    title: "Aktualności",
+    subtitle: "Bądź na bieżąco z naszymi wydarzeniami",
+  },
+  historia: {
+    title: "Historia",
+    subtitle: "Poznaj naszą tradycję i wartości",
+  },
+  kontakt: {
+    title: "Kontakt",
+    subtitle: "Jesteśmy do Twojej dyspozycji",
+  },
 };
 
 const routeImages: Record<string, string> = {
-  hotel: new URL('@/assets/img/pages/hotel/hotel-header.jpg', import.meta.url).href,
-  restauracja: new URL('@/assets/img/pages/restaurant/restaurant-header.jpg', import.meta.url).href,
-  sale: new URL('@/assets/img/pages/conference/conference-header.jpg', import.meta.url).href,
-  wesela: new URL('@/assets/img/pages/weddings/weddings-header.jpg', import.meta.url).href,
-  catering: new URL('@/assets/img/pages/catering/catering-header.jpg', import.meta.url).href,
-  imprezy: new URL('@/assets/img/pages/events/events-header.jpg', import.meta.url).href,
-  aktualnosci: new URL('@/assets/img/pages/news/news-header.jpg', import.meta.url).href,
-  historia: new URL('@/assets/img/pages/history/history-header.jpg', import.meta.url).href,
-  kontakt: new URL('@/assets/img/pages/contact/contact-header.jpg', import.meta.url).href,
+  hotel: new URL("@/assets/img/pages/hotel/hotel-header.jpg", import.meta.url)
+    .href,
+  restauracja: new URL(
+    "@/assets/img/pages/restaurant/restaurant-header.jpg",
+    import.meta.url
+  ).href,
+  sale: new URL(
+    "@/assets/img/pages/conference/conference-header.jpg",
+    import.meta.url
+  ).href,
+  wesela: new URL(
+    "@/assets/img/pages/weddings/weddings-header.jpg",
+    import.meta.url
+  ).href,
+  catering: new URL(
+    "@/assets/img/pages/catering/catering-header.jpg",
+    import.meta.url
+  ).href,
+  imprezy: new URL(
+    "@/assets/img/pages/events/events-header.jpg",
+    import.meta.url
+  ).href,
+  aktualnosci: new URL(
+    "@/assets/img/pages/news/news-header.jpg",
+    import.meta.url
+  ).href,
+  historia: new URL(
+    "@/assets/img/pages/history/history-header.jpg",
+    import.meta.url
+  ).href,
+  kontakt: new URL(
+    "@/assets/img/pages/contact/contact-header.jpg",
+    import.meta.url
+  ).href,
 };
 
 const displayName = computed(() => {
-  return routeNames[route.name as string] || 'Podstrona';
+  return (
+    routeNames[route.name as string] || {
+      title: "Podstrona",
+      subtitle: "",
+    }
+  );
 });
 
 const headerImage = computed(() => {
-  return routeImages[route.name as string] || '';
+  return routeImages[route.name as string] || "";
 });
 </script>
 
-<style scoped>
-.sub-header {
-  margin-top: 10vmin;
-  padding: 5vmin;
-  background-color: #ffffffc7;
-  text-align: center;
-  border-bottom: 2px solid #ccc;
-  font-family: 'YourFont', sans-serif;
-}
+<style scoped lang="scss">
+@use "@/assets/scss/variables.scss" as *;
 
-.header-image {
-  width: 100%;
-  height: auto;
-  max-height: 60vh;
-  object-fit: cover;
-  margin-top: 2vmin;
+.sub-header {
+  position: relative;
+  width: 95vw;
+  height: 50vh;
+  overflow: hidden;
   border-radius: 1rem;
+  margin: 15vmin 2.5vw 0 2.5vw;
+
+  .background {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+    display: block;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $bgColor;
+    text-align: center;
+    text-shadow: 0 0 1vmin rgba(0, 0, 0, 0.6);
+
+    h1 {
+      font-size: 8vmin;
+      font-family: $fancyFont;
+      margin: 0;
+    }
+
+    .subtitle {
+      margin-top: 1vmin;
+      font-size: 4vmin;
+      font-family: $supportFont;
+      font-weight: 400;
+      color: $supportColor;
+    }
+  }
 }
 </style>

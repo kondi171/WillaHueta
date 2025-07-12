@@ -1,14 +1,13 @@
 <template>
-  <section class="villa-history">
-    <h2>Historia Willi</h2>
-    <div class="villa-history__block">
-      <div class="villa-history__image">
+  <section class="history-page">
+    <div class="block-with-image">
+      <div class="image">
         <img
           src="@/assets/img/pages/history/history-01.jpg"
           alt="Retro zdjęcie Willi Władysława Hueta"
         />
       </div>
-      <div class="villa-history__text">
+      <div class="text">
         <h3>Powstanie Willi Hueta</h3>
         <p>
           Potężna neorenesansowa willa na rogu ul. Prostej i Słowackiego została
@@ -23,14 +22,14 @@
       </div>
     </div>
 
-    <div class="villa-history__block reverse">
-      <div class="villa-history__image">
+    <div class="block-with-image block-with-image--reverse">
+      <div class="image">
         <img
           src="@/assets/img/pages/history/history-02.jpg"
           alt="Zdjęcie Władysława Hueta"
         />
       </div>
-      <div class="villa-history__text">
+      <div class="text">
         <h3>Nauczyciel, Artysta, Wizjoner</h3>
         <p>
           Władysław Huet urodził się 7 grudnia 1868 roku w Czernicach, gmina
@@ -48,14 +47,14 @@
       </div>
     </div>
 
-    <div class="villa-history__block">
-      <div class="villa-history__image">
+    <div class="block-with-image">
+      <div class="image">
         <img
           src="@/assets/img/pages/history/history-03.jpg"
           alt="Pałac Hueta"
         />
       </div>
-      <div class="villa-history__text">
+      <div class="text">
         <h3>Pałac Hueta</h3>
         <p>
           Z tego względu willę szybko zaczęto nazywać Pałacem Hueta. W 1912 roku
@@ -74,14 +73,14 @@
         </p>
       </div>
     </div>
-    <div class="villa-history__block reverse">
-      <div class="villa-history__image">
+    <div class="block-with-image block-with-image--reverse">
+      <div class="image huet">
         <img
           src="@/assets/img/pages/history/history-04.jpg"
           alt="Pałac Hueta"
         />
       </div>
-      <div class="villa-history__text">
+      <div class="text">
         <h3>Biogram Hueta</h3>
         <p>
           Urodził się 16.XII.1868 r. na Podolu, gdzie jego ojciec był leśniczym.
@@ -126,72 +125,21 @@
 
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
+@use "@/assets/scss/placeholders.scss" as *;
 
-.villa-history {
-  margin: 5vmin;
+.history-page {
+  margin: 5vmin 10vmin;
 
-  h2 {
-    font-size: 8vmin;
-    font-family: $fancyFont;
-    color: $primaryColor;
-  }
+  .block-with-image {
+    @extend %block-with-image;
 
-  &__block {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5vmin;
-    line-height: 250%;
-    margin: 0 4vmin;
-
-    h3 {
-      color: $primaryColor;
-      font-weight: bold;
-      font-family: $fancyFont;
-      text-align: right;
-      margin-top: 2vmin;
-      margin-right: 5vmin;
+    &--reverse {
+      @extend %block-with-image--reverse;
     }
-
-    &.reverse {
-      flex-direction: row-reverse;
-
-      h3 {
-        text-align: left;
-        margin-left: 5vmin;
-        margin-right: 0;
+    &:last-of-type {
+      img {
+        box-shadow: none;
       }
-    }
-  }
-
-  &__image {
-    width: 50%;
-
-    img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-  }
-
-  // 🎯 Dodane style tylko dla zdjęć poza ostatnim blokiem
-  &__block:not(:last-of-type) &__image img {
-    border-radius: 2vmin;
-    box-shadow: 0 1vmin 2vmin rgba(0, 0, 0, 0.3);
-  }
-
-  &__text {
-    width: 50%;
-    font-size: 3vmin;
-    text-align: justify;
-
-    h2 {
-      font-size: 9vmin;
-      font-family: $fancyFont;
-    }
-
-    p {
-      margin: 2vmin 0;
     }
   }
 }

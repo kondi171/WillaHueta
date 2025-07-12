@@ -7,12 +7,12 @@ import { createPinia } from 'pinia';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { 
-    faMapMarkerAlt, 
+import {
+    faMapMarkerAlt,
     faFlag, faPhone,
-    faMobileAlt, 
+    faMobileAlt,
     faEnvelope,
-    faX, 
+    faX,
     faArrowsRotate,
     faArrowRight,
     faHotel,
@@ -22,19 +22,21 @@ import {
     faConciergeBell,
     faCalendarDay,
     faNewspaper,
-    faClock 
+    faClock,
+    faAngleLeft,
+    faAngleRight,
 } from '@fortawesome/free-solid-svg-icons';
 
 const app = createApp(App);
 app.use(router);
 app.use(createPinia());
 library.add(
-    faFacebook, 
-    faInstagram, 
-    faMapMarkerAlt, 
-    faFlag, 
-    faPhone, 
-    faMobileAlt, 
+    faFacebook,
+    faInstagram,
+    faMapMarkerAlt,
+    faFlag,
+    faPhone,
+    faMobileAlt,
     faEnvelope,
     faHotel,
     faUtensils,
@@ -45,7 +47,10 @@ library.add(
     faNewspaper,
     faClock,
     faEnvelope,
-    faArrowRight
+    faArrowRight,
+    faAngleLeft,
+    faAngleRight,
+    faX,
 );
 
 app.component('font-awesome-icon', FontAwesomeIcon).mount('#app');

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
+import { useRoute } from "vue-router";
 import MainHeader from "./headers/MainHeader.vue";
 import SubHeader from "./headers/SubHeader.vue";
 import Nav from "./Nav.vue";
@@ -22,12 +22,12 @@ const route = useRoute();
 
 <style scoped lang="scss">
 .landing {
-  background-image: url("@/assets/img/landing/background.png");
+  background-image: url("@/assets/img/backgrounds/home-background.png");
 
   .wrapper {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    // height: 100vh;
   }
 }
 </style>

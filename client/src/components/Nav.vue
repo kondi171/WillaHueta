@@ -1,20 +1,23 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { ref } from "vue";
+import { useRoute } from "vue-router";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+const route = useRoute();
 
 const leftNavItems = [
-  { label: 'Hotel', icon: 'hotel', to: '/hotel' },
-  { label: 'Restauracja', icon: 'utensils', to: '/restauracja' },
-  { label: 'Sale', icon: 'people-group', to: '/sale' },
-  { label: 'Wesela', icon: 'champagne-glasses', to: '/wesela' },
-  { label: 'Catering', icon: 'concierge-bell', to: '/catering' },
-  { label: 'Imprezy', icon: 'calendar-day', to: '/imprezy' },
+  { label: "Hotel", icon: "hotel", to: "/hotel" },
+  { label: "Restauracja", icon: "utensils", to: "/restauracja" },
+  { label: "Sale", icon: "people-group", to: "/sale" },
+  { label: "Wesela", icon: "champagne-glasses", to: "/wesela" },
+  { label: "Catering", icon: "concierge-bell", to: "/catering" },
+  { label: "Imprezy", icon: "calendar-day", to: "/imprezy" },
 ];
 
 const rightNavItems = [
-  { label: 'Aktualności', icon: 'newspaper', to: '/aktualnosci' },
-  { label: 'Historia', icon: 'clock', to: '/historia' },
-  { label: 'Kontakt', icon: 'envelope', to: '/kontakt' },
+  { label: "Aktualności", icon: "newspaper", to: "/aktualnosci" },
+  { label: "Historia", icon: "clock", to: "/historia" },
+  { label: "Kontakt", icon: "envelope", to: "/kontakt" },
 ];
 
 const hoveredItem = ref<string | null>(null);
@@ -30,7 +33,10 @@ const hoveredItem = ref<string | null>(null);
           :key="item.label"
           @mouseenter="hoveredItem = item.label"
           @mouseleave="hoveredItem = null"
-          :class="{ blurred: hoveredItem && hoveredItem !== item.label }"
+          :class="{
+            blurred: hoveredItem && hoveredItem !== item.label,
+            active: route.path === item.to,
+          }"
         >
           <router-link :to="item.to" class="nav-link">
             <font-awesome-icon :icon="['fas', item.icon]" class="nav-icon" />
@@ -52,7 +58,10 @@ const hoveredItem = ref<string | null>(null);
           :key="item.label"
           @mouseenter="hoveredItem = item.label"
           @mouseleave="hoveredItem = null"
-          :class="{ blurred: hoveredItem && hoveredItem !== item.label }"
+          :class="{
+            blurred: hoveredItem && hoveredItem !== item.label,
+            active: route.path === item.to,
+          }"
         >
           <router-link :to="item.to" class="nav-link">
             <font-awesome-icon :icon="['fas', item.icon]" class="nav-icon" />
@@ -63,7 +72,6 @@ const hoveredItem = ref<string | null>(null);
     </div>
   </nav>
 </template>
-
 
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
@@ -78,7 +86,7 @@ const hoveredItem = ref<string | null>(null);
   align-items: center;
   justify-content: space-evenly;
   padding: 2vmin;
-  z-index: 1000;
+  z-index: 900;
   box-shadow: 0 1vmin 2vmin 0 rgba(0, 0, 0, 0.5);
   background-color: #ffffff70;
   backdrop-filter: blur(10px);
@@ -120,7 +128,7 @@ const hoveredItem = ref<string | null>(null);
       display: flex;
       align-items: center;
       gap: 1vmin;
-      transition-duration: .4s;
+      transition-duration: 0.4s;
 
       &:hover {
         transform: scale(1.1);
@@ -136,6 +144,7 @@ const hoveredItem = ref<string | null>(null);
       .nav-icon {
         font-size: 2.5vmin;
       }
+
       .nav-link {
         display: flex;
         align-items: center;
@@ -144,10 +153,34 @@ const hoveredItem = ref<string | null>(null);
         text-decoration: none;
         transition: 0.3s;
 
-         &:hover {
+        &:hover {
           color: $secondaryColor;
-         }
-       }
+        }
+
+        &.active {
+          font-weight: bold;
+        }
+      }
+
+      &.active {
+        color: $secondaryColor;
+
+        .nav-link {
+          color: $secondaryColor;
+          transform: translateY(-10px) scale(1.1);
+        }
+
+        // &::after {
+        //   content: '';
+        //   position: absolute;
+        //   bottom: -0.5vmin;
+        //   left: 0;
+        //   width: 100%;
+        //   height: 0.3vmin;
+        //   background-color: $secondaryColor;
+        //   border-radius: 2px;
+        // }
+      }
     }
   }
 }

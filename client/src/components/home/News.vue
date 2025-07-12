@@ -3,7 +3,7 @@
     <h2>Aktualności</h2>
     <div class="news-items">
       <div class="news-item">
-        <h3>Wieczór Jazzowy – 12 lipca</h3>
+        <h3>Wieczór Jazzowy - 12 lipca</h3>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
           ulta-bueneru nouls.
@@ -19,11 +19,11 @@
         <small>5 czerwca 2024</small>
       </div>
     </div>
-    <div class="news-button-wrapper">
- <router-link to="/aktualnosci" class="news-button">
-  Pokaż wszystkie aktualności
-  <font-awesome-icon icon="fa-solid fa-arrow-right" class="icon" />
-</router-link>
+    <div class="news-btn-wrapper">
+      <router-link to="/aktualnosci" class="news-btn">
+        Pokaż wszystkie aktualności
+        <font-awesome-icon icon="fa-solid fa-arrow-right" class="icon" />
+      </router-link>
     </div>
   </article>
 </template>
@@ -34,6 +34,7 @@
 
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
+@use "@/assets/scss/placeholders.scss" as *;
 
 .news {
   margin: 0 10vmin;
@@ -76,32 +77,14 @@
     }
   }
 
-  .news-button-wrapper {
+  .news-btn-wrapper {
     margin-top: 2rem;
     display: flex;
     justify-content: flex-start;
   }
 
-  .news-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    background-color: $primaryColor;
-    color: #fff;
-    font-weight: bold;
-    font-size: 1rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: $secondaryColor;
-    }
-
-    .icon {
-      font-size: 1rem;
-    }
+  .news-btn {
+    @extend %follow-btn;
   }
 }
 </style>

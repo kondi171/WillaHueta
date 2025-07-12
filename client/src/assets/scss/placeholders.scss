@@ -1,0 +1,124 @@
+@use "@/assets/scss/variables.scss"as *;
+
+%follow-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: $primaryColor;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: $secondaryColor;
+    }
+
+    .icon {
+        font-size: 1rem;
+    }
+}
+
+// HTML 
+//  <router-link to="/aktualnosci" class="news-btn">
+//      Pokaż wszystkie aktualności
+//      <font-awesome-icon icon="fa-solid fa-arrow-right" class="icon" />
+//  </router-link>
+
+
+%block-with-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5vmin;
+    line-height: 250%;
+    margin: 4vmin;
+
+    h3 {
+        font-size: 3vmin;
+        color: $primaryColor;
+        font-weight: bold;
+        font-family: $fancyFont;
+        text-align: right;
+        margin-top: 2vmin;
+        margin-right: 5vmin;
+    }
+
+    .text {
+        width: 55%;
+        font-size: 2vmin;
+        text-align: justify;
+        color: $textColor;
+
+        h2 {
+            font-size: 9vmin;
+            font-family: $fancyFont;
+        }
+
+        p {
+            margin: 2vmin 0;
+        }
+    }
+
+    .image {
+        width: 45%;
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 2vmin;
+            box-shadow: 0 1vmin 2vmin rgba(0, 0, 0, 0.3);
+        }
+    }
+}
+
+%block-with-image--reverse {
+    flex-direction: row-reverse;
+
+    h3 {
+        text-align: left;
+        margin-left: 5vmin;
+        margin-right: 0;
+    }
+}
+
+%block-text-only {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 2vmin;
+    width: 70vw;
+    margin: 4vmin 0;
+    text-align: justify;
+    line-height: 300%;
+
+    .text {
+        font-size: 2.5vmin;
+        text-align: justify;
+        color: $textColor;
+    }
+
+    h3 {
+        font-size: 4vmin;
+        color: $primaryColor;
+        font-weight: bold;
+        font-family: $fancyFont;
+        text-align: left;
+        margin: 2vmin 5vmin;
+    }
+}
+
+%block-text-only--reverse {
+    margin-left: auto;
+
+    h3 {
+        text-align: right;
+        margin-right: 5vmin;
+        margin-left: 0;
+    }
+}
