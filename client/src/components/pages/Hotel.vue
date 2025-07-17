@@ -14,7 +14,6 @@
         </p>
       </div>
     </div>
-
     <div class="block-text-only block-text-only--reverse">
       <div class="text">
         <p>
@@ -28,7 +27,7 @@
       </div>
     </div>
 
-    <div class="description">
+    <div class="central-block">
       Oddajemy do Państwa dyspozycji
       <strong>12 luksusowych, klimatyzowanych pokoi</strong>, wyposażonych w
       mini-barek, sejf i łazienki z wanną lub prysznicem. Pokoje posiadają
@@ -37,18 +36,10 @@
       najbardziej wymagających gości.
     </div>
     <Gallery :images="hotelImages" />
-    <div class="highlight">
-      <span>
-        Najlepsza cena tylko poprzez bezpośredni kontakt z recepcją hotelu.
-      </span>
-      <router-link to="/kontakt" class="contact-btn">
-        Kontakt
-        <font-awesome-icon icon="fa-solid fa-arrow-right" class="icon" />
-      </router-link>
-    </div>
-    <div class="sections">
+    <Highlight />
+    <div class="info-sections">
       <div class="section">
-        <h2>Cena pokoju zawiera:</h2>
+        <h3>Cena pokoju zawiera:</h3>
         <ul>
           <li>Wygodne, szerokie łóżka z pościelą antyalergiczną</li>
           <li>Łazienkę z kabiną prysznicową lub wanną</li>
@@ -61,7 +52,7 @@
         </ul>
       </div>
       <div class="section">
-        <h2>Usługi dodatkowe dla gości hotelu:</h2>
+        <h3>Usługi dodatkowe dla gości hotelu:</h3>
         <ul>
           <li>Budzenie</li>
           <li>Usługi rezerwacyjne w innych hotelach</li>
@@ -79,7 +70,8 @@
 </template>
 
 <script setup lang="ts">
-import Gallery from "../Gallery.vue";
+import Gallery from "../common/Gallery.vue";
+import Highlight from "../common/Highlight.vue";
 
 import hotel1 from "@/assets/img/pages/hotel/hotel-01.jpg";
 import hotel2 from "@/assets/img/pages/hotel/hotel-02.jpg";
@@ -109,63 +101,12 @@ const hotelImages = [
     }
   }
 
-  .description {
-    margin: 6vmin auto;
-    width: 80vw;
-    font-size: 2.5vmin;
-    line-height: 250%;
-    color: $textColor;
-    text-align: justify;
-    text-align-last: center;
-    strong {
-      color: $secondaryColor;
-    }
+  .central-block {
+    @extend %central-block;
   }
 
-  .sections {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin: 6vmin 0;
-    .section {
-      font-size: 2vmin;
-      line-height: 1.6;
-
-      h2 {
-        font-size: 2.5vmin;
-        color: $primaryColor;
-        margin-bottom: 1vmin;
-      }
-
-      ul {
-        list-style-type: disc;
-        padding-left: 2vmin;
-        li {
-          margin-bottom: 0.5vmin;
-          &::marker {
-            color: $primaryColor;
-          }
-        }
-      }
-    }
-  }
-  .highlight {
-    font-size: 3vmin;
-    font-weight: bold;
-    color: $primaryColor;
-    margin: 5vmin auto;
-    text-align: center;
-    span {
-      display: block;
-      margin-bottom: 2vmin;
-    }
-    .contact-btn {
-      @extend %follow-btn;
-      font-size: 3vmin;
-      .icon {
-        font-size: 3vmin;
-      }
-    }
+  .info-sections {
+    @extend %info-sections;
   }
 }
 </style>

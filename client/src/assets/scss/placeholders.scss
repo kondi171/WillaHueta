@@ -122,3 +122,58 @@
         margin-left: 0;
     }
 }
+
+%central-block {
+    margin: 6vmin auto;
+    width: 80vw;
+    font-size: 2.5vmin;
+    line-height: 250%;
+    color: $textColor;
+    text-align: justify;
+    text-align-last: center;
+
+    h3 {
+        font-size: 4vmin;
+        color: $primaryColor;
+        font-weight: bold;
+        font-family: $fancyFont;
+        text-align: center;
+    }
+
+    strong {
+        color: $secondaryColor;
+    }
+}
+
+%info-sections {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 6vmin 0;
+
+    .section {
+        font-size: 2vmin;
+        line-height: 1.6;
+
+        h3 {
+            font-size: 2.5vmin;
+            color: $primaryColor;
+            margin-bottom: 1vmin;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 2vmin;
+
+            li {
+                margin-bottom: 0.5vmin;
+                color: $textColor;
+
+                &::marker {
+                    color: $primaryColor;
+                }
+            }
+        }
+    }
+}
