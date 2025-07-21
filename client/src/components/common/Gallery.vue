@@ -24,7 +24,12 @@
     </div>
   </div>
 
-  <div class="modal" v-if="isModalOpen" @click.self="closeModal">
+  <div
+    v-if="isModalVisible"
+    class="modal"
+    :class="modalAnimationClass"
+    @click.self="closeModal"
+  >
     <span class="closeBtn" @click="closeModal">
       <font-awesome-icon icon="fa-solid fa-x" class="icon" />
     </span>
@@ -52,7 +57,11 @@ import { ref, computed, onMounted, onUnmounted } from "vue";
 const props = defineProps<{
   images: string[];
 }>();
-const isModalOpen = ref(false);
+
+const isModalOpen = ref(false); // otwarcie i animacja obrazu
+const isModalVisible = ref(false); // faktyczna obecność .modal w DOM
+const modalAnimationClass = ref("modal-fade-in");
+
 const currentIndex = ref(0);
 const hoverIndex = ref<number | null>(null);
 const animationClass = ref("fade-in");
@@ -63,19 +72,24 @@ const currentImage = computed(() => props.images[currentIndex.value]);
 function openModal(index: number) {
   currentIndex.value = index;
   isModalOpen.value = true;
+  isModalVisible.value = true;
+  modalAnimationClass.value = "modal-fade-in";
   animationClass.value = "fade-in";
 }
 
 function closeModal() {
   if (isAnimating.value) return;
-  animationClass.value = "scale-out";
   isAnimating.value = true;
+
+  modalAnimationClass.value = "modal-fade-out";
+  animationClass.value = "scale-out";
 
   setTimeout(() => {
     isModalOpen.value = false;
-    isAnimating.value = false;
+    isModalVisible.value = false;
     animationClass.value = "fade-in";
-  }, 300);
+    isAnimating.value = false;
+  }, 400); // dłużej, żeby tło też zdążyło zniknąć
 }
 
 function changeImage(direction: "next" | "prev") {
@@ -221,11 +235,19 @@ onUnmounted(() => {
   display: flex;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0);
   backdrop-filter: blur(2px);
   justify-content: center;
   align-items: center;
   z-index: 999;
+
+  &.modal-fade-in {
+    animation: fadeBackgroundIn 0.4s ease forwards;
+  }
+
+  &.modal-fade-out {
+    animation: fadeBackgroundOut 0.4s ease forwards;
+  }
 
   &-content {
     max-width: 70vw;
@@ -286,6 +308,7 @@ onUnmounted(() => {
       color: $primaryColor;
     }
   }
+
   .fade-in {
     animation: fadeIn 0.3s ease forwards;
   }
@@ -297,6 +320,7 @@ onUnmounted(() => {
   }
 }
 
+// Animacje obrazu
 @keyframes fadeInScale {
   from {
     opacity: 0;
@@ -307,7 +331,6 @@ onUnmounted(() => {
     transform: scale(1);
   }
 }
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -318,7 +341,6 @@ onUnmounted(() => {
     transform: scale(1);
   }
 }
-
 @keyframes fadeOut {
   from {
     opacity: 1;
@@ -329,7 +351,6 @@ onUnmounted(() => {
     transform: scale(1.05);
   }
 }
-
 @keyframes scaleOut {
   from {
     opacity: 1;
@@ -338,6 +359,25 @@ onUnmounted(() => {
   to {
     opacity: 0;
     transform: scale(0.9);
+  }
+}
+
+// Animacje tła
+@keyframes fadeBackgroundIn {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+@keyframes fadeBackgroundOut {
+  from {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0);
   }
 }
 </style>

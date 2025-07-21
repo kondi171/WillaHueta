@@ -154,30 +154,18 @@
       :menus="buffetProposals"
     />
     <Table />
-    <!-- <div class="info-sections">
-      <div class="section">
-        <h3>Przerwy kawowe:</h3>
-        <ul>
-          <li>Zmieniacz slajdów</li>
-          <li>Wskaźnik</li>
-          <li>Ekran</li>
-          <li>Flipchart</li>
-          <li>Internet bezprzewodowy</li>
-        </ul>
-      </div>
-    </div> -->
     <Highlight />
   </section>
 </template>
 
 <script setup lang="ts">
-import Gallery from "../common/Gallery.vue";
-import Cards from "../common/Cards.vue";
-import Table from "../common/Table.vue";
+import Gallery from "../../common/Gallery.vue";
+import Cards from "./Cards.vue";
+import Table from "./Table.vue";
 
 import hotel1 from "@/assets/img/pages/hotel/hotel-01.jpg";
 import hotel2 from "@/assets/img/pages/hotel/hotel-02.jpg";
-import Highlight from "../common/Highlight.vue";
+import Highlight from "../../common/Highlight.vue";
 
 const hotelImages = [
   hotel1,
