@@ -47,7 +47,15 @@ const hoveredItem = ref<string | null>(null);
     </div>
 
     <div class="nav-logo">
-      <img src="@/assets/img/landing/logo.png" alt="Logo Hueta" />
+      <router-link
+        to="/"
+        class="nav-link"
+        @mouseenter="hoveredItem = 'logo'"
+        @mouseleave="hoveredItem = null"
+        :class="{ blurred: hoveredItem && hoveredItem !== 'logo' }"
+      >
+        <img src="@/assets/img/landing/logo.png" alt="Logo Hueta" />
+      </router-link>
     </div>
 
     <div class="nav-side">
@@ -79,6 +87,7 @@ const hoveredItem = ref<string | null>(null);
 
 .navbar {
   position: fixed;
+  height: 10vh;
   top: 0;
   left: 0;
   width: 100%;
@@ -103,11 +112,17 @@ const hoveredItem = ref<string | null>(null);
     display: flex;
     align-items: center;
     justify-content: center;
-
     img {
-      height: 50px;
+      // position: fixed;
+      // top: 1vh;
+      // margin-right: 19vmin;
+      height: 7vh;
       max-height: 8vh;
       object-fit: contain;
+      transition-duration: 0.4s;
+      &:hover {
+        transform: scale(1.2);
+      }
     }
   }
 
@@ -169,17 +184,6 @@ const hoveredItem = ref<string | null>(null);
           color: $secondaryColor;
           transform: translateY(-10px) scale(1.1);
         }
-
-        // &::after {
-        //   content: '';
-        //   position: absolute;
-        //   bottom: -0.5vmin;
-        //   left: 0;
-        //   width: 100%;
-        //   height: 0.3vmin;
-        //   background-color: $secondaryColor;
-        //   border-radius: 2px;
-        // }
       }
     }
   }

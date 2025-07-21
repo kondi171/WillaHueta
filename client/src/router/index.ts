@@ -2,14 +2,14 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import Home from '@/components/home/Home.vue';
 import Hotel from '@/components/pages/Hotel.vue';
-import News from '@/components/pages/News.vue';
+import News from '@/components/pages/news/News.vue';
 import History from '@/components/pages/History.vue';
 import Restaurant from '../components/pages/Restaurant.vue';
 import Conference from '../components/pages/conference/Conference.vue';
 import Weddings from '../components/pages/weddings/Weddings.vue';
 import Events from '../components/pages/Events.vue';
 import Contact from '../components/pages/Contact.vue';
-import Catering from '../components/pages/Catering.vue';
+import Catering from '../components/pages/catering/Catering.vue';
 
 const routes = [
   {
@@ -70,7 +70,10 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    return { left: 0, top: 0 };
+  },
 });
 
 export default router;

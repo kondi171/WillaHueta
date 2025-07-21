@@ -1,9 +1,127 @@
 <template>
-  <div>Kontakt</div>
+  <section class="contact-page">
+    <div class="contact-wrapper">
+      <div class="contact-column">
+        <!-- <h4 class="label">Lokalizacja</h4> -->
+        <p>
+          ul. Juliusza Słowackiego 25<br />
+          25-365 Kielce<br />
+          <a href="mailto:recepcja@willahueta.pl">recepcja@willahueta.pl</a
+          ><br />
+          <a href="http://www.willahueta.pl" target="_blank"
+            >www.willahueta.pl</a
+          >
+        </p>
+      </div>
+
+      <div class="contact-column">
+        <h4 class="label">Telefony</h4>
+        <p>tel.stac. 412 412 888</p>
+        <p>tel.kom. 789 808 214</p>
+        <p>tel.kom. 572 187 950</p>
+      </div>
+
+      <div class="contact-column">
+        <h4 class="label">GPS</h4>
+        <p>
+          N: 50° 51' 50"<br />
+          E: 20° 37' 52"
+        </p>
+      </div>
+    </div>
+    <div id="map" class="map"></div>
+  </section>
 </template>
+<script setup lang="ts">
+import { onMounted } from "vue";
 
-<script setup lang="ts"></script>
+const initMap = () => {
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      center: { lat: 52.2297, lng: 21.0122 }, // Warszawa (zmień lokalizację według potrzeb)
+      zoom: 14,
+    }
+  );
 
+  new google.maps.Marker({
+    position: { lat: 52.2297, lng: 21.0122 },
+    map,
+    title: "Nasza lokalizacja",
+  });
+};
+
+onMounted(() => {
+  const scriptId = "google-maps-script";
+  if (!document.getElementById(scriptId)) {
+    const script = document.createElement("script");
+    script.id = scriptId;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap`;
+    script.async = true;
+    window.initMap = initMap;
+    document.head.appendChild(script);
+  } else {
+    initMap();
+  }
+});
+
+// @ts-ignore dodajemy typ do `window` dla TypeScript
+declare global {
+  interface Window {
+    initMap: () => void;
+  }
+}
+</script>
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
+
+.contact-page {
+  padding: 5vmin 15vmin;
+
+  .contact-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10vmax;
+    .contact-column {
+      line-height: 250%;
+      text-align: center;
+      flex: 0 1 30vmin;
+
+      h4 {
+        text-transform: uppercase;
+      }
+      p {
+        margin: 0.5vmin 0;
+        font-family: $textFont;
+        color: $textColor;
+        font-size: 2.5vmin;
+      }
+
+      .label {
+        font-weight: bold;
+        font-family: $fancyFont;
+        font-size: 2.7vmin;
+        color: $primaryColor;
+      }
+
+      a {
+        color: $primaryColor;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  .map {
+    width: 100%;
+    height: 70vh;
+    border: 2px solid $primaryColor;
+    border-radius: 8px;
+    margin-top: 4vmin;
+  }
+}
 </style>

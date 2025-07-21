@@ -149,12 +149,6 @@ const currentComponent = computed(() => {
   return null;
 });
 
-const modalTitle = computed(() => {
-  if (selectedPackage.value === "silver") return "Pakiet Srebrny";
-  if (selectedPackage.value === "gold") return "Pakiet Złoty";
-  return "";
-});
-
 function nextPackage() {
   selectedPackage.value =
     selectedPackage.value === "silver" ? "gold" : "silver";
