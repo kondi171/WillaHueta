@@ -5,13 +5,15 @@
     <article class="services">
       <Services />
     </article>
+    <!-- <Header /> -->
   </section>
 </template>
 
 <script setup lang="ts">
-import About from './About.vue';
-import News from './News.vue';
-import Services from './Services.vue';
+import Header from "../headers/Header.vue";
+import About from "./About.vue";
+import News from "./News.vue";
+import Services from "./Services.vue";
 </script>
 
 <style scoped lang="scss">

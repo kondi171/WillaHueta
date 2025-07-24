@@ -173,8 +173,6 @@ onUnmounted(() => {
   }
 }
 
-/* ===== Modal Fade / Scale Animacje ===== */
-
 .fade-in {
   animation: fadeIn 0.3s ease forwards;
 }

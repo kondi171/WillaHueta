@@ -7,7 +7,7 @@ import History from '@/components/pages/History.vue';
 import Restaurant from '../components/pages/Restaurant.vue';
 import Conference from '../components/pages/conference/Conference.vue';
 import Weddings from '../components/pages/weddings/Weddings.vue';
-import Events from '../components/pages/Events.vue';
+import Events from '../components/pages/events/Events.vue';
 import Contact from '../components/pages/Contact.vue';
 import Catering from '../components/pages/catering/Catering.vue';
 
