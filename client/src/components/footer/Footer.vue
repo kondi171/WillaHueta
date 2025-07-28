@@ -6,13 +6,30 @@
       <Euro />
     </div>
     <div class="author">
-      Copyright 2025 &copy; Willa Hueta | Designed by Konrad 'WebKing' Nowak
+      Copyright 2025 &copy; Willa Hueta | Designed by
+      <a href="https://konrad-nowak.netlify.app" target="_blank"
+        >Konrad 'WebKing' Nowak</a
+      >
     </div>
   </footer>
 </template>
 <script setup lang="ts">
 import Contact from "./Contact.vue";
 import Euro from "./Euro.vue";
+import "aos/dist/aos.css";
+import AOS from "aos";
+import { onMounted } from "vue";
+
+onMounted(() => {
+  AOS.init({
+    duration: 800,
+    once: false,
+  });
+
+  setTimeout(() => {
+    AOS.refresh();
+  }, 1000);
+});
 </script>
 
 <style scoped lang="scss">
@@ -62,5 +79,14 @@ import Euro from "./Euro.vue";
   padding: 2vmin;
   font-family: $fancyFont;
   border-top: 0.3vmin solid $primaryColor;
+  a {
+    text-decoration: none;
+    color: $bgColor;
+    font-family: $fancyFont;
+    transition-duration: 0.4s;
+    &:hover {
+      color: $supportColor;
+    }
+  }
 }
 </style>

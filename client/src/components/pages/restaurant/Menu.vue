@@ -1,80 +1,33 @@
 <template>
-  <section class="restaurant-page">
-    <div class="block-text-only">
-      <div class="text">
-        <h3>Witamy w naszej restauracji ⭐⭐⭐⭐</h3>
-        <p>
-          Zapraszamy do Willi Hueta - miejsca, gdzie tradycja spotyka się z
-          nowoczesnym smakiem. Nasza restauracja to przestrzeń, w której
-          starannie dobrane składniki, kreatywne kompozycje dań oraz przyjazna
-          atmosfera tworzą wyjątkowe doświadczenie kulinarne. Specjalizujemy się
-          w kuchni polskiej i regionalnej, stawiając na lokalne produkty oraz
-          sezonowe menu, które zaspokoi gusta zarówno miłośników klasycznych
-          smaków, jak i poszukiwaczy kulinarnych nowości. Elegancki wystrój
-          wnętrz oraz profesjonalna obsługa sprawiają, że każda wizyta w naszej
-          restauracji jest okazją do niezapomnianych chwil.
-        </p>
-      </div>
+  <div class="menu">
+    <div
+      class="menu-category"
+      v-for="category in menuCategories"
+      :key="category.name"
+      data-aos="fade-left"
+    >
+      <h4>{{ category.name }}</h4>
+      <ul>
+        <li
+          v-for="item in category.items"
+          :key="item.name"
+          class="menu-item"
+          data-aos="fade-up"
+        >
+          <div class="menu-item-info">
+            <span class="menu-item-name">{{ item.name }}</span>
+            <span class="menu-item-description">{{ item.description }}</span>
+          </div>
+          <div class="menu-item-price">
+            {{ item.weight }} / {{ item.price }} zł
+          </div>
+        </li>
+      </ul>
     </div>
-    <div class="block-text-only block-text-only--reverse">
-      <div class="text">
-        <p>
-          Willa Hueta to nie tylko doskonałe miejsce na codzienny posiłek, ale
-          także idealna przestrzeń na wyjątkowe okazje - od kameralnych spotkań
-          po uroczyste bankiety i wesela. Dbamy o każdy detal, oferując szeroki
-          wybór dań, które łączą tradycję z nowoczesnymi technikami kulinarnymi.
-          Nasza restauracja dysponuje komfortową salą oraz przytulnym tarasem,
-          gdzie można delektować się wyśmienitymi smakami w otoczeniu pięknej
-          przyrody. Zapraszamy do odkrywania kulinarnych inspiracji i relaksu w
-          Willi Hueta - miejscu, które z pasją tworzy smak i atmosferę na
-          najwyższym poziomie.
-        </p>
-      </div>
-    </div>
-    <Gallery :images="retaurantImages" />
-    <div class="central-block">
-      <h3>Nasze Menu</h3>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi sunt
-        enim deleniti reiciendis molestiae saepe expedita voluptatem iusto
-        voluptas debitis dolorem obcaecati dolore, quas eos repellat tempora
-        distinctio. Quae facilis laborum soluta itaque illum molestiae
-        consequatur corrupti, nisi eos ab vitae veniam molestias deleniti velit
-        maxime ad! Amet, est. Ipsam.
-      </p>
-    </div>
-    <div class="menu">
-      <div
-        class="menu-category"
-        v-for="category in menuCategories"
-        :key="category.name"
-      >
-        <h4>{{ category.name }}</h4>
-        <ul>
-          <li v-for="item in category.items" :key="item.name" class="menu-item">
-            <div class="menu-item-info">
-              <span class="menu-item-name">{{ item.name }}</span>
-              <span class="menu-item-description">{{ item.description }}</span>
-            </div>
-            <div class="menu-item-price">
-              {{ item.weight }} / {{ item.price }} zł
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
+  </div>
 </template>
 
 <script setup lang="ts">
-import Gallery from "../common/Gallery.vue";
-
-import restaurant1 from "@/assets/img/pages/restaurant/restaurant-01.png";
-import restaurant2 from "@/assets/img/pages/restaurant/restaurant-02.png";
-import restaurant3 from "@/assets/img/pages/restaurant/restaurant-03.png";
-
-const retaurantImages = [restaurant1, restaurant2, restaurant3];
-
 const menuCategories = [
   {
     name: "Przystawki",
@@ -387,137 +340,118 @@ const menuCategories = [
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
 @use "@/assets/scss/placeholders.scss" as *;
+.menu {
+  padding: 55vmin 15vmin 5vmin 15vmin;
+  background-image: url("@/assets/img/pages/restaurant/menu.jpg");
+  background-size: cover;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 
-.restaurant-page {
-  .block-text-only {
-    padding: 0 15vmin;
-    @extend %block-text-only;
-    &--reverse {
-      @extend %block-text-only--reverse;
-    }
+  h3 {
+    font-family: $fancyFont;
+    font-size: 6vmin;
+    color: $primaryColor;
+    text-align: center;
+    margin-bottom: 3vmin;
   }
-  .central-block {
-    @extend %central-block;
-    h3 {
+
+  .menu-category {
+    margin-bottom: 3vmin;
+
+    h4 {
+      position: relative;
+      width: 30%;
+      font-family: $supportFont;
+      font-size: 4.5vmin;
+      color: $blackColor;
+      background-color: $bgColor;
       margin-bottom: 2vmin;
-      text-align: right;
-      margin-left: auto;
-      width: 40%;
+      padding-left: 3vmin;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: calc(-3vmin + 1px);
+        width: 3vmin;
+        height: 100%;
+        background-color: $bgColor;
+        clip-path: polygon(0 0, 100% 50%, 0 100%);
+      }
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      .menu-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 1vmin 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .menu-item-info {
+          max-width: 70%;
+
+          .menu-item-name {
+            font-weight: 700;
+            font-size: 3.5vmin;
+            color: $bgColor;
+            display: block;
+          }
+
+          .menu-item-description {
+            font-size: 2.7vmin;
+            color: $bgColor;
+            font-style: italic;
+          }
+        }
+
+        .menu-item-price {
+          font-size: 3.5vmin;
+          font-weight: 700;
+          color: $bgColor;
+          white-space: nowrap;
+          flex-shrink: 0;
+        }
+      }
     }
   }
-  .menu {
-    padding: 55vmin 15vmin 5vmin 15vmin;
-    background-image: url("@/assets/img/pages/restaurant/menu.jpg");
-    background-size: cover;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 768px) {
+    padding: 3vmin 5vmin;
 
     h3 {
-      font-family: $fancyFont;
-      font-size: 6vmin;
-      color: $primaryColor;
-      text-align: center;
-      margin-bottom: 3vmin;
+      font-size: 5vmin;
     }
 
     .menu-category {
-      margin-bottom: 3vmin;
-
       h4 {
-        position: relative;
-        width: 30%;
-        font-family: $supportFont;
-        font-size: 4.5vmin;
-        color: $blackColor;
-        background-color: $bgColor;
-        margin-bottom: 2vmin;
-        padding-left: 3vmin;
-
-        &::after {
-          content: "";
-          position: absolute;
-          top: 0;
-          right: calc(-3vmin + 1px);
-          width: 3vmin;
-          height: 100%;
-          background-color: $bgColor;
-          clip-path: polygon(0 0, 100% 50%, 0 100%);
-        }
+        font-size: 4vmin;
       }
 
-      ul {
-        list-style: none;
-        padding: 0;
+      .menu-item {
+        flex-direction: column;
+        align-items: flex-start;
 
-        .menu-item {
-          display: flex;
-          justify-content: space-between;
-          padding: 1vmin 0;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        .menu-item-info {
+          max-width: 100%;
 
-          &:last-child {
-            border-bottom: none;
-          }
-
-          .menu-item-info {
-            max-width: 70%;
-
-            .menu-item-name {
-              font-weight: 700;
-              font-size: 3.5vmin;
-              color: $bgColor;
-              display: block;
-            }
-
-            .menu-item-description {
-              font-size: 2.7vmin;
-              color: $bgColor;
-              font-style: italic;
-            }
-          }
-
-          .menu-item-price {
-            font-size: 3.5vmin;
-            font-weight: 700;
-            color: $bgColor;
-            white-space: nowrap;
-            flex-shrink: 0;
-          }
-        }
-      }
-    }
-
-    @media (max-width: 768px) {
-      padding: 3vmin 5vmin;
-
-      h3 {
-        font-size: 5vmin;
-      }
-
-      .menu-category {
-        h4 {
-          font-size: 4vmin;
-        }
-
-        .menu-item {
-          flex-direction: column;
-          align-items: flex-start;
-
-          .menu-item-info {
-            max-width: 100%;
-
-            .menu-item-name {
-              font-size: 4vmin;
-            }
-
-            .menu-item-description {
-              font-size: 3vmin;
-            }
-          }
-
-          .menu-item-price {
-            margin-top: 0.5em;
+          .menu-item-name {
             font-size: 4vmin;
           }
+
+          .menu-item-description {
+            font-size: 3vmin;
+          }
+        }
+
+        .menu-item-price {
+          margin-top: 0.5em;
+          font-size: 4vmin;
         }
       }
     }

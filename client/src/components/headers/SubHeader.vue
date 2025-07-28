@@ -1,5 +1,10 @@
 <template>
-  <div class="sub-header" v-if="headerImage">
+  <div
+    class="sub-header"
+    v-if="headerImage"
+    :key="headerImage"
+    data-aos="zoom-in-up"
+  >
     <img class="background" :src="headerImage" :alt="displayName.title" />
     <div class="overlay">
       <h1>{{ displayName.title }}</h1>
@@ -11,8 +16,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import "aos/dist/aos.css";
+import AOS from "aos";
 
 const route = useRoute();
 
@@ -103,6 +110,17 @@ const displayName = computed(() => {
 
 const headerImage = computed(() => {
   return routeImages[route.name as string] || "";
+});
+
+onMounted(() => {
+  AOS.init({
+    duration: 800,
+    once: false,
+  });
+
+  setTimeout(() => {
+    AOS.refresh();
+  }, 1000);
 });
 </script>
 

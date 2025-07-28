@@ -4,7 +4,7 @@ import Home from '@/components/home/Home.vue';
 import Hotel from '@/components/pages/Hotel.vue';
 import News from '@/components/pages/news/News.vue';
 import History from '@/components/pages/History.vue';
-import Restaurant from '../components/pages/Restaurant.vue';
+import Restaurant from '../components/pages/restaurant/Restaurant.vue';
 import Conference from '../components/pages/conference/Conference.vue';
 import Weddings from '../components/pages/weddings/Weddings.vue';
 import Events from '../components/pages/events/Events.vue';

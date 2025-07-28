@@ -1,8 +1,7 @@
 <template>
   <section class="contact-page">
     <div class="contact-wrapper">
-      <div class="contact-column">
-        <!-- <h4 class="label">Lokalizacja</h4> -->
+      <div class="contact-column" data-aos="fade-right">
         <p>
           ul. Juliusza Słowackiego 25<br />
           25-365 Kielce<br />
@@ -14,14 +13,14 @@
         </p>
       </div>
 
-      <div class="contact-column">
+      <div class="contact-column" data-aos="fade-up">
         <h4 class="label">Telefony</h4>
         <p>tel.stac. 412 412 888</p>
         <p>tel.kom. 789 808 214</p>
         <p>tel.kom. 572 187 950</p>
       </div>
 
-      <div class="contact-column">
+      <div class="contact-column" data-aos="fade-left">
         <h4 class="label">GPS</h4>
         <p>
           N: 50° 51' 50"<br />
@@ -29,10 +28,12 @@
         </p>
       </div>
     </div>
-    <div id="map" class="map"></div>
+    <div id="map" class="map" data-aos="fade-up"></div>
   </section>
 </template>
 <script setup lang="ts">
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { onMounted } from "vue";
 
 const initMap = () => {
@@ -49,6 +50,18 @@ const initMap = () => {
     map,
     title: "Nasza lokalizacja",
   });
+
+onMounted(() => {
+  AOS.init({
+    duration: 800,
+    once: false,
+  });
+
+  setTimeout(() => {
+    AOS.refresh();
+  }, 1000);
+});
+
 };
 
 onMounted(() => {

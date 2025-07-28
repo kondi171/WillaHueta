@@ -1,6 +1,6 @@
 <template>
   <div class="timeline">
-    <div class="container left">
+    <div class="container left" data-aos="fade-up-right">
       <div class="content">
         <h2>Styczeń - Festiwal Smaku</h2>
         <a
@@ -21,7 +21,7 @@
         </a>
       </div>
     </div>
-    <div class="container right">
+    <div class="container right" data-aos="fade-up-left">
       <div class="content">
         <h2>Marzec - Degustacja win</h2>
         <a
@@ -34,7 +34,7 @@
         </a>
       </div>
     </div>
-    <div class="container left">
+    <div class="container left" data-aos="fade-up-right">
       <div class="content">
         <h2>Kwiecień - Diamenty Miesięcznika Forbes</h2>
         <a
@@ -50,7 +50,22 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import "aos/dist/aos.css";
+import AOS from "aos";
+import { onMounted } from "vue";
+
+onMounted(() => {
+  AOS.init({
+    duration: 800,
+    once: false,
+  });
+
+  setTimeout(() => {
+    AOS.refresh();
+  }, 1000);
+});
+</script>
 
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;

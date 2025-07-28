@@ -1,43 +1,39 @@
 <template>
   <section class="hotel-page">
-    <div class="block-text-only">
-      <div class="text">
-        <h3>Witamy w naszym hotelu ⭐⭐⭐⭐</h3>
-        <p>
-          Willa Hueta to klimatyczny Hotel czterogwiazdkowy w obiekcie
-          zabytkowym, usytuowany tylko 0,5km od ścisłego centrum Kielc i 3km od
-          Centrum Targowego. Wyjątkowy styl hotelu uzupełniają nowoczesne
-          rozwiązania przygotowane specjalnie nawet dla najbardziej wymagających
-          gości. Na terenie obiektu znajduje się podziemny, monitorowany
-          parking. Hotel jest wyposażony w windę i przystosowany dla osób
-          niepełnosprawnych.
-        </p>
-      </div>
-    </div>
-    <div class="block-text-only block-text-only--reverse">
-      <div class="text">
-        <p>
-          Po wyczerpującym dniu zapraszamy Państwa do skorzystania z usług
-          naszego Centrum Rekreacji, w którym można zażyć kąpieli w jacuzzi. Dla
-          aktywnych proponujemy siłownię hotelową. Naszym głównym celem jest
-          zadbanie o Państwa wypoczynek i komfort. Profesjonalny personel Hotelu
-          jest zawsze do dyspozycji i służy pomocą. Zadowolenie naszych Gości
-          jest dla nas najważniejsze i najbardziej motywujące.
-        </p>
-      </div>
-    </div>
+    <TextBlock>
+      <h3>Witamy w naszym hotelu ⭐⭐⭐⭐</h3>
+      <p>
+        Willa Hueta to klimatyczny Hotel czterogwiazdkowy w obiekcie zabytkowym,
+        usytuowany tylko 0,5km od ścisłego centrum Kielc i 3km od Centrum
+        Targowego. Wyjątkowy styl hotelu uzupełniają nowoczesne rozwiązania
+        przygotowane specjalnie nawet dla najbardziej wymagających gości. Na
+        terenie obiektu znajduje się podziemny, monitorowany parking. Hotel jest
+        wyposażony w windę i przystosowany dla osób niepełnosprawnych.
+      </p>
+    </TextBlock>
+    <TextBlock :reverse="true">
+      <p>
+        Po wyczerpującym dniu zapraszamy Państwa do skorzystania z usług naszego
+        Centrum Rekreacji, w którym można zażyć kąpieli w jacuzzi. Dla aktywnych
+        proponujemy siłownię hotelową. Naszym głównym celem jest zadbanie o
+        Państwa wypoczynek i komfort. Profesjonalny personel Hotelu jest zawsze
+        do dyspozycji i służy pomocą. Zadowolenie naszych Gości jest dla nas
+        najważniejsze i najbardziej motywujące.
+      </p>
+    </TextBlock>
 
-    <div class="central-block">
+    <CentralBlock>
       Oddajemy do Państwa dyspozycji
       <strong>12 luksusowych, klimatyzowanych pokoi</strong>, wyposażonych w
       mini-barek, sejf i łazienki z wanną lub prysznicem. Pokoje posiadają
       stały, bezprzewodowy dostęp do Internetu. Wyjątkowy styl hotelu
       uzupełniają nowoczesne rozwiązania przygotowane specjalnie nawet dla
       najbardziej wymagających gości.
-    </div>
+    </CentralBlock>
+
     <Gallery :images="hotelImages" />
     <Highlight />
-    <div class="info-sections">
+    <ListBlock>
       <div class="section">
         <h3>Cena pokoju zawiera:</h3>
         <ul>
@@ -65,16 +61,24 @@
           <li>Parking podziemny, monitorowany</li>
         </ul>
       </div>
-    </div>
+    </ListBlock>
   </section>
 </template>
 
 <script setup lang="ts">
-import Gallery from "../common/Gallery.vue";
-import Highlight from "../common/Highlight.vue";
+import "aos/dist/aos.css";
+import AOS from "aos";
+
+import TextBlock from "@/components/common/blocks/TextBlock.vue";
+import CentralBlock from "@/components/common/blocks/CentralBlock.vue";
+import ListBlock from "@/components/common/blocks/ListBlock.vue";
+import Gallery from "@/components/common/Gallery.vue";
+import Highlight from "@/components/common/Highlight.vue";
 
 import hotel1 from "@/assets/img/pages/hotel/hotel-01.jpg";
 import hotel2 from "@/assets/img/pages/hotel/hotel-02.jpg";
+
+import { onMounted } from "vue";
 
 const hotelImages = [
   hotel1,
@@ -86,27 +90,22 @@ const hotelImages = [
   hotel1,
   hotel2,
 ];
+
+onMounted(() => {
+  AOS.init({
+    duration: 800,
+    once: false,
+  });
+
+  setTimeout(() => {
+    AOS.refresh();
+  }, 1000);
+});
 </script>
 
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
 @use "@/assets/scss/placeholders.scss" as *;
 
-.hotel-page {
-  .block-text-only {
-    padding: 0 15vmin;
-    @extend %block-text-only;
-    &--reverse {
-      @extend %block-text-only--reverse;
-    }
-  }
-
-  .central-block {
-    @extend %central-block;
-  }
-
-  .info-sections {
-    @extend %info-sections;
-  }
-}
+.hotel-page {}
 </style>

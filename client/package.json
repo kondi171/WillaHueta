@@ -14,6 +14,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@tsparticles/vue3": "^3.0.1",
+    "aos": "^2.3.4",
     "p5": "^2.0.3",
     "pinia": "^3.0.3",
     "three": "^0.178.0",
@@ -22,6 +23,7 @@
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
+    "@types/aos": "^3.0.7",
     "@types/node": "^24.0.3",
     "@vitejs/plugin-vue": "^5.2.3",
     "@vue/tsconfig": "^0.7.0",

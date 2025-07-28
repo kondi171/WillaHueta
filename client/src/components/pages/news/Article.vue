@@ -1,5 +1,5 @@
 <template>
-  <div :class="['news-item', { 'no-image': news.image === 'none' }]">
+  <div :class="['news-item', { 'no-image': news.image === 'none' }]" data-aos="fade-up">
     <template v-if="news.image !== 'none'">
       <img :src="news.image" :alt="news.title" class="news-image" />
     </template>
@@ -12,8 +12,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps } from "vue";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { computed, defineProps, onMounted } from "vue";
 interface ArticleType {
   id: number;
   title: string;
@@ -31,6 +32,17 @@ const formattedDate = computed(() => {
     day: "numeric",
   };
   return new Date(props.news.date).toLocaleDateString("pl-PL", options);
+});
+
+onMounted(() => {
+  AOS.init({
+    duration: 800,
+    once: false,
+  });
+
+  setTimeout(() => {
+    AOS.refresh();
+  }, 1000);
 });
 </script>
 

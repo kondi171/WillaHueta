@@ -446,7 +446,7 @@
       border: 2px solid $primaryColor;
       border-radius: 5px;
       margin: 2vmin 0;
-      background-color: darken($color: $bgColor, $amount: 10px);
+      // background-color: darken($color: $bgColor, $amount: 10px);
       h3 {
         font-size: 3vmin;
         text-align: center;

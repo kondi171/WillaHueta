@@ -1,5 +1,5 @@
 <template>
-  <div class="gallery">
+  <div class="gallery" data-aos="fade-up">
     <h3>Galeria</h3>
     <div :class="['photos', { 'blur-others': hoverIndex !== null }]">
       <div
@@ -52,14 +52,16 @@
 </template>
 
 <script setup lang="ts">
+import "aos/dist/aos.css";
+import AOS from "aos";
 import { ref, computed, onMounted, onUnmounted } from "vue";
 
 const props = defineProps<{
   images: string[];
 }>();
 
-const isModalOpen = ref(false); // otwarcie i animacja obrazu
-const isModalVisible = ref(false); // faktyczna obecność .modal w DOM
+const isModalOpen = ref(false);
+const isModalVisible = ref(false);
 const modalAnimationClass = ref("modal-fade-in");
 
 const currentIndex = ref(0);
@@ -69,15 +71,15 @@ const isAnimating = ref(false);
 
 const currentImage = computed(() => props.images[currentIndex.value]);
 
-function openModal(index: number) {
+const openModal = (index: number) => {
   currentIndex.value = index;
   isModalOpen.value = true;
   isModalVisible.value = true;
   modalAnimationClass.value = "modal-fade-in";
   animationClass.value = "fade-in";
-}
+};
 
-function closeModal() {
+const closeModal = () => {
   if (isAnimating.value) return;
   isAnimating.value = true;
 
@@ -89,10 +91,10 @@ function closeModal() {
     isModalVisible.value = false;
     animationClass.value = "fade-in";
     isAnimating.value = false;
-  }, 400); // dłużej, żeby tło też zdążyło zniknąć
-}
+  }, 400);
+};
 
-function changeImage(direction: "next" | "prev") {
+const changeImage = (direction: "next" | "prev") => {
   if (isAnimating.value) return;
   isAnimating.value = true;
   animationClass.value = "fade-out";
@@ -105,17 +107,17 @@ function changeImage(direction: "next" | "prev") {
     animationClass.value = "fade-in";
     isAnimating.value = false;
   }, 300);
-}
+};
 
-function nextImage() {
+const nextImage = () => {
   changeImage("next");
-}
+};
 
-function prevImage() {
+const prevImage = () => {
   changeImage("prev");
-}
+};
 
-function handleKeyDown(event: KeyboardEvent) {
+const handleKeyDown = (event: KeyboardEvent) => {
   if (!isModalOpen.value) return;
 
   switch (event.key) {
@@ -129,10 +131,18 @@ function handleKeyDown(event: KeyboardEvent) {
       closeModal();
       break;
   }
-}
+};
 
 onMounted(() => {
   window.addEventListener("keydown", handleKeyDown);
+
+  AOS.init({
+    duration: 800,
+    once: false,
+  });
+  setTimeout(() => {
+    AOS.refresh();
+  }, 1000);
 });
 
 onUnmounted(() => {

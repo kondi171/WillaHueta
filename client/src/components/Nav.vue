@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import "aos/dist/aos.css";
+import AOS from "aos";
+import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -21,10 +23,20 @@ const rightNavItems = [
 ];
 
 const hoveredItem = ref<string | null>(null);
+onMounted(() => {
+  AOS.init({
+    duration: 800,
+    once: false,
+  });
+
+  setTimeout(() => {
+    AOS.refresh();
+  }, 1000);
+});
 </script>
 
 <template>
-  <nav class="navbar">
+  <nav class="navbar" data-aos="fade-down">
     <div class="nav-side">
       <ul class="nav-list">
         <li

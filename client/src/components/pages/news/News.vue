@@ -320,9 +320,13 @@ const totalPages = computed(() =>
   Math.ceil(newsList.value.length / ARTICLES_PER_PAGE)
 );
 
+const sortedNews = computed(() =>
+  [...newsList.value].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+);
+
 const paginatedNews = computed(() => {
   const start = (currentPage.value - 1) * ARTICLES_PER_PAGE;
-  return newsList.value.slice(start, start + ARTICLES_PER_PAGE);
+  return sortedNews.value.slice(start, start + ARTICLES_PER_PAGE);
 });
 </script>
 

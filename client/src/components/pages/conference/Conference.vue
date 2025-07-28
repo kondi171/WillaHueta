@@ -1,36 +1,31 @@
 <template>
   <section class="conference-page">
-    <div class="block-text-only block-text-only--reverse">
-      <div class="text">
-        <h3>Witamy w naszych Salach</h3>
-        <p>
-          Serdecznie zapraszamy do zapoznania się z ofertą kompleksu
-          nowoczesnych sal konferencyjnych. Specjalizujemy się w organizowaniu
-          eventów, szkoleń, konferencji, zjazdów, sympozjów, imprez
-          integracyjnych oraz spotkań okolicznościowych wraz z kompleksową
-          obsługą techniczną, gastronomiczną i hotelową. Do Państwa dyspozycji
-          oddajemy 4 nowoczesne, klimatyzowane, wielofunkcyjne sale
-          konferencyjne. Każda sala jest wyposażona w wysokiej jakości sprzęt
-          multimedialny.
-        </p>
-      </div>
-    </div>
-    <div class="block-text-only">
-      <div class="text">
-        <h3>Dostępne Sale Konferencyjne</h3>
-        <p>
-          <strong>SALA KRYSZTAŁOWA</strong> - 187 m2 mieszcząca do 200 osób
-          <br />
-          Mobilne ściany pozwalają na stworzenie 2 osobnych sal
-          konferencyjnych:<br />
-          <strong>SALA PERŁOWA</strong> - 141 m2 mieszcząca do 100 osób<br />
-          <strong>SALA DIAMENTOWA</strong> - 46 m2 mieszcząca do 40 osób<br />
-          <strong>SALA BRYLANTOWA</strong> - 16 m2 mieszcząca do 10 osób
-          usytuowana w części hotelowej<br />
-        </p>
-      </div>
-    </div>
-    <div class="central-block">
+    <TextBlock :reverse="true">
+      <h3>Witamy w naszych Salach</h3>
+      <p>
+        Serdecznie zapraszamy do zapoznania się z ofertą kompleksu nowoczesnych
+        sal konferencyjnych. Specjalizujemy się w organizowaniu eventów,
+        szkoleń, konferencji, zjazdów, sympozjów, imprez integracyjnych oraz
+        spotkań okolicznościowych wraz z kompleksową obsługą techniczną,
+        gastronomiczną i hotelową. Do Państwa dyspozycji oddajemy 4 nowoczesne,
+        klimatyzowane, wielofunkcyjne sale konferencyjne. Każda sala jest
+        wyposażona w wysokiej jakości sprzęt multimedialny.
+      </p>
+    </TextBlock>
+    <TextBlock>
+      <h3>Dostępne Sale Konferencyjne</h3>
+      <p>
+        <strong>SALA KRYSZTAŁOWA</strong> - 187 m2 mieszcząca do 200 osób
+        <br />
+        Mobilne ściany pozwalają na stworzenie 2 osobnych sal
+        konferencyjnych:<br />
+        <strong>SALA PERŁOWA</strong> - 141 m2 mieszcząca do 100 osób<br />
+        <strong>SALA DIAMENTOWA</strong> - 46 m2 mieszcząca do 40 osób<br />
+        <strong>SALA BRYLANTOWA</strong> - 16 m2 mieszcząca do 10 osób
+        usytuowana w części hotelowej<br />
+      </p>
+    </TextBlock>
+    <CentralBlock>
       <h3>Wyposażenie Sali</h3>
       Właściwe wyposażenie sali konferencyjnej jest kluczem do zakończenia
       sukcesem wszelkich wydarzeń, które są w niej organizowane. Wszystkie z
@@ -39,8 +34,8 @@
       prowadzenia, spotkań firmowych, konferencji, szkoleń czy też imprez
       okolicznościowych. Willa Hueta oddaje do Państwa dyspozycji kompleksowe
       wyposażenie sal konferencyjnych o najwyższym standardzie.
-    </div>
-    <div class="info-sections">
+    </CentralBlock>
+    <ListBlock>
       <div class="section">
         <h3>Wyposażenie wliczone w cenę sali:</h3>
         <ul>
@@ -61,76 +56,66 @@
           <li>Mikrofony</li>
         </ul>
       </div>
-    </div>
-    <div class="central-block">
+    </ListBlock>
+    <CentralBlock>
       Powyższe elementy wyposażenia sal konferencyjnych w znaczący sposób
       ułatwiają zarówno zorganizowanie, jak i późniejsze przeprowadzanie spotkań
       biznesowych czy szkoleniowych prezentacji. Wymienione multimedia są raczej
       proste w obsłudze co bez wątpienia ułatwia pracę.
-    </div>
+    </CentralBlock>
     <Gallery :images="hotelImages" />
     <img src="@/assets/img/pages/conference/plan-sal.png" alt="" />
-    <div class="block-text-only block-text-only--reverse">
-      <div class="text">
-        <h3>Plan Sal</h3>
-        <p>
-          Hotel Willa Hueta w swojej ofercie posiada cztery sale konferencyjne,
-          pozwalającymi na dowolną aranżację przestrzeni i zorganizowanie
-          wydarzeń do 200 uczestników.
-        </p>
-      </div>
-    </div>
-    <div class="block-text-only">
-      <div class="text">
-        <p>
-          Największa Sala Kryształowa, daje możliwość realizowania wydarzeń
-          biznesowych do 200 osób, takich jak kongresy, szkolenia, sympozja czy
-          też inne duże konferencje. Sala wyposażona jest w nowoczesny
-          projektor, ekran, nagłośnienie, zapewniony jest dostęp do dziennego
-          światła dzięki oszklonej ścianie, jak również zaciemnienie za sprawą
-          specjalnych zasłon. Sala Kryształowa równie dobrze sprawdza się jako
-          miejsce na imprezę okolicznościową, taką jak przyjęcie weselne,
-          impreza biznesowa czy też inne wydarzenie tego typu, bowiem posiada
-          ona parkiet oraz podest pod orkiestrę czy też stanowisko prowadzącego.
-          Powierzchnia tej Sali wynosi 187 m2.
-        </p>
-      </div>
-    </div>
-    <div class="block-text-only block-text-only--reverse">
-      <div class="text">
+    <TextBlock :reverse="true">
+      <h3>Plan Sal</h3>
+      <p>
+        Hotel Willa Hueta w swojej ofercie posiada cztery sale konferencyjne,
+        pozwalającymi na dowolną aranżację przestrzeni i zorganizowanie wydarzeń
+        do 200 uczestników.
+      </p>
+    </TextBlock>
+    <TextBlock>
+      <p>
+        Największa Sala Kryształowa, daje możliwość realizowania wydarzeń
+        biznesowych do 200 osób, takich jak kongresy, szkolenia, sympozja czy
+        też inne duże konferencje. Sala wyposażona jest w nowoczesny projektor,
+        ekran, nagłośnienie, zapewniony jest dostęp do dziennego światła dzięki
+        oszklonej ścianie, jak również zaciemnienie za sprawą specjalnych
+        zasłon. Sala Kryształowa równie dobrze sprawdza się jako miejsce na
+        imprezę okolicznościową, taką jak przyjęcie weselne, impreza biznesowa
+        czy też inne wydarzenie tego typu, bowiem posiada ona parkiet oraz
+        podest pod orkiestrę czy też stanowisko prowadzącego. Powierzchnia tej
+        Sali wynosi 187 m2.
+      </p>
+    </TextBlock>
+    <TextBlock :reverse="true">
         <p>
           Kreowanie w sposób elastyczny przestrzeni zapewnia Nam system
           przesuwanych i dźwiękoszczelnych ścianek, za pośrednictwem których
           mamy możliwość bez przeszkód zorganizować dwa odrębne wydarzenia.
         </p>
-      </div>
-    </div>
-    <div class="block-text-only">
-      <div class="text">
-        <p>
-          Dwie kolejne sale konferencyjne to Sala Perłowa o powierzchni 141 m2
-          oraz Sala Diamentowa mająca 46 m2. Sale te mieszczą odpowiednio 100
-          oraz 40 osób i umożliwiają obsługę bardziej kameralnych wydarzeń. Sale
-          zlokalizowane są w swoim bezpośrednim sąsiedztwie.
-        </p>
-      </div>
-    </div>
-    <div class="block-text-only block-text-only--reverse">
-      <div class="text">
-        <p>
-          Sala Brylantowa mierząca 16 m2 mieści do 10 osób i jest usytuowana w
-          zabytkowej hotelowej części na poddaszu obiektu. Sala ta to idealne
-          miejsce na organizacje małych spotkań biznesowych, rozmów
-          kwalifikacyjnych.
-        </p>
-      </div>
-    </div>
-    <div class="central-block">
+    </TextBlock>
+    <TextBlock>
+      <p>
+        Dwie kolejne sale konferencyjne to Sala Perłowa o powierzchni 141 m2
+        oraz Sala Diamentowa mająca 46 m2. Sale te mieszczą odpowiednio 100 oraz
+        40 osób i umożliwiają obsługę bardziej kameralnych wydarzeń. Sale
+        zlokalizowane są w swoim bezpośrednim sąsiedztwie.
+      </p>
+    </TextBlock>
+    <TextBlock :reverse="true">
+      <p>
+        Sala Brylantowa mierząca 16 m2 mieści do 10 osób i jest usytuowana w
+        zabytkowej hotelowej części na poddaszu obiektu. Sala ta to idealne
+        miejsce na organizacje małych spotkań biznesowych, rozmów
+        kwalifikacyjnych.
+      </p>
+    </TextBlock>
+    <CentralBlock>
       <h3>Usługi Dodatkowe</h3>
-    </div>
+    </CentralBlock>
     <Cards title="Menu 40,00 zł" :menus="menu40" />
     <Cards title="Menu 45,00 zł" :menus="menu45" />
-    <div class="central-block">
+    <CentralBlock>
       <div class="text">
         <h3>Desery do wyboru (25 zł)</h3>
         <p>
@@ -138,8 +123,8 @@
           sałatce owocowej.
         </p>
       </div>
-    </div>
-    <div class="central-block">
+    </CentralBlock>
+    <CentralBlock>
       <div class="text">
         <h3>Przykładowe propozycje lunchowe</h3>
         <p>
@@ -147,7 +132,7 @@
           inne.
         </p>
       </div>
-    </div>
+    </CentralBlock>
     <Cards
       title="Propozycje bufetowe"
       :isBuffet="true"
@@ -159,6 +144,9 @@
 </template>
 
 <script setup lang="ts">
+import "aos/dist/aos.css";
+import AOS from "aos";
+import { onMounted } from "vue";
 import Gallery from "../../common/Gallery.vue";
 import Cards from "./Cards.vue";
 import Table from "./Table.vue";
@@ -166,6 +154,9 @@ import Table from "./Table.vue";
 import hotel1 from "@/assets/img/pages/hotel/hotel-01.jpg";
 import hotel2 from "@/assets/img/pages/hotel/hotel-02.jpg";
 import Highlight from "../../common/Highlight.vue";
+import TextBlock from "../../common/blocks/TextBlock.vue";
+import CentralBlock from "../../common/blocks/CentralBlock.vue";
+import ListBlock from "../../common/blocks/ListBlock.vue";
 
 const hotelImages = [
   hotel1,
@@ -284,6 +275,16 @@ const buffetProposals = [
     },
   },
 ];
+onMounted(() => {
+  AOS.init({
+    duration: 800,
+    once: false,
+  });
+
+  setTimeout(() => {
+    AOS.refresh();
+  }, 1000);
+});
 </script>
 
 <style scoped lang="scss">

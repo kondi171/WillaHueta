@@ -1,5 +1,5 @@
 <template>
-  <section class="footer-contact">
+  <section class="footer-contact" data-aos="fade-left">
     <div class="banner">
       <div class="banner-img">
         <img src="@/assets/img/landing/logo.png" alt="Willa Hueta Logo" />
@@ -45,6 +45,20 @@
 
 <script setup lang="ts">
 import Socials from "./Socials.vue";
+import "aos/dist/aos.css";
+import AOS from "aos";
+import { onMounted } from "vue";
+
+onMounted(() => {
+  AOS.init({
+    duration: 800,
+    once: false,
+  });
+
+  setTimeout(() => {
+    AOS.refresh();
+  }, 1000);
+});
 </script>
 
 <style lang="scss" scoped>
