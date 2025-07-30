@@ -21,17 +21,14 @@
 
 <script setup></script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
 @use "@/assets/scss/mixins.scss" as *;
 
 .footer-socials {
-  //   position: absolute;
   display: flex;
   justify-content: space-evenly;
   width: 30vw;
-  //   bottom: 15vh;
-  //   right: 15%;
   color: $textColor;
   font-size: 48px;
 
@@ -53,7 +50,6 @@
     }
     &:hover {
       cursor: pointer;
-      // border-radius: 50%;
     }
 
     &.fa-facebook::after {
@@ -62,7 +58,6 @@
 
     &.fa-facebook:hover {
       color: #1877f2;
-      // box-shadow: inset 0px 0px 10px 10px #1877f2;
       &::after {
         transform: scale(1);
       }
@@ -73,7 +68,6 @@
 
     &.fa-instagram:hover {
       color: #c13584;
-      // box-shadow: inset 0px 0px 10px 10px #c13584;
 
       &::after {
         transform: scale(1);

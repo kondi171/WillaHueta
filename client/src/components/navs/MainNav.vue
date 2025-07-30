@@ -95,7 +95,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
-@use "sass:color";
+// @use "sass:color";
 
 .navbar {
   position: fixed;
@@ -125,9 +125,6 @@ onMounted(() => {
     align-items: center;
     justify-content: center;
     img {
-      // position: fixed;
-      // top: 1vh;
-      // margin-right: 19vmin;
       height: 7vh;
       max-height: 8vh;
       object-fit: contain;

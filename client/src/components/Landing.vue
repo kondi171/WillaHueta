@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
+import MainNav from "./navs/MainNav.vue";
 import MainHeader from "./headers/MainHeader.vue";
 import SubHeader from "./headers/SubHeader.vue";
-import Nav from "./Nav.vue";
 import Footer from "./footer/Footer.vue";
 
 const route = useRoute();
@@ -13,7 +13,7 @@ const route = useRoute();
     <div class="wrapper">
       <MainHeader v-if="route.name === 'home'" />
       <SubHeader v-else />
-      <Nav />
+      <MainNav />
     </div>
     <router-view />
     <Footer />
@@ -27,7 +27,6 @@ const route = useRoute();
   .wrapper {
     display: flex;
     flex-direction: column;
-    // height: 100vh;
   }
 }
 </style>

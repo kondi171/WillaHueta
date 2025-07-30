@@ -33,8 +33,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
-
 interface MenuItem {
   label: string;
   soup?: string;

@@ -98,11 +98,11 @@
           alt="Samochód marki Mercedes - Bus do przewozu gości weselnych"
         />
       </template>
-        <h3>Transport</h3>
-        <p>
-          Posiadamy nowoczesny, elegancki samochód marki mercedes bus do
-          przewozu gości weselnych - 22 osobowy
-        </p>
+      <h3>Transport</h3>
+      <p>
+        Posiadamy nowoczesny, elegancki samochód marki mercedes bus do przewozu
+        gości weselnych - 22 osobowy
+      </p>
     </ImageBlock>
 
     <Highlight />
@@ -146,14 +146,14 @@ const currentComponent = computed(() => {
   return null;
 });
 
-function nextPackage() {
+const nextPackage = () => {
   selectedPackage.value =
     selectedPackage.value === "silver" ? "gold" : "silver";
-}
+};
 
-function prevPackage() {
+const prevPackage = () => {
   selectedPackage.value = selectedPackage.value === "gold" ? "silver" : "gold";
-}
+};
 onMounted(() => {
   AOS.init({
     duration: 800,
@@ -172,40 +172,5 @@ onMounted(() => {
 
 .weddings-page {
   overflow: hidden;
-  .block-text-only {
-    padding: 0 15vmin;
-    @extend %block-text-only;
-    strong {
-      color: $secondaryColor;
-    }
-    &--reverse {
-      @extend %block-text-only--reverse;
-    }
-  }
-
-  .central-block {
-    @extend %central-block;
-    h3 {
-      margin-bottom: 5vmin;
-    }
-    
-  }
-
-  .info-sections {
-    padding: 0 15vmin;
-    @extend %info-sections;
-    .section {
-      width: 30vw;
-      margin: 0 5vw;
-    }
-  }
-
-  .block-with-image {
-    padding: 0 15vmin;
-    @extend %block-with-image;
-    &--reverse {
-      @extend %block-with-image--reverse;
-    }
-  }
 }
 </style>

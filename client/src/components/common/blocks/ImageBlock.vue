@@ -89,6 +89,10 @@ onMounted(() => {
       border-radius: 2vmin;
       box-shadow: 0 1vmin 2vmin rgba(0, 0, 0, 0.3);
     }
+    .no-shadow {
+      box-shadow: none;
+      background-color: red;
+    }
   }
 
   &.image-block--reverse {
@@ -100,10 +104,13 @@ onMounted(() => {
       margin-right: 0;
     }
   }
-  &:last-of-type {
-      img {
-        box-shadow: none;
-      }
-    }
+  // &:last-of-type {
+  //     img {
+  //       box-shadow: none;
+  //     }
+  //   }
+  .no-shadow {
+    box-shadow: none;
+  }
 }
 </style>

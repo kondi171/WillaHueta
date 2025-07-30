@@ -6,7 +6,15 @@
       :key="category.name"
       data-aos="fade-left"
     >
-      <h4>{{ category.name }}</h4>
+      <h4>
+        <span class="line left">
+          <span class="diamond"></span>
+        </span>
+        <span class="title">{{ category.name }}</span>
+        <span class="line right">
+          <span class="diamond"></span>
+        </span>
+      </h4>
       <ul>
         <li
           v-for="item in category.items"
@@ -16,10 +24,12 @@
         >
           <div class="menu-item-info">
             <span class="menu-item-name">{{ item.name }}</span>
-            <span class="menu-item-description">{{ item.description }}</span>
+            <span v-if="item.description" class="menu-item-description">{{
+              item.description
+            }}</span>
           </div>
           <div class="menu-item-price">
-            {{ item.weight }} / {{ item.price }} zł
+            {{ item.weight ? item.weight + " / " : "" }}{{ item.price }} PLN
           </div>
         </li>
       </ul>
@@ -33,87 +43,47 @@ const menuCategories = [
     name: "Przystawki",
     items: [
       {
-        name: "Burak pieczony Ⓥ",
-        description: "Podany z konfiturą z warzyw i kawiorem ogórkowym",
-        price: 27,
-        weight: "200g",
-      },
-      {
-        name: "Ser kozi chavoux",
-        description: "Podany z bakłażanem, boczniakiem i sosem wiśniowym",
+        name: "Krewetki duszone na maśle z białym winem",
+        weight: "150g",
         price: 39,
-        weight: "200g",
+        description: "",
       },
       {
-        name: "Kurczak maślany",
-        description: "Podany z grillowanym boczkiem i sałatą rzymską",
-        price: 38,
+        name: "Pielmieni nadziewane mięsem",
+        description: "Podane z kwaśną śmietaną i świeżymi ziołami",
         weight: "250g",
-      },
-      {
-        name: "Tatar z jelenia",
-        description: "Podany z domowymi piklami i jajkiem przepiórki",
-        price: 39,
-        weight: "200g",
-      },
-      {
-        name: "Łosoś marynowany na zimno",
-        description: "Podany z sałatami",
         price: 37,
-        weight: "200g",
       },
       {
-        name: "Pieczywo",
-        description: "Własnego wypieku",
-        price: 10,
-        weight: "300g",
+        name: "Tatar z jelenia / wołowy",
+        description: "Podany z domowymi piklami i jajkiem przepiórczym",
+        weight: "120g",
+        price: 39,
       },
     ],
   },
   {
-    name: "Dania główne",
+    name: "Sałaty",
     items: [
       {
-        name: "Udo z kaczki marynowane",
-        description: "Podane z pieczonymi owocami",
-        price: 77,
-        weight: "350g",
+        name: "Burrata z pomidorami koktajlowymi",
+        description:
+          "Z szynką prosciutto, jabłuszkami kaparowymi, marynowanymi oliwkami i pesto pietruszkowym",
+        weight: "270g",
+        price: 39,
       },
       {
-        name: "Kotlet schabowy z kością",
-        description: "Podany z pure ziemniaczanym i kapustą w stylu polskim",
-        price: 57,
-        weight: "390g",
+        name: "Cezar z grillowanym kurczakiem",
+        description: "Z grzanką maślaną i chipsem z boczku",
+        weight: "270g",
+        price: 39,
       },
       {
-        name: "Policzki wieprzowe",
-        description: "Podane z dynią, pure z musztardą i sosem cydrowym",
-        price: 79,
-        weight: "350g",
-      },
-      {
-        name: "Polędwica wołowa",
-        description: "Podana z boczniakami i kalafiorem",
-        price: 79,
-        weight: "300g",
-      },
-      {
-        name: "Łosoś",
-        description: "Podany z gratin, sosem szczawiowym i kwaśną śmietaną",
-        price: 83,
-        weight: "350g",
-      },
-      {
-        name: "Pstrąg",
-        description: "Podany z kluseczkami francuskimi i brukselką",
-        price: 68,
-        weight: "300g",
-      },
-      {
-        name: "Risotto Ⓥ",
-        description: "Podawane z borowikiem",
-        price: 32,
-        weight: "250g",
+        name: "Łosoś pieczony",
+        description:
+          "Marynowany w oliwie sezamowej podany na sałatach, zielona fasolka szparagowa, pomidory koktailowe, sos francuski cytrynowy",
+        weight: "270g",
+        price: 43,
       },
     ],
   },
@@ -121,22 +91,74 @@ const menuCategories = [
     name: "Zupy",
     items: [
       {
-        name: "Zupa francuska cebulowa",
-        description: "Podana z grzanką",
-        price: 25,
-        weight: "300ml",
+        name: "Krem z pomidorów i pieczonej papryki",
+        description: "Z mozzarellą, pesto pietruszkowym i jogurtem naturalnym",
+        weight: "200ml",
+        price: 18,
       },
       {
-        name: "Consome",
-        description: "Podane z kluseczkami francuskimi",
-        price: 28,
-        weight: "300ml",
+        name: "Rosół z bażanta",
+        description: "Z lanymi kluseczkami",
+        weight: "200ml",
+        price: 18,
       },
       {
-        name: "Krem z buraka Ⓥ",
-        description: "",
-        price: 28,
-        weight: "300ml",
+        name: "Żurek na zakwasie",
+        description: "Z jajkiem i chipsem z boczku",
+        weight: "200ml",
+        price: 18,
+      },
+    ],
+  },
+  {
+    name: "Dania główne",
+    items: [
+      {
+        name: "Risotto",
+        weight: "200g",
+        price: 32,
+        description: "Z zielonymi szparagami i parmezanem",
+      },
+      {
+        name: "Makaron Linguinie",
+        description:
+          "Z pesto pistacjowo - bazyliowym, serem parmezan, chipsem z prosciutto i prażonymi pistacjami",
+        weight: "200g",
+        price: 63,
+      },
+      {
+        name: "Schab z kością",
+        description:
+          "Podany z kiszoną kapustą w panko, pure pietruszkowym, sosem musztardowym i kapustą czerwoną",
+        weight: "200g",
+        price: 63,
+      },
+      {
+        name: "Kotlet schabowy z kością",
+        description: "Z kremowym pure i kapustą duszoną",
+        weight: "200g",
+        price: 53,
+      },
+      {
+        name: "Konfitowana noga z kaczki",
+        description:
+          "Podana z soczewicą, pieczonymi burakami, sosem morelowym, pure z marchewki i chipsem z topinamburu",
+        weight: "170g",
+        price: 67,
+      },
+      {
+        name: "Policzki wołowe",
+        description:
+          "Z pure z kiszoną kapustą, marchewką glazurowaną i sosem z czerwonego wina",
+        weight: "170g",
+        price: 70,
+      },
+      {
+        name: "Łosoś pieczony z masłem",
+        description:
+          "Podany z risotto, grillowanymi warzywami i sosem cytrynowym",
+        weight: "170g",
+        price: 83,
       },
     ],
   },
@@ -144,22 +166,22 @@ const menuCategories = [
     name: "Desery",
     items: [
       {
-        name: "Beza",
-        description: "Z kremem śmietanowym i marakują",
-        price: 29,
+        name: "Semifreddo z marakują",
+        description: "Z owocami sezonowymi i bitą śmietaną",
         weight: "150g",
+        price: 25,
       },
       {
-        name: "Brownie",
-        description: "Z kremem kawowym",
-        price: 29,
-        weight: "150g",
+        name: "Beza z mascarpone",
+        description: "Z sosem z czerwonej porzeczki",
+        weight: "170g",
+        price: 27,
       },
       {
         name: "Suflet czekoladowy",
-        description: "Z sosem malinowym",
-        price: 32,
+        description: "Podany z lodami waniliowymi i sosem malinowym",
         weight: "150g",
+        price: 29,
       },
     ],
   },
@@ -168,168 +190,94 @@ const menuCategories = [
     items: [
       {
         name: "Sok ze świeżych owoców",
-        price: 25,
         weight: "250ml",
+        price: 25,
         description: "",
       },
       {
         name: "Coca-Cola, Sprite, Fanta, Kinley",
-        price: 9,
         weight: "250ml",
+        price: 9,
         description: "",
       },
       {
-        name: "Kropla niegazowana / gazowana",
+        name: "Woda mineralna Buskowianka",
+        weight: "250ml",
         price: 9,
-        weight: "330ml",
-        description: "",
+        description: "Niegazowana / Gazowana",
       },
       {
-        name: "Cappy pomarańczowy, jabłkowy, porzeczkowy, multiwitamina, grejpfrutowy",
-        price: 9,
+        name: "Woda mineralna Kropla Beskidu",
         weight: "250ml",
-        description: "",
+        price: 9,
+        description: "Niegazowana / Gazowana",
       },
       {
-        name: "Fuzetea",
-        price: 9,
+        name: "Cappy sok",
         weight: "250ml",
-        description: "",
+        price: 9,
+        description: "Pomarańczowy / Jabłkowy",
       },
     ],
   },
   {
     name: "Napoje gorące",
     items: [
-      { name: "Espresso", price: 9, weight: "", description: "" },
-      { name: "Amerikano", price: 10, weight: "", description: "" },
-      { name: "Capuccino", price: 12, weight: "", description: "" },
+      { name: "Espresso", price: 12, weight: "", description: "" },
+      { name: "Americano", price: 15, weight: "", description: "" },
+      { name: "Cappuccino", price: 15, weight: "", description: "" },
       { name: "Latte", price: 15, weight: "", description: "" },
-      { name: "Herbata / Tea", price: 15, weight: "", description: "" },
+      {
+        name: "Kawa biała z mlekiem zbożowym",
+        price: 17,
+        weight: "",
+        description: "",
+      },
+      { name: "Herbata", price: 16, weight: "", description: "" },
     ],
   },
   {
     name: "Drinki",
     items: [
-      { name: "Aperol Spritz", price: 35, weight: "", description: "" },
-      { name: "Mojito", price: 28, weight: "", description: "" },
+      { name: "Aperol Spritz", price: 37, weight: "", description: "" },
+      { name: "Mojito", price: 29, weight: "", description: "" },
       { name: "Cuba Libre", price: 28, weight: "", description: "" },
-      { name: "Whisky Sour", price: 35, weight: "", description: "" },
     ],
   },
   {
-    name: "Aperetifs",
+    name: "Aperitif",
     items: [
-      { name: "Martini Bianco", price: 25, weight: "100ml", description: "" },
-      { name: "Martini Rosso", price: 25, weight: "100ml", description: "" },
+      { name: "Martini Bianco", price: 23, weight: "100ml", description: "" },
+      { name: "Martini Rosso", price: 23, weight: "100ml", description: "" },
       {
         name: "Martini Extra Dry",
-        price: 25,
+        price: 23,
         weight: "100ml",
         description: "",
       },
-      { name: "Jägermeister", price: 25, weight: "40ml", description: "" },
-    ],
-  },
-  {
-    name: "Brandy / Cognac",
-    items: [
-      { name: "Metaxa 5", price: 25, weight: "40ml", description: "" },
-      { name: "Metaxa 7", price: 30, weight: "40ml", description: "" },
-    ],
-  },
-  {
-    name: "Whisky",
-    items: [
-      {
-        name: "Johnnie Walker Red",
-        price: 22,
-        weight: "40ml",
-        description: "",
-      },
-      {
-        name: "Johnnie Walker Black",
-        price: 26,
-        weight: "40ml",
-        description: "",
-      },
-      {
-        name: "Johnnie Walker Gold",
-        price: 50,
-        weight: "40ml",
-        description: "",
-      },
-      {
-        name: "Ballantine’s Finest",
-        price: 22,
-        weight: "40ml",
-        description: "",
-      },
-      {
-        name: "Chivas Regal 12 years",
-        price: 50,
-        weight: "40ml",
-        description: "",
-      },
-      {
-        name: "Jack Daniel’s Old No.7",
-        price: 25,
-        weight: "40ml",
-        description: "",
-      },
-    ],
-  },
-  {
-    name: "Rum",
-    items: [
-      { name: "Bacardi Superior", price: 22, weight: "40ml", description: "" },
-      { name: "Bacardi Black", price: 25, weight: "40ml", description: "" },
-    ],
-  },
-  {
-    name: "Tequila",
-    items: [
-      { name: "Sierra Silver", price: 25, weight: "40ml", description: "" },
-      { name: "Sierra Gold", price: 25, weight: "40ml", description: "" },
     ],
   },
   {
     name: "Wódka",
     items: [
-      { name: "Finlandia", price: 20, weight: "40ml", description: "" },
       { name: "Belweder", price: 25, weight: "40ml", description: "" },
-      { name: "Chopin", price: 28, weight: "40ml", description: "" },
-      { name: "Stumbras", price: 15, weight: "40ml", description: "" },
-    ],
-  },
-  {
-    name: "Gin",
-    items: [
-      { name: "Bombay Sapphire", price: 23, weight: "40ml", description: "" },
+      { name: "Chopin", price: 23, weight: "40ml", description: "" },
+      { name: "Baczewski", price: 20, weight: "40ml", description: "" },
+      { name: "Finlandia", price: 20, weight: "40ml", description: "" },
+      { name: "Stumbras", price: 17, weight: "40ml", description: "" },
     ],
   },
   {
     name: "Piwo",
     items: [
-      { name: "Żywiec", price: 12, weight: "300ml", description: "" },
-      { name: "Żywiec", price: 15, weight: "500ml", description: "" },
-      { name: "Heineken", price: 12, weight: "330ml", description: "" },
+      { name: "Żywiec lane", price: 12, weight: "300ml", description: "" },
+      { name: "Żywiec lane", price: 16, weight: "500ml", description: "" },
+      { name: "Heineken", price: 15, weight: "500ml", description: "" },
+      { name: "Piwa smakowe", price: 12, weight: "300ml", description: "" },
       {
-        name: "Grimbergen Blanche",
-        price: 18,
-        weight: "330ml",
-        description: "",
-      },
-      {
-        name: "Grimbergen Blonde",
-        price: 18,
-        weight: "330ml",
-        description: "",
-      },
-      {
-        name: "Grimbergen Double",
-        price: 18,
-        weight: "330ml",
+        name: "Piwo bezalkoholowe Żywiec",
+        price: 12,
+        weight: "300ml",
         description: "",
       },
     ],
@@ -340,82 +288,103 @@ const menuCategories = [
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
 @use "@/assets/scss/placeholders.scss" as *;
+
 .menu {
-  padding: 55vmin 15vmin 5vmin 15vmin;
-  background-image: url("@/assets/img/pages/restaurant/menu.jpg");
-  background-size: cover;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-
-  h3 {
-    font-family: $fancyFont;
-    font-size: 6vmin;
-    color: $primaryColor;
-    text-align: center;
-    margin-bottom: 3vmin;
-  }
-
+  padding: 5vmin 15vmin;
+  background-image: url("@/assets/img/pages/restaurant/menu-background.jpg");
+  background-size: 5%;
   .menu-category {
-    margin-bottom: 3vmin;
+    margin-bottom: 5vmin;
 
     h4 {
-      position: relative;
-      width: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50%;
       font-family: $supportFont;
       font-size: 4.5vmin;
-      color: $blackColor;
-      background-color: $bgColor;
-      margin-bottom: 2vmin;
-      padding-left: 3vmin;
+      color: $primaryColor;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin: 0 auto 2vmin auto;
+      gap: 1.5vmin;
+      .title {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
 
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: calc(-3vmin + 1px);
-        width: 3vmin;
-        height: 100%;
-        background-color: $bgColor;
-        clip-path: polygon(0 0, 100% 50%, 0 100%);
+      .line {
+        flex: 1;
+        height: 3px;
+        background-color: $primaryColor;
+        position: relative;
+
+        .diamond {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%) rotate(45deg);
+          width: 2.5vmin;
+          height: 2.5vmin;
+          background-color: white;
+          border: 3px solid $primaryColor;
+        }
+
+        &.left .diamond {
+          left: -1.2vmin;
+        }
+
+        &.right .diamond {
+          right: -1.2vmin;
+        }
       }
     }
 
     ul {
       list-style: none;
       padding: 0;
+      margin: 0;
 
       .menu-item {
         display: flex;
         justify-content: space-between;
-        padding: 1vmin 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        align-items: center;
+        padding: 1.5vmin 0;
+        position: relative;
+        padding-left: 3.5vmin;
 
-        &:last-child {
-          border-bottom: none;
+        &::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%) rotate(45deg);
+          width: 1vmin;
+          height: 1vmin;
+          border: 2px solid $textColor;
+          background-color: transparent;
         }
 
         .menu-item-info {
-          max-width: 70%;
-
           .menu-item-name {
-            font-weight: 700;
+            font-weight: 500;
             font-size: 3.5vmin;
-            color: $bgColor;
+            color: #222;
             display: block;
           }
 
           .menu-item-description {
-            font-size: 2.7vmin;
-            color: $bgColor;
+            font-size: 2.5vmin;
+            color: #666;
             font-style: italic;
           }
         }
 
         .menu-item-price {
-          font-size: 3.5vmin;
-          font-weight: 700;
-          color: $bgColor;
+          font-size: 3.2vmin;
+          font-weight: 500;
+          color: #111;
           white-space: nowrap;
-          flex-shrink: 0;
         }
       }
     }
@@ -424,35 +393,29 @@ const menuCategories = [
   @media (max-width: 768px) {
     padding: 3vmin 5vmin;
 
-    h3 {
-      font-size: 5vmin;
+    .menu-category h4 {
+      font-size: 4vmin;
     }
 
-    .menu-category {
-      h4 {
-        font-size: 4vmin;
-      }
+    .menu-item {
+      flex-direction: column;
+      align-items: flex-start;
 
-      .menu-item {
-        flex-direction: column;
-        align-items: flex-start;
+      .menu-item-info {
+        max-width: 100%;
 
-        .menu-item-info {
-          max-width: 100%;
-
-          .menu-item-name {
-            font-size: 4vmin;
-          }
-
-          .menu-item-description {
-            font-size: 3vmin;
-          }
-        }
-
-        .menu-item-price {
-          margin-top: 0.5em;
+        .menu-item-name {
           font-size: 4vmin;
         }
+
+        .menu-item-description {
+          font-size: 3vmin;
+        }
+      }
+
+      .menu-item-price {
+        margin-top: 0.5em;
+        font-size: 4vmin;
       }
     }
   }

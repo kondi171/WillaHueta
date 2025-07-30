@@ -1,7 +1,7 @@
 <template>
   <section class="event-menu">
     <h2 class="title">Menu Okolicznościowe</h2>
-    <div class="info-sections">
+    <ListBlock>
       <div class="section">
         <h3>Menu Willa Hueta 1</h3>
         <strong class="price">Koszt 125,00 / osoba</strong>
@@ -397,11 +397,13 @@
         </ul>
         <!-- <hr /> -->
       </div>
-    </div>
+    </ListBlock>
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ListBlock from "../../common/blocks/ListBlock.vue";
+</script>
 
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
@@ -411,7 +413,7 @@
   .title {
     position: sticky;
     top: 0;
-    background-image: url("@/assets/img/backgrounds/stressed_linen.webp");
+    background-image: url("@/assets/img/backgrounds/support-background.webp");
     font-family: $supportFont;
     background-size: cover;
     background-position: -1vmin 0vmin;
@@ -438,42 +440,38 @@
       margin: 0 25%;
     }
   }
-  .info-sections {
-    @extend %info-sections;
-    padding: 0 4vmin;
-    .section {
-      padding: 1vmin 2vmin 2vmin 2vmin;
-      border: 2px solid $primaryColor;
-      border-radius: 5px;
-      margin: 2vmin 0;
-      // background-color: darken($color: $bgColor, $amount: 10px);
-      h3 {
-        font-size: 3vmin;
-        text-align: center;
-      }
-      .price {
-        text-align: center;
-        font-size: 2.5vmin;
-      }
-      &:first-of-type {
-        margin-top: -3vmin;
-      }
-      &:last-of-type {
-        margin-bottom: -3vmin;
-      }
+  .section {
+    padding: 1vmin 6vmin 2vmin 6vmin;
+    border: 2px solid $primaryColor;
+    border-radius: 5px;
+    margin: 2vmin;
+    background-color: #cad4d2;
+    h3 {
+      font-size: 3vmin;
+      text-align: center;
     }
-    span {
-      color: $secondaryColor;
-      font-weight: bold;
-      font-style: italic;
-    }
-    h4 {
-      color: $primaryColor;
+    .price {
+      text-align: center;
       font-size: 2.5vmin;
-      margin: 1vmin;
-      // text-align: center;
+    }
+    &:first-of-type {
+      margin-top: -3vmin;
+    }
+    &:last-of-type {
+      margin-bottom: -3vmin;
     }
   }
+  span {
+    color: $secondaryColor;
+    font-weight: bold;
+    font-style: italic;
+  }
+  h4 {
+    color: $primaryColor;
+    font-size: 2.5vmin;
+    margin: 1vmin;
+  }
+
   strong {
     display: block;
     font-size: 1.5vmin;

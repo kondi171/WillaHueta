@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import Home from '@/components/home/Home.vue';
+import Home from '@/components/pages/home/Home.vue';
 import Hotel from '@/components/pages/Hotel.vue';
 import News from '@/components/pages/news/News.vue';
 import History from '@/components/pages/History.vue';
@@ -71,7 +71,7 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior() {
     return { left: 0, top: 0 };
   },
 });

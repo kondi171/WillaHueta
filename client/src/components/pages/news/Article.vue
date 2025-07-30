@@ -1,5 +1,8 @@
 <template>
-  <div :class="['news-item', { 'no-image': news.image === 'none' }]" data-aos="fade-up">
+  <div
+    :class="['news-item', { 'no-image': news.image === 'none' }]"
+    data-aos="fade-up"
+  >
     <template v-if="news.image !== 'none'">
       <img :src="news.image" :alt="news.title" class="news-image" />
     </template>
@@ -14,7 +17,7 @@
 <script setup lang="ts">
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { computed, defineProps, onMounted } from "vue";
+import { computed, onMounted } from "vue";
 interface ArticleType {
   id: number;
   title: string;

@@ -2,7 +2,7 @@
   <section class="gold">
     <h2 class="title">Pakiet Złoty</h2>
     <h3 class="subtitle">Menu weselne - 250,00 zł / osoba</h3>
-    <div class="info-sections">
+    <ListBlock>
       <div class="section">
         <h3>W cenie każdego Menu:</h3>
         <ul>
@@ -169,11 +169,13 @@
           <li>Napoje gazowane</li>
         </ul>
       </div>
-    </div>
+    </ListBlock>
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ListBlock from "../../common/blocks/ListBlock.vue";
+</script>
 
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
@@ -210,22 +212,13 @@
       margin: 0 25%;
     }
   }
-  .info-sections {
-    @extend %info-sections;
-    padding: 0 4vmin;
-    .section {
-      padding: 1vmin 2vmin 2vmin 2vmin;
-      &:first-of-type {
-        margin-top: -3vmin;
-      }
-      &:last-of-type {
-        margin-bottom: -3vmin;
-      }
+  .section {
+    padding: 1vmin 6vmin 2vmin 6vmin;
+    &:first-of-type {
+      margin-top: -3vmin;
     }
-    span {
-      color: $secondaryColor;
-      font-weight: bold;
-      font-style: italic;
+    &:last-of-type {
+      margin-bottom: -3vmin;
     }
   }
   strong {

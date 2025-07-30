@@ -330,7 +330,6 @@ onUnmounted(() => {
   }
 }
 
-// Animacje obrazu
 @keyframes fadeInScale {
   from {
     opacity: 0;
@@ -341,6 +340,7 @@ onUnmounted(() => {
     transform: scale(1);
   }
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -351,6 +351,7 @@ onUnmounted(() => {
     transform: scale(1);
   }
 }
+
 @keyframes fadeOut {
   from {
     opacity: 1;
@@ -361,6 +362,7 @@ onUnmounted(() => {
     transform: scale(1.05);
   }
 }
+
 @keyframes scaleOut {
   from {
     opacity: 1;
@@ -372,7 +374,6 @@ onUnmounted(() => {
   }
 }
 
-// Animacje tła
 @keyframes fadeBackgroundIn {
   from {
     background-color: rgba(0, 0, 0, 0);

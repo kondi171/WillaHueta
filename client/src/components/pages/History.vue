@@ -4,7 +4,7 @@
       <template #image>
         <img
           src="@/assets/img/pages/history/history-01.jpg"
-          alt="Retro zdjęcie Willi Władysława Hueta"
+          alt="Pierwsze retro zdjęcie Willi Władysława Hueta"
         />
       </template>
       <h3>Powstanie Willi Hueta</h3>
@@ -23,10 +23,10 @@
       <template #image>
         <img
           src="@/assets/img/pages/history/history-02.jpg"
-          alt="Retro zdjęcie Willi Władysława Hueta"
+          alt="Drugie retro zdjęcie Willi Władysława Hueta"
         />
       </template>
-      <h3>Powstanie Willi Hueta</h3>
+      <h3>Nauczyciel, Artysta, Wizjoner</h3>
       <p>
         Władysław Huet urodził się 7 grudnia 1868 roku w Czernicach, gmina
         Osjaków, powiat wieluński. Jego przodkowie, protestanci, aby uniknąć
@@ -44,7 +44,7 @@
       <template #image>
         <img
           src="@/assets/img/pages/history/history-03.jpg"
-          alt="Pałac Hueta"
+          alt="Retro zdjęcie Pałacu Hueta"
         />
       </template>
       <h3>Pałac Hueta</h3>
@@ -67,9 +67,9 @@
     <ImageBlock :reverse="true">
       <template #image>
         <img
-          class="huet"
+          class="no-shadow"
           src="@/assets/img/pages/history/history-04.jpg"
-          alt="Pałac Hueta"
+          alt="Władysław Huet"
         />
       </template>
       <h3>Biogram Hueta</h3>

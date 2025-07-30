@@ -17,8 +17,6 @@
       <p>
         <strong>SALA KRYSZTAŁOWA</strong> - 187 m2 mieszcząca do 200 osób
         <br />
-        Mobilne ściany pozwalają na stworzenie 2 osobnych sal
-        konferencyjnych:<br />
         <strong>SALA PERŁOWA</strong> - 141 m2 mieszcząca do 100 osób<br />
         <strong>SALA DIAMENTOWA</strong> - 46 m2 mieszcząca do 40 osób<br />
         <strong>SALA BRYLANTOWA</strong> - 16 m2 mieszcząca do 10 osób
@@ -64,16 +62,16 @@
       proste w obsłudze co bez wątpienia ułatwia pracę.
     </CentralBlock>
     <Gallery :images="hotelImages" />
-    <img src="@/assets/img/pages/conference/plan-sal.png" alt="" />
-    <TextBlock :reverse="true">
+    <CentralBlock>
       <h3>Plan Sal</h3>
       <p>
         Hotel Willa Hueta w swojej ofercie posiada cztery sale konferencyjne,
         pozwalającymi na dowolną aranżację przestrzeni i zorganizowanie wydarzeń
         do 200 uczestników.
       </p>
-    </TextBlock>
-    <TextBlock>
+      <ConferencePlan />
+    </CentralBlock>
+    <TextBlock :reverse="true">
       <p>
         Największa Sala Kryształowa, daje możliwość realizowania wydarzeń
         biznesowych do 200 osób, takich jak kongresy, szkolenia, sympozja czy
@@ -87,14 +85,14 @@
         Sali wynosi 187 m2.
       </p>
     </TextBlock>
-    <TextBlock :reverse="true">
-        <p>
-          Kreowanie w sposób elastyczny przestrzeni zapewnia Nam system
-          przesuwanych i dźwiękoszczelnych ścianek, za pośrednictwem których
-          mamy możliwość bez przeszkód zorganizować dwa odrębne wydarzenia.
-        </p>
-    </TextBlock>
     <TextBlock>
+      <p>
+        Kreowanie w sposób elastyczny przestrzeni zapewnia Nam system
+        przesuwanych i dźwiękoszczelnych ścianek, za pośrednictwem których mamy
+        możliwość bez przeszkód zorganizować dwa odrębne wydarzenia.
+      </p>
+    </TextBlock>
+    <TextBlock :reverse="true">
       <p>
         Dwie kolejne sale konferencyjne to Sala Perłowa o powierzchni 141 m2
         oraz Sala Diamentowa mająca 46 m2. Sale te mieszczą odpowiednio 100 oraz
@@ -102,7 +100,7 @@
         zlokalizowane są w swoim bezpośrednim sąsiedztwie.
       </p>
     </TextBlock>
-    <TextBlock :reverse="true">
+    <TextBlock>
       <p>
         Sala Brylantowa mierząca 16 m2 mieści do 10 osób i jest usytuowana w
         zabytkowej hotelowej części na poddaszu obiektu. Sala ta to idealne
@@ -133,12 +131,8 @@
         </p>
       </div>
     </CentralBlock>
-    <Cards
-      title="Propozycje bufetowe"
-      :isBuffet="true"
-      :menus="buffetProposals"
-    />
-    <Table />
+    <Cards title="" :isBuffet="true" :menus="buffetProposals" />
+    <CoffeeBreaks />
     <Highlight />
   </section>
 </template>
@@ -149,7 +143,7 @@ import AOS from "aos";
 import { onMounted } from "vue";
 import Gallery from "../../common/Gallery.vue";
 import Cards from "./Cards.vue";
-import Table from "./Table.vue";
+import CoffeeBreaks from "./CoffeeBreaks.vue";
 
 import hotel1 from "@/assets/img/pages/hotel/hotel-01.jpg";
 import hotel2 from "@/assets/img/pages/hotel/hotel-02.jpg";
@@ -157,6 +151,7 @@ import Highlight from "../../common/Highlight.vue";
 import TextBlock from "../../common/blocks/TextBlock.vue";
 import CentralBlock from "../../common/blocks/CentralBlock.vue";
 import ListBlock from "../../common/blocks/ListBlock.vue";
+import ConferencePlan from "./ConferencePlan.vue";
 
 const hotelImages = [
   hotel1,
@@ -292,18 +287,5 @@ onMounted(() => {
 @use "@/assets/scss/placeholders.scss" as *;
 
 .conference-page {
-  .block-text-only {
-    padding: 0 15vmin;
-    @extend %block-text-only;
-    &--reverse {
-      @extend %block-text-only--reverse;
-    }
-  }
-  .central-block {
-    @extend %central-block;
-  }
-  .info-sections {
-    @extend %info-sections;
-  }
 }
 </style>

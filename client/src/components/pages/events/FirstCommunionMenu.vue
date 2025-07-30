@@ -15,7 +15,7 @@
   .title {
     position: sticky;
     top: 0;
-    background-image: url("@/assets/img/backgrounds/stressed_linen.webp");
+    background-image: url("@/assets/img/backgrounds/support-background.webp");
     font-family: $supportFont;
     background-size: cover;
     background-position: -1vmin 0vmin;
@@ -42,22 +42,25 @@
       margin: 0 25%;
     }
   }
-  .info-sections {
-    @extend %info-sections;
-    padding: 0 4vmin;
-    .section {
-      padding: 1vmin 2vmin 2vmin 2vmin;
-      &:first-of-type {
-        margin-top: -3vmin;
-      }
-      &:last-of-type {
-        margin-bottom: -3vmin;
-      }
+  .section {
+    padding: 1vmin 6vmin 2vmin 6vmin;
+    border: 2px solid $primaryColor;
+    border-radius: 5px;
+    margin: 2vmin;
+    background-color: #cad4d2;
+    h3 {
+      font-size: 3vmin;
+      text-align: center;
     }
-    span {
-      color: $secondaryColor;
-      font-weight: bold;
-      font-style: italic;
+    .price {
+      text-align: center;
+      font-size: 2.5vmin;
+    }
+    &:first-of-type {
+      margin-top: -3vmin;
+    }
+    &:last-of-type {
+      margin-bottom: -3vmin;
     }
   }
   strong {

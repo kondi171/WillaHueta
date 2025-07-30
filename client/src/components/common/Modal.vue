@@ -25,15 +25,8 @@
   </teleport>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
-
-const props = defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-});
 
 const emit = defineEmits(["close", "prev", "next"]);
 
@@ -41,7 +34,7 @@ const animationClass = ref("fade-in");
 const modalAnimation = ref("");
 const isAnimating = ref(false);
 
-function handleClose() {
+const handleClose = () => {
   if (isAnimating.value) return;
   animationClass.value = "scale-out";
   isAnimating.value = true;
@@ -50,9 +43,9 @@ function handleClose() {
     animationClass.value = "fade-in";
     isAnimating.value = false;
   }, 300);
-}
+};
 
-function animateModalChange(direction) {
+const animateModalChange = (direction: "close" | "prev" | "next") => {
   if (isAnimating.value) return;
   isAnimating.value = true;
   modalAnimation.value = "change-modal-out";
@@ -65,9 +58,9 @@ function animateModalChange(direction) {
       isAnimating.value = false;
     }, 300);
   }, 300);
-}
+};
 
-function handleKeyDown(event) {
+const handleKeyDown = (event: KeyboardEvent) => {
   switch (event.key) {
     case "Escape":
       handleClose();
@@ -79,7 +72,7 @@ function handleKeyDown(event) {
       animateModalChange("next");
       break;
   }
-}
+};
 
 onMounted(() => {
   document.body.style.overflow = "hidden";

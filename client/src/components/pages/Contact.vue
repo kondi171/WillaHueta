@@ -36,32 +36,34 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { onMounted } from "vue";
 
+const googleKey = import.meta.env.VITE_GOOGLE_KEY;
+const latitude = 50.8637955878958;
+const longitude = 20.631358783981696;
 const initMap = () => {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {
-      center: { lat: 52.2297, lng: 21.0122 }, // Warszawa (zmień lokalizację według potrzeb)
+      center: { lat: latitude, lng: longitude },
       zoom: 14,
     }
   );
 
   new google.maps.Marker({
-    position: { lat: 52.2297, lng: 21.0122 },
+    position: { lat: latitude, lng: longitude },
     map,
     title: "Nasza lokalizacja",
   });
 
-onMounted(() => {
-  AOS.init({
-    duration: 800,
-    once: false,
+  onMounted(() => {
+    AOS.init({
+      duration: 800,
+      once: false,
+    });
+
+    setTimeout(() => {
+      AOS.refresh();
+    }, 1000);
   });
-
-  setTimeout(() => {
-    AOS.refresh();
-  }, 1000);
-});
-
 };
 
 onMounted(() => {
@@ -69,7 +71,7 @@ onMounted(() => {
   if (!document.getElementById(scriptId)) {
     const script = document.createElement("script");
     script.id = scriptId;
-    script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap`;
+    script.src = `https://maps.googleapis.com/maps/api/js?${googleKey}&callback=initMap`;
     script.async = true;
     window.initMap = initMap;
     document.head.appendChild(script);
@@ -78,7 +80,6 @@ onMounted(() => {
   }
 });
 
-// @ts-ignore dodajemy typ do `window` dla TypeScript
 declare global {
   interface Window {
     initMap: () => void;

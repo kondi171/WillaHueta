@@ -123,19 +123,6 @@ const prevMenu = () => {
 @use "@/assets/scss/placeholders.scss" as *;
 
 .events-page {
-  .block-text-only {
-    padding: 0 15vmin;
-    @extend %block-text-only;
-    &--reverse {
-      @extend %block-text-only--reverse;
-    }
-  }
-  .central-block {
-    @extend %central-block;
-  }
-  .info-sections {
-    @extend %info-sections;
-  }
   .menu-btns-group {
     display: flex;
     width: 80%;
