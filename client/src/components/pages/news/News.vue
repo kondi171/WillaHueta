@@ -10,7 +10,7 @@
         v-for="page in totalPages"
         :key="page"
         :class="{ active: page === currentPage }"
-        @click="currentPage = page"
+        @click="changePage(page)"
       >
         {{ page }}
       </button>
@@ -321,13 +321,22 @@ const totalPages = computed(() =>
 );
 
 const sortedNews = computed(() =>
-  [...newsList.value].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  [...newsList.value].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  )
 );
 
 const paginatedNews = computed(() => {
   const start = (currentPage.value - 1) * ARTICLES_PER_PAGE;
   return sortedNews.value.slice(start, start + ARTICLES_PER_PAGE);
 });
+const changePage = (page: number) => {
+  currentPage.value = page;
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
 </script>
 
 <style scoped lang="scss">

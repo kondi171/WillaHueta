@@ -1,71 +1,79 @@
 <template>
   <section class="events-page">
-    <TextBlock :reverse="true">
-      <h3>Zorganizuj z nami przyjęcie!</h3>
-      <p>
-        Serdecznie zapraszamy do Naszej restauracji Spektrum Smaku w Willi
-        Hueta, gdzie czekają na Państwa wyborne dania, wina oraz desery
-        klasycznej kuchni polskiej, jak i francuskiej. Przygotowywanie tak
-        wykwintnych potraw to sztuka, a nasz Szef Kuchni opanował ją do
-        perfekcji. Fuzja kuchni polskiej i francuskiej tworzy niepowtarzalny
-        smak, który poruszy najbardziej wymagające podniebienia.
-      </p>
-    </TextBlock>
-    <TextBlock>
-      <p>
-      Sztuka podania oraz wygląd dań jest kluczem do sukcesu przy organizowaniu
-      przyjęć okolicznościowych czy też spotkań biznesowych. Wizyta w Spektrum
-      Smaku zapewni gościom niezapomniane wrażenia kulinarne i wizualne.
-      </p>
-    </TextBlock>
-    <CentralBlock>
-      <h3>Oferujemy:</h3>
-    </CentralBlock>
-    <ListBlock>
-      <div class="section">
-        <ul>
-          <li>Śniadania, lunche, obiady, kolacje</li>
-          <li>Imprezy rodzinne</li>
-          <li>
-            Imprezy okolicznościowe - wesela, chrzciny, komunie, konsolacje,
-            bierzmowania
-          </li>
-          <li>Bankiety, spotkania biznesowe, imprezy firmowe</li>
-          <li>Oprawę muzyczną (fortepian)</li>
-          <li>Profesjonalną obsługę kelnerską</li>
-          <li>Możliwość podziału sali za pomocą parawanów</li>
-          <li>Kącik dla dzieci</li>
-        </ul>
-      </div>
-    </ListBlock>
-    <Gallery :images="hotelImages" />
-    <CentralBlock>
-      <h3>Nasze Menu</h3>
-      <div class="menu-btns-group">
-        <button class="btn" @click="selectedMenu = 'communion'">
-          <span class="visible">Menu na Komunie</span
-          ><span class="invisible">Kliknij!</span>
-        </button>
-        <button class="btn" @click="selectedMenu = 'console'">
-          <span class="visible">Menu Konsolacyjne</span
-          ><span class="invisible">Kliknij!</span>
-        </button>
-        <button class="btn" @click="selectedMenu = 'occasional'">
-          <span class="visible">Menu Okazjonalne</span
-          ><span class="invisible">Kliknij!</span>
-        </button>
-      </div>
-    </CentralBlock>
+    <SubNav :items="navItems" />
+    <section id="intro">
+      <TextBlock :reverse="true">
+        <h3>Zorganizuj z nami przyjęcie!</h3>
+        <p>
+          Serdecznie zapraszamy do Naszej restauracji Spektrum Smaku w Willi
+          Hueta, gdzie czekają na Państwa wyborne dania, wina oraz desery
+          klasycznej kuchni polskiej, jak i francuskiej. Przygotowywanie tak
+          wykwintnych potraw to sztuka, a nasz Szef Kuchni opanował ją do
+          perfekcji. Fuzja kuchni polskiej i francuskiej tworzy niepowtarzalny
+          smak, który poruszy najbardziej wymagające podniebienia.
+        </p>
+      </TextBlock>
+      <TextBlock>
+        <p>
+          Sztuka podania oraz wygląd dań jest kluczem do sukcesu przy
+          organizowaniu przyjęć okolicznościowych czy też spotkań biznesowych.
+          Wizyta w Spektrum Smaku zapewni gościom niezapomniane wrażenia
+          kulinarne i wizualne.
+        </p>
+      </TextBlock>
+    </section>
+    <section id="gallery">
+      <Gallery :images="hotelImages" />
+    </section>
 
-    <Modal
-      v-if="selectedMenu"
-      @close="selectedMenu = null"
-      @prev="prevMenu"
-      @next="nextMenu"
-    >
-      <component :is="currentComponent" />
-    </Modal>
-    <Highlight />
+    <section id="offer">
+      <CentralBlock>
+        <h3>Nasze Menu</h3>
+        <div class="menu-btns-group">
+          <button class="btn" @click="selectedMenu = 'communion'">
+            <span class="visible">Menu na Komunie</span
+            ><span class="invisible">Kliknij!</span>
+          </button>
+          <button class="btn" @click="selectedMenu = 'console'">
+            <span class="visible">Menu Konsolacyjne</span
+            ><span class="invisible">Kliknij!</span>
+          </button>
+          <button class="btn" @click="selectedMenu = 'occasional'">
+            <span class="visible">Menu Okazjonalne</span
+            ><span class="invisible">Kliknij!</span>
+          </button>
+        </div>
+      </CentralBlock>
+      <Modal
+        v-if="selectedMenu"
+        @close="selectedMenu = null"
+        @prev="prevMenu"
+        @next="nextMenu"
+      >
+        <component :is="currentComponent" />
+      </Modal>
+      <CentralBlock>
+        <h3>Oferujemy:</h3>
+      </CentralBlock>
+      <ListBlock>
+        <div class="section">
+          <ul>
+            <li>Śniadania, lunche, obiady, kolacje</li>
+            <li>Imprezy rodzinne</li>
+            <li>
+              Imprezy okolicznościowe - wesela, chrzciny, komunie, konsolacje,
+              bierzmowania
+            </li>
+            <li>Bankiety, spotkania biznesowe, imprezy firmowe</li>
+            <li>Oprawę muzyczną (fortepian)</li>
+            <li>Profesjonalną obsługę kelnerską</li>
+            <li>Możliwość podziału sali za pomocą parawanów</li>
+            <li>Kącik dla dzieci</li>
+          </ul>
+        </div>
+      </ListBlock>
+      <Highlight />
+    </section>
   </section>
 </template>
 
@@ -83,6 +91,7 @@ import OccasionalMenu from "./OccasionalMenu.vue";
 import TextBlock from "../../common/blocks/TextBlock.vue";
 import CentralBlock from "../../common/blocks/CentralBlock.vue";
 import ListBlock from "../../common/blocks/ListBlock.vue";
+import SubNav from "../../navs/SubNav.vue";
 
 const hotelImages = [
   hotel1,
@@ -97,6 +106,12 @@ const hotelImages = [
 
 const selectedMenu = ref<null | "communion" | "console" | "occasional">(null);
 const menuOrder = ["communion", "console", "occasional"] as const;
+
+const navItems = [
+  { label: "Wstęp", target: "#intro" },
+  { label: "Galeria", target: "#gallery" },
+  { label: "Oferta", target: "#offer" },
+];
 
 const currentComponent = computed(() => {
   if (selectedMenu.value === "communion") return FirstCommunionMenu;

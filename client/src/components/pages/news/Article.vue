@@ -91,17 +91,16 @@ onMounted(() => {
       color: $secondaryColor;
     }
   }
-}
+  &.no-image {
+    display: flex;
 
-.news-item.no-image {
-  display: flex;
+    .news-image {
+      display: none;
+    }
 
-  .news-image {
-    display: none;
-  }
-
-  .news-content {
-    margin-left: 0;
+    .news-content {
+      margin-left: 0;
+    }
   }
 }
 </style>

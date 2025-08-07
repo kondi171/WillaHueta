@@ -27,6 +27,7 @@ import {
   faAngleRight,
   faTheaterMasks,
   faChalkboardTeacher,
+  faArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 
 const app = createApp(App);
@@ -54,7 +55,8 @@ library.add(
   faAngleRight,
   faX,
   faTheaterMasks,
-  faChalkboardTeacher
+  faChalkboardTeacher,
+  faArrowUp
 );
 
 app.component("font-awesome-icon", FontAwesomeIcon).mount("#app");
