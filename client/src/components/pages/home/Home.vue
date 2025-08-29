@@ -20,8 +20,6 @@ import Services from "./Services.vue";
 .home {
   display: flex;
   flex-direction: column;
-  gap: 6vh;
-  background-color: #f8f6f3;
 
   .services {
     h2 {

@@ -2,7 +2,6 @@
 import { useRoute } from "vue-router";
 import MainNav from "./navs/MainNav.vue";
 import MainHeader from "./headers/MainHeader.vue";
-import Header from "./headers/Header.vue";
 import SubHeader from "./headers/SubHeader.vue";
 import Footer from "./footer/Footer.vue";
 import TopButton from "./common/TopButton.vue";

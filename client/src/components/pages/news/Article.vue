@@ -1,7 +1,7 @@
 <template>
   <div
-    :class="['news-item', { 'no-image': news.image === 'none' }]"
-    data-aos="fade-up"
+    :class="['news-item', side, { 'no-image': news.image === 'none' }]"
+    :data-aos="side === 'left' ? 'fade-right' : 'fade-left'"
   >
     <template v-if="news.image !== 'none'">
       <img :src="news.image" :alt="news.title" class="news-image" />
@@ -15,9 +15,8 @@
 </template>
 
 <script setup lang="ts">
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
+
 interface ArticleType {
   id: number;
   title: string;
@@ -26,7 +25,7 @@ interface ArticleType {
   image: string;
 }
 
-const props = defineProps<{ news: ArticleType }>();
+const props = defineProps<{ news: ArticleType; side: "left" | "right" }>();
 
 const formattedDate = computed(() => {
   const options: Intl.DateTimeFormatOptions = {
@@ -36,31 +35,33 @@ const formattedDate = computed(() => {
   };
   return new Date(props.news.date).toLocaleDateString("pl-PL", options);
 });
-
-onMounted(() => {
-  AOS.init({
-    duration: 800,
-    once: false,
-  });
-
-  setTimeout(() => {
-    AOS.refresh();
-  }, 1000);
-});
 </script>
 
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
+@use "sass:color";
 
 .news-item {
   display: flex;
   gap: 2vmin;
-  background-color: $bgColor;
+  width: 90%;
+  margin: 2vmin 0;
   padding: 4vmin;
-  border: 1px solid #ddd;
   border-radius: 1vmin;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #ddd;
+  background-color: $bgColor;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  &:first-of-type {
+    margin-top: 0;
+  }
+  &.left {
+    margin-right: auto;
+  }
 
+  &.right {
+    margin-left: auto;
+    background-color: color.adjust($bgColor, $lightness: -10%);
+  }
   .news-image {
     width: 40%;
     height: auto;
@@ -91,13 +92,8 @@ onMounted(() => {
       color: $secondaryColor;
     }
   }
+
   &.no-image {
-    display: flex;
-
-    .news-image {
-      display: none;
-    }
-
     .news-content {
       margin-left: 0;
     }

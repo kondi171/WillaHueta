@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import "aos/dist/aos.css";
-import AOS from "aos";
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import { useRoute } from "vue-router";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -12,8 +10,8 @@ const leftNavItems = [
   { label: "Restauracja", icon: "utensils", to: "/restauracja" },
   { label: "Sale", icon: "people-group", to: "/sale" },
   { label: "Wesela", icon: "champagne-glasses", to: "/wesela" },
-  { label: "Catering", icon: "concierge-bell", to: "/catering" },
   { label: "Imprezy", icon: "calendar-day", to: "/imprezy" },
+  { label: "Catering", icon: "concierge-bell", to: "/catering" },
 ];
 
 const rightNavItems = [
@@ -23,16 +21,6 @@ const rightNavItems = [
 ];
 
 const hoveredItem = ref<string | null>(null);
-onMounted(() => {
-  AOS.init({
-    duration: 800,
-    once: false,
-  });
-
-  setTimeout(() => {
-    AOS.refresh();
-  }, 1000);
-});
 </script>
 
 <template>

@@ -123,17 +123,33 @@
       <CentralBlock>
         <h3>Usługi Dodatkowe</h3>
       </CentralBlock>
-      <Cards title="Menu 40,00 zł" :menus="menu40" />
-      <Cards title="Menu 45,00 zł" :menus="menu45" />
-      <CentralBlock>
-        <div class="text">
-          <h3>Desery do wyboru (25 zł)</h3>
-          <p>
-            Szarlotka, sernik, panna cotta z musem czekoladowym, puchar lodów na
-            sałatce owocowej.
-          </p>
+      <div class="cards-grid">
+        <div
+          v-for="(item, i) in menu"
+          :key="i"
+          data-aos="fade-up"
+          :data-aos-delay="i * 150"
+        >
+          <Card>
+            <h5>
+              <span class="label">{{ item.label }}</span>
+              <span class="price">{{ item.price }}</span>
+            </h5>
+            <p>
+              <span class="section-title">Zupa</span>
+              <span class="section-description">{{ item.soup }}</span>
+            </p>
+            <p>
+              <span class="section-title">Danie Główne</span>
+              <span class="section-description">{{ item.main }}</span>
+            </p>
+            <p>
+              <span class="section-title">Napoje</span>
+              <span class="section-description">{{ item.drink }}</span>
+            </p>
+          </Card>
         </div>
-      </CentralBlock>
+      </div>
       <CentralBlock>
         <div class="text">
           <h3>Przykładowe propozycje lunchowe</h3>
@@ -143,19 +159,53 @@
           </p>
         </div>
       </CentralBlock>
-      <Cards title="" :isBuffet="true" :menus="buffetProposals" />
+      <div class="cards-grid">
+        <div
+          v-for="(prop, i) in buffetProposals"
+          :key="i"
+          data-aos="fade-up"
+          :data-aos-delay="i * 150"
+        >
+          <Card>
+            <h5>
+              <span class="label">{{ prop.label }}</span>
+              <span class="price">{{ prop.price }}</span>
+            </h5>
+            <div v-for="(values, section) in prop.sections" :key="section">
+              <p>
+                <span class="section-title">{{ section }}</span>
+              </p>
+              <ul>
+                <li v-for="(el, idx) in values" :key="idx">{{ el }}</li>
+              </ul>
+            </div>
+          </Card>
+        </div>
+      </div>
+      <CentralBlock>
+        <div class="text">
+          <h3>Desery</h3>
+          <p>
+            Szarlotka, sernik, panna cotta z musem czekoladowym, puchar lodów na
+            sałatce owocowej do wyboru <span class="green">25 zł</span>.
+          </p>
+        </div>
+      </CentralBlock>
+      <CentralBlock>
+        <h3>Przerwy kawowe</h3>
+      </CentralBlock>
       <CoffeeBreaks />
+
       <Highlight />
     </section>
   </section>
 </template>
 
 <script setup lang="ts">
-import "aos/dist/aos.css";
-import AOS from "aos";
-import { onMounted } from "vue";
+import { useAOS } from "../../../hooks/useAOS";
+useAOS();
 import Gallery from "../../common/Gallery.vue";
-import Cards from "./Cards.vue";
+import Card from "./Card.vue";
 import CoffeeBreaks from "./CoffeeBreaks.vue";
 
 import hotel1 from "@/assets/img/pages/hotel/hotel-01.jpg";
@@ -186,41 +236,45 @@ const navItems = [
   { label: "Usługi Dodatkowe", target: "#additionalServices" },
 ];
 
-const menu40 = [
+const menu = [
   {
-    label: "Propozycja I",
+    label: "Menu I",
+    price: "40,00 zł/os",
     soup: "Włoskie minestrone z pianą z sera ricotta",
     main: "Grillowany filet z kurczaka w sosie curry podawany z dzikim ryżem oraz warzywami w maślanej emulsji",
     drink: "Sok/woda",
   },
   {
-    label: "Propozycja II",
+    label: "Menu II",
+    price: "40,00 zł/os",
     soup: "Zupa z polskich pomidorów z kwaśną śmietaną i makaronem farfalle",
     main: "Morszczuk pieczony w cytrusach z dodatkiem świeżych ziół, ziemniaku puree, surówka z pora",
     drink: "Sok/woda",
   },
   {
-    label: "Propozycja III",
+    label: "Menu III",
+    price: "40,00 zł/os",
     soup: "Żur na własnym zakwasie z białą kiełbasą i jajem",
     main: "Rolada wieprzowa faszerowana szpinakiem z sosem pomidorowym, ziemniakami opiekanymi i mixem świeżych sałat z sosem winegret",
     drink: "Sok/woda",
   },
   {
-    label: "Propozycja IV",
+    label: "Menu IV",
+    price: "40,00 zł/os",
     soup: "Krem z zielonych warzyw z prażonymi migdałami",
     main: "Penne z kurczakiem w aromatycznym sosie tymiankowym z dodatkiem różyczek brokuła",
     drink: "Sok/woda",
   },
-];
-const menu45 = [
   {
-    label: "Propozycja I",
+    label: "Menu V",
+    price: "45,00 zł/os",
     soup: "Krem z białych warzyw z grillowanym bekonem",
     main: "Grillowana pierś z kurczaka zapieczona z soterowanym szpinakiem i serem mozzarella podawana z ziemniaczanym gratin",
     drink: "Sok/woda",
   },
   {
-    label: "Propozycja II",
+    label: "Menu VI",
+    price: "45,00 zł/os",
     soup: "Francuska zupa cebulowa z ziołowymi grzankami",
     main: "Makron tagliatelle z łososiem norweskim, oliwkami w sosie prowansalskim z dodatkiem świeżo tartego parmezanu",
     drink: "Sok/woda",
@@ -292,16 +346,6 @@ const buffetProposals = [
     },
   },
 ];
-onMounted(() => {
-  AOS.init({
-    duration: 800,
-    once: false,
-  });
-
-  setTimeout(() => {
-    AOS.refresh();
-  }, 1000);
-});
 </script>
 
 <style scoped lang="scss">
@@ -309,5 +353,26 @@ onMounted(() => {
 @use "@/assets/scss/placeholders.scss" as *;
 
 .conference-page {
+  .cards-grid {
+    margin: 2vmin 15vmin;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    h4 {
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+      color: $secondaryColor;
+    }
+
+    > div {
+      display: flex;
+      margin: 2.5vmin 0;
+    }
+  }
+  .green {
+    color: #2e7d32;
+    font-weight: bold;
+  }
 }
 </style>

@@ -74,9 +74,6 @@
 </template>
 
 <script setup lang="ts">
-import "aos/dist/aos.css";
-import AOS from "aos";
-
 import TextBlock from "@/components/common/blocks/TextBlock.vue";
 import CentralBlock from "@/components/common/blocks/CentralBlock.vue";
 import ListBlock from "@/components/common/blocks/ListBlock.vue";
@@ -86,7 +83,6 @@ import Highlight from "@/components/common/Highlight.vue";
 import hotel1 from "@/assets/img/pages/hotel/hotel-01.jpg";
 import hotel2 from "@/assets/img/pages/hotel/hotel-02.jpg";
 
-import { onMounted } from "vue";
 import SubNav from "../navs/SubNav.vue";
 
 const hotelImages = [
@@ -105,17 +101,6 @@ const navItems = [
   { label: "Galeria", target: "#gallery" },
   { label: "Oferta", target: "#offer" },
 ];
-
-onMounted(() => {
-  AOS.init({
-    duration: 800,
-    once: false,
-  });
-
-  setTimeout(() => {
-    AOS.refresh();
-  }, 1000);
-});
 </script>
 
 <style scoped lang="scss">
@@ -123,19 +108,5 @@ onMounted(() => {
 @use "@/assets/scss/placeholders.scss" as *;
 
 .hotel-page {
-  .parallax {
-    background-image: url("@/assets/img/pages/hotel/hotel-header.jpg");
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 6rem 2rem; // przykładowy padding dla lepszej czytelności
-    color: white; // jeśli tło ciemne
-  }
-  @media (max-width: 768px) {
-    .parallax {
-      background-attachment: scroll;
-    }
-  }
 }
 </style>

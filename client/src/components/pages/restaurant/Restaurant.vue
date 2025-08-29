@@ -64,9 +64,6 @@
 </template>
 
 <script setup lang="ts">
-import "aos/dist/aos.css";
-import AOS from "aos";
-import { onMounted } from "vue";
 import Gallery from "@/components/common/Gallery.vue";
 import Menu from "./Menu.vue";
 
@@ -84,17 +81,6 @@ const navItems = [
   { label: "Galeria", target: "#gallery" },
   { label: "Menu", target: "#menu" },
 ];
-
-onMounted(() => {
-  AOS.init({
-    duration: 800,
-    once: false,
-  });
-
-  setTimeout(() => {
-    AOS.refresh();
-  }, 1000);
-});
 </script>
 
 <style scoped lang="scss">

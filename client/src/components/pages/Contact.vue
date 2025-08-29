@@ -32,8 +32,6 @@
   </section>
 </template>
 <script setup lang="ts">
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { onMounted } from "vue";
 
 const googleKey = import.meta.env.VITE_GOOGLE_KEY;
@@ -52,17 +50,6 @@ const initMap = () => {
     position: { lat: latitude, lng: longitude },
     map,
     title: "Nasza lokalizacja",
-  });
-
-  onMounted(() => {
-    AOS.init({
-      duration: 800,
-      once: false,
-    });
-
-    setTimeout(() => {
-      AOS.refresh();
-    }, 1000);
   });
 };
 

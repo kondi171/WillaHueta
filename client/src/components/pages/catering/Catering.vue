@@ -60,19 +60,18 @@
     </section>
     <section id="recurringEvents">
       <CentralBlock>
-        <h3>Wydarzenia Cykliczne</h3>
+        <h3 class="recurring-events-title">Wydarzenia Cykliczne</h3>
         <Timeline />
       </CentralBlock>
     </section>
     <section id="clubMeetings">
       <CentralBlock>
-        <h3>Spotkania Klubowe</h3>
-
+        <h3 class="cards-title">Spotkania Klubowe</h3>
         <div class="cards-wrapper">
-          <div class="card">
-            <h3 class="card-title">
+          <div class="card" data-aos="fade-up-right">
+            <h4 class="card-title">
               Nowe, luksusowe mercedesy i pokaz mody w kieleckiej Willi Hueta
-            </h3>
+            </h4>
             <a
               href="http://willahueta.pl/aktualnosci/wszystkie/wpis/14"
               target="_blank"
@@ -82,11 +81,11 @@
               <font-awesome-icon icon="fa-solid fa-arrow-right" class="icon" />
             </a>
           </div>
-          <div class="card">
-            <h3 class="card-title">
+          <div class="card" data-aos="fade-up-left">
+            <h4 class="card-title">
               Elegancki wieczór w Willi Hueta. Pokaz mody i wyszukane potrawy
               gotowane na żywo
-            </h3>
+            </h4>
             <a
               href="http://willahueta.pl/aktualnosci/wszystkie/wpis/14"
               target="_blank"
@@ -107,10 +106,10 @@ import hotel1 from "@/assets/img/pages/hotel/hotel-01.jpg";
 import hotel2 from "@/assets/img/pages/hotel/hotel-02.jpg";
 import Gallery from "@/components/common/Gallery.vue";
 import Highlight from "@/components/common/Highlight.vue";
-import Timeline from "./Timeline.vue";
 import TextBlock from "../../common/blocks/TextBlock.vue";
 import CentralBlock from "../../common/blocks/CentralBlock.vue";
 import SubNav from "../../navs/SubNav.vue";
+import Timeline from "./Timeline.vue";
 const hotelImages = [
   hotel1,
   hotel2,
@@ -135,44 +134,48 @@ const navItems = [
 @use "@/assets/scss/placeholders.scss" as *;
 
 .catering-page {
+  .recurring-events-title {
+    margin-bottom: 4vmin;
+  }
+  .cards-title {
+    @extend %title-header;
+    text-align: center;
+    margin-bottom: 4vmin;
+  }
   .cards-wrapper {
-    margin: 4vmin auto;
-    padding: 2vmin;
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
-    .card {
-      width: 30vw;
-      height: 27vh;
-      background-color: $bgColor;
-      padding: 2vmin;
-      border-radius: 1vmin;
-      border: 1px solid #ccc;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 70vw;
+    margin: 0 auto;
+    padding: 2vmin;
 
+    .card {
+      max-width: 30vw;
+      background-color: $bgColor;
+      border-radius: 1vmin;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 2vmin;
+      border: 1px solid #ccc;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      align-items: center;
       text-align: center;
 
-      h3 {
-        font-family: $supportFont;
+      h4.card-title {
+        margin-bottom: 1vmin;
         font-size: 3vmin;
+        line-height: 150%;
         color: $primaryColor;
-        margin: 0;
       }
 
       .href-btn {
         @extend %follow-btn;
-        font-size: 3vmin;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-
+        margin: 1vmin auto 0 auto;
+        font-size: 2vmin;
+        padding: 1vmin 2vmin;
+        text-align: center;
         .icon {
-          font-size: 3vmin;
+          font-size: 2vmin;
         }
       }
     }

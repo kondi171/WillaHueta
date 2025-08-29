@@ -3,22 +3,27 @@
 %follow-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
+    padding: 2vmin 4vmin;
     background-color: $primaryColor;
     color: #fff;
     font-weight: bold;
-    font-size: 1rem;
-    border-radius: 0.5rem;
+    font-size: 3vmin;
+    border-radius: 1vmin;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition-duration: 0.4s;
 
     &:hover {
         background-color: $secondaryColor;
+
+        .icon {
+            transform: translateX(5px);
+        }
     }
 
     .icon {
-        font-size: 1rem;
+        transition-duration: 0.4s;
+        font-size: 3vmin;
+        margin-left: 1vmin;
     }
 }
 
@@ -27,3 +32,29 @@
 //      Pokaż wszystkie aktualności
 //      <font-awesome-icon icon="fa-solid fa-arrow-right" class="icon" />
 //  </router-link>
+
+%title-header {
+    font-size: 4vmin;
+    color: $primaryColor;
+    font-weight: bold;
+    font-family: $fancyFont;
+    text-align: left;
+    margin: 2vmin 10vmin;
+}
+
+%card {
+    flex: 1 1 17vw;
+    max-width: 17vw;
+    background-color: $bgColor;
+    border-radius: 1vmin;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 2vmin;
+    border: 1px solid #ccc;
+
+    h3 {
+        font-size: 3vmin;
+        margin-bottom: 2vmin;
+        color: $blackColor;
+        text-align: center;
+    }
+}

@@ -1,23 +1,21 @@
 <template>
   <article class="news">
-    <h2>Aktualności</h2>
-    <div class="news-items">
-      <div class="news-item">
-        <h3>Wieczór Jazzowy - 12 lipca</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-          ulta-bueneru nouls.
-        </p>
-        <small>15 czerwca 2024</small>
-      </div>
-      <div class="news-item">
-        <h3>Nowe menu w restauracji</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-          ulermorper augue.
-        </p>
-        <small>5 czerwca 2024</small>
-      </div>
+    <h3 data-aos="fade-right">Aktualności</h3>
+    <div class="news-list">
+      <Article
+        v-for="(news, index) in latestNews"
+        :key="news.id"
+        :news="news"
+        :side="
+          layoutReverse
+            ? index % 2 === 0
+              ? 'left'
+              : 'right'
+            : index % 2 === 0
+            ? 'right'
+            : 'left'
+        "
+      />
     </div>
     <div class="news-btn-wrapper">
       <router-link to="/aktualnosci" class="news-btn">
@@ -28,61 +26,92 @@
   </article>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed, ref } from "vue";
+import Article from "./../news/Article.vue";
+
+interface ArticleType {
+  id: number;
+  title: string;
+  text: string;
+  date: string;
+  image: string;
+}
+
+const newsList = ref<ArticleType[]>([
+  {
+    id: 1,
+    title: "Aktualność 1",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit placeat inventore, id magni commodi facere fugit nam corrupti impedit adipisci illum nemo quo soluta ipsum excepturi, sequi distinctio rem voluptatibus voluptates omnis asperiores! Adipisci nesciunt alias ea nisi pariatur autem, facere dignissimos. Error libero, nesciunt voluptatum ullam modi ratione quasi?",
+    date: "2025-08-10",
+    image: "https://picsum.photos/seed/1/600/400",
+  },
+  {
+    id: 2,
+    title: "Aktualność 2",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit placeat inventore, id magni commodi facere fugit nam corrupti impedit adipisci illum nemo quo soluta ipsum excepturi, sequi distinctio rem voluptatibus voluptates omnis asperiores! Adipisci nesciunt alias ea nisi pariatur autem, facere dignissimos. Error libero, nesciunt voluptatum ullam modi ratione quasi?",
+    date: "2025-08-09",
+    image: "https://picsum.photos/seed/2/600/400",
+  },
+  {
+    id: 3,
+    title: "Aktualność 3",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit placeat inventore, id magni commodi facere fugit nam corrupti impedit adipisci illum nemo quo soluta ipsum excepturi, sequi distinctio rem voluptatibus voluptates omnis asperiores! Adipisci nesciunt alias ea nisi pariatur autem, facere dignissimos. Error libero, nesciunt voluptatum ullam modi ratione quasi?",
+    date: "2025-08-08",
+    image: "none",
+  },
+  {
+    id: 4,
+    title: "Aktualność 4",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit placeat inventore, id magni commodi facere fugit nam corrupti impedit adipisci illum nemo quo soluta ipsum excepturi, sequi distinctio rem voluptatibus voluptates omnis asperiores! Adipisci nesciunt alias ea nisi pariatur autem, facere dignissimos. Error libero, nesciunt voluptatum ullam modi ratione quasi?",
+    date: "2025-08-07",
+    image: "https://picsum.photos/seed/4/600/400",
+  },
+  {
+    id: 5,
+    title: "Aktualność 5",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit placeat inventore, id magni commodi facere fugit nam corrupti impedit adipisci illum nemo quo soluta ipsum excepturi, sequi distinctio rem voluptatibus voluptates omnis asperiores! Adipisci nesciunt alias ea nisi pariatur autem, facere dignissimos. Error libero, nesciunt voluptatum ullam modi ratione quasi?",
+    date: "2025-08-06",
+    image: "https://picsum.photos/seed/5/600/400",
+  },
+]);
+const layoutReverse = ref(false);
+const latestNews = computed(() => newsList.value.slice(0, 2));
+</script>
 
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
 @use "@/assets/scss/placeholders.scss" as *;
 
 .news {
-  margin: 0 10vmin;
+  padding: 0 20vmin;
 
-  h2 {
-    font-family: $supportFont;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: $primaryColor;
+  h3 {
+    @extend %title-header;
+    text-align: right;
+    margin-right: 5vmin;
+    margin-left: 0;
+    margin-bottom: 5vmin;
   }
 
-  .news-items {
+  .news-list {
     display: flex;
-    flex-wrap: wrap;
-    gap: 4vw;
-
-    .news-item {
-      flex: 1 1 300px;
-      background-color: #fff;
-      padding: 2vh 2vw;
-      border: 1px solid #ddd;
-      border-radius: 0.5rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-
-      h3 {
-        font-size: 1.3rem;
-        margin-bottom: 0.5rem;
-      }
-
-      p {
-        font-size: 1rem;
-        color: #555;
-        margin-bottom: 0.5rem;
-      }
-
-      small {
-        font-size: 0.9rem;
-        color: #999;
-      }
-    }
+    flex-direction: column;
   }
 
   .news-btn-wrapper {
-    margin-top: 2rem;
+    margin-top: 4vmin;
+    margin-bottom: 4vmin;
     display: flex;
     justify-content: flex-start;
-  }
 
-  .news-btn {
-    @extend %follow-btn;
+    .news-btn {
+      @extend %follow-btn;
+      font-size: 2vmin;
+      .icon {
+        font-size: 2vmin;
+      }
+    }
   }
 }
 </style>

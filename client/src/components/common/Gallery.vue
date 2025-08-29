@@ -52,8 +52,6 @@
 </template>
 
 <script setup lang="ts">
-import "aos/dist/aos.css";
-import AOS from "aos";
 import { ref, computed, onMounted, onUnmounted } from "vue";
 
 const props = defineProps<{
@@ -135,14 +133,6 @@ const handleKeyDown = (event: KeyboardEvent) => {
 
 onMounted(() => {
   window.addEventListener("keydown", handleKeyDown);
-
-  AOS.init({
-    duration: 800,
-    once: false,
-  });
-  setTimeout(() => {
-    AOS.refresh();
-  }, 1000);
 });
 
 onUnmounted(() => {

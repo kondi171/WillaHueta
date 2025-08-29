@@ -73,11 +73,14 @@ const scrollToSection = (selector: string) => {
 
 .sub-nav {
   position: fixed;
-  top: 50%;
+  top: 0;
   left: 2vmin;
-  transform: translateY(-50%);
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   z-index: 100;
-
+  animation: slideInLeft 0.7s ease forwards;
   ul {
     display: flex;
     flex-direction: column;
@@ -154,6 +157,16 @@ const scrollToSection = (selector: string) => {
   }
   100% {
     transform: scale(1.2);
+  }
+}
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 </style>

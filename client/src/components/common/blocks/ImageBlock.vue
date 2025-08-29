@@ -14,26 +14,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import AOS from "aos";
-import "aos/dist/aos.css";
-
 defineProps({
   reverse: {
     type: Boolean,
     default: false,
   },
-});
-
-onMounted(() => {
-  AOS.init({
-    duration: 800,
-    once: false,
-  });
-
-  setTimeout(() => {
-    AOS.refresh();
-  }, 1000);
 });
 </script>
 

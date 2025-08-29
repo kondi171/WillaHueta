@@ -1,11 +1,24 @@
 <template>
   <section class="news-page">
-    <h3>Wszystkie aktualności</h3>
+    <h3 data-aos="fade-right">Wszystkie aktualności</h3>
     <div class="news-list">
-      <Article v-for="news in paginatedNews" :key="news.id" :news="news" />
+      <Article
+        v-for="(news, index) in paginatedNews"
+        :key="news.id"
+        :news="news"
+        :side="
+          layoutReverse
+            ? index % 2 === 0
+              ? 'left'
+              : 'right'
+            : index % 2 === 0
+            ? 'right'
+            : 'left'
+        "
+      />
     </div>
 
-    <div class="pagination">
+    <div class="pagination" v-if="totalPages > 1">
       <button
         v-for="page in totalPages"
         :key="page"
@@ -32,287 +45,43 @@ interface ArticleType {
 
 const ARTICLES_PER_PAGE = 4;
 const currentPage = ref(1);
+const layoutReverse = ref(true);
 
 const newsList = ref<ArticleType[]>([
   {
     id: 1,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "/img/notitle.png",
+    title: "Aktualność 1",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit placeat inventore, id magni commodi facere fugit nam corrupti impedit adipisci illum nemo quo soluta ipsum excepturi, sequi distinctio rem voluptatibus voluptates omnis asperiores! Adipisci nesciunt alias ea nisi pariatur autem, facere dignissimos. Error libero, nesciunt voluptatum ullam modi ratione quasi?",
+    date: "2025-08-10",
+    image: "https://picsum.photos/seed/1/600/400",
   },
   {
     id: 2,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "none",
+    title: "Aktualność 2",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit placeat inventore, id magni commodi facere fugit nam corrupti impedit adipisci illum nemo quo soluta ipsum excepturi, sequi distinctio rem voluptatibus voluptates omnis asperiores! Adipisci nesciunt alias ea nisi pariatur autem, facere dignissimos. Error libero, nesciunt voluptatum ullam modi ratione quasi?",
+    date: "2025-08-09",
+    image: "https://picsum.photos/seed/2/600/400",
   },
   {
     id: 3,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
+    title: "Aktualność 3",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit placeat inventore, id magni commodi facere fugit nam corrupti impedit adipisci illum nemo quo soluta ipsum excepturi, sequi distinctio rem voluptatibus voluptates omnis asperiores! Adipisci nesciunt alias ea nisi pariatur autem, facere dignissimos. Error libero, nesciunt voluptatum ullam modi ratione quasi?",
+    date: "2025-08-08",
     image: "none",
   },
   {
     id: 4,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "/img/hotel-01.jpg",
+    title: "Aktualność 4",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit placeat inventore, id magni commodi facere fugit nam corrupti impedit adipisci illum nemo quo soluta ipsum excepturi, sequi distinctio rem voluptatibus voluptates omnis asperiores! Adipisci nesciunt alias ea nisi pariatur autem, facere dignissimos. Error libero, nesciunt voluptatum ullam modi ratione quasi?",
+    date: "2025-08-07",
+    image: "https://picsum.photos/seed/4/600/400",
   },
   {
     id: 5,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "/img/hotel-02.jpg",
-  },
-  {
-    id: 6,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "none",
-  },
-  {
-    id: 7,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "none",
-  },
-  {
-    id: 8,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "/img/hotel-01.jpg",
-  },
-  {
-    id: 1,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "/img/notitle.png",
-  },
-  {
-    id: 2,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "none",
-  },
-  {
-    id: 3,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "none",
-  },
-  {
-    id: 4,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "/img/hotel-01.jpg",
-  },
-  {
-    id: 5,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "/img/hotel-02.jpg",
-  },
-  {
-    id: 6,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "none",
-  },
-  {
-    id: 7,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "none",
-  },
-  {
-    id: 8,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "/img/hotel-01.jpg",
-  },
-  {
-    id: 1,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "/img/notitle.png",
-  },
-  {
-    id: 2,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "none",
-  },
-  {
-    id: 3,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "none",
-  },
-  {
-    id: 4,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "/img/hotel-01.jpg",
-  },
-  {
-    id: 5,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "/img/hotel-02.jpg",
-  },
-  {
-    id: 6,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "none",
-  },
-  {
-    id: 7,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "none",
-  },
-  {
-    id: 8,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "/img/hotel-01.jpg",
-  },
-  {
-    id: 1,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "/img/notitle.png",
-  },
-  {
-    id: 2,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "none",
-  },
-  {
-    id: 3,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "none",
-  },
-  {
-    id: 4,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "/img/hotel-01.jpg",
-  },
-  {
-    id: 5,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "/img/hotel-02.jpg",
-  },
-  {
-    id: 6,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "none",
-  },
-  {
-    id: 7,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "none",
-  },
-  {
-    id: 8,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "/img/hotel-01.jpg",
-  },
-  {
-    id: 1,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "/img/notitle.png",
-  },
-  {
-    id: 2,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "none",
-  },
-  {
-    id: 3,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "none",
-  },
-  {
-    id: 4,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "/img/hotel-01.jpg",
-  },
-  {
-    id: 5,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "/img/hotel-02.jpg",
-  },
-  {
-    id: 6,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "none",
-  },
-  {
-    id: 7,
-    title: "Wieczór Jazzowy - 12 lipca",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-07-12",
-    image: "none",
-  },
-  {
-    id: 8,
-    title: "Nowe menu w restauracji",
-    text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque accusantium architecto eligendi, voluptas reiciendis possimus quia sequi doloremque earum itaque unde rerum ullam officiis? Numquam corporis incidunt impedit excepturi labore maxime reiciendis, obcaecati distinctio placeat, eius rem reprehenderit porro laboriosam dolores magnam architecto! Culpa, blanditiis tempore. Maiores, reprehenderit excepturi, autem magnam illo vero corporis provident ullam cumque dolores facere odio iste nostrum sapiente? Nemo nostrum deleniti modi quos magnam, earum quasi, aut, commodi dolorum quis natus culpa corporis fuga. Saepe repellat, cumque dolorum expedita explicabo sapiente adipisci ipsam impedit! Voluptates iure nihil maxime recusandae labore. Nemo inventore repellat quisquam id?",
-    date: "2024-06-05",
-    image: "/img/hotel-01.jpg",
+    title: "Aktualność 5",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit placeat inventore, id magni commodi facere fugit nam corrupti impedit adipisci illum nemo quo soluta ipsum excepturi, sequi distinctio rem voluptatibus voluptates omnis asperiores! Adipisci nesciunt alias ea nisi pariatur autem, facere dignissimos. Error libero, nesciunt voluptatum ullam modi ratione quasi?",
+    date: "2025-08-06",
+    image: "https://picsum.photos/seed/5/600/400",
   },
 ]);
 
@@ -330,26 +99,23 @@ const paginatedNews = computed(() => {
   const start = (currentPage.value - 1) * ARTICLES_PER_PAGE;
   return sortedNews.value.slice(start, start + ARTICLES_PER_PAGE);
 });
+
 const changePage = (page: number) => {
   currentPage.value = page;
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 };
 </script>
 
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
+@use "@/assets/scss/placeholders.scss" as *;
 
 .news-page {
   padding: 0 15vmin;
 
   h3 {
-    font-family: $supportFont;
-    font-size: 4vmin;
-    color: $primaryColor;
-    margin: 4vmin 0;
+    @extend %title-header;
+    margin: 5vmin 0;
   }
 
   .news-list {

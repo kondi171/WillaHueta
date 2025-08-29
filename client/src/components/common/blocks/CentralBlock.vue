@@ -4,22 +4,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import "aos/dist/aos.css";
-import AOS from "aos";
-import { onMounted } from "vue";
-
-onMounted(() => {
-  AOS.init({
-    duration: 800,
-    once: false,
-  });
-
-  setTimeout(() => {
-    AOS.refresh();
-  }, 1000);
-});
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss">
 @use "@/assets/scss/variables.scss" as *;
@@ -46,12 +31,12 @@ onMounted(() => {
     color: $secondaryColor;
   }
   img {
-      margin: 5vmin 5vmin;
-      transition: transform 0.4s;
-      &:hover {
-        cursor: pointer;
-        transform: scale(1.2);
-      }
+    margin: 5vmin 5vmin;
+    transition: transform 0.4s;
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.2);
     }
+  }
 }
 </style>

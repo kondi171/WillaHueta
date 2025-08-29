@@ -7,8 +7,8 @@
   >
     <img class="background" :src="headerImage" :alt="displayName.title" />
     <div class="overlay">
-      <h1>{{ displayName.title }}</h1>
-      <p class="subtitle" v-if="displayName.subtitle">
+      <h1 class="fade-in-title">{{ displayName.title }}</h1>
+      <p class="subtitle fade-in-subtitle" v-if="displayName.subtitle">
         {{ displayName.subtitle }}
       </p>
     </div>
@@ -18,8 +18,6 @@
 <script setup lang="ts">
 import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import "aos/dist/aos.css";
-import AOS from "aos";
 
 const route = useRoute();
 
@@ -111,17 +109,6 @@ const displayName = computed(() => {
 const headerImage = computed(() => {
   return routeImages[route.name as string] || "";
 });
-
-onMounted(() => {
-  AOS.init({
-    duration: 800,
-    once: false,
-  });
-
-  setTimeout(() => {
-    AOS.refresh();
-  }, 1000);
-});
 </script>
 
 <style scoped lang="scss">
@@ -133,7 +120,7 @@ onMounted(() => {
   height: 50vh;
   overflow: hidden;
   border-radius: 1rem;
-  margin: 15vmin 2.5vw 0 2.5vw;
+  margin: 15vmin 2.5vw 1vmin 2.5vw;
 
   .background {
     width: 100%;
@@ -165,6 +152,29 @@ onMounted(() => {
       font-weight: 400;
       color: $supportColor;
     }
+  }
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in-title {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.3s;
+  }
+
+  .fade-in-subtitle {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.6s;
+    margin-top: 1vmin;
   }
 }
 </style>

@@ -28,11 +28,19 @@ import {
   faTheaterMasks,
   faChalkboardTeacher,
   faArrowUp,
+  faGem,
 } from "@fortawesome/free-solid-svg-icons";
 
+// 🔹 AOS
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const app = createApp(App);
+
 app.use(router);
 app.use(createPinia());
+
+// 🔹 FontAwesome
 library.add(
   faFacebook,
   faInstagram,
@@ -56,7 +64,18 @@ library.add(
   faX,
   faTheaterMasks,
   faChalkboardTeacher,
-  faArrowUp
+  faArrowUp,
+  faGem,
 );
 
-app.component("font-awesome-icon", FontAwesomeIcon).mount("#app");
+app.component("font-awesome-icon", FontAwesomeIcon);
+
+app.mount("#app");
+
+AOS.init({
+  duration: 800,
+  offset: 200,
+  easing: "ease-in-out",
+  once: false,
+  // mirror: true 
+});

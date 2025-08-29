@@ -38,6 +38,8 @@
 </template>
 
 <script setup lang="ts">
+import { useAOS } from "../../../hooks/useAOS";
+useAOS();
 const menuCategories = [
   {
     name: "Przystawki",

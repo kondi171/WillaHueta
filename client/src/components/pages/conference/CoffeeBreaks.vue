@@ -1,7 +1,6 @@
 <template>
-  <div class="coffee-breaks">
-    <h2 class="title">Przerwy kawowe</h2>
-    <div class="offer" v-for="(offer, i) in offers" :key="i">
+  <div class="coffee-breaks" data-aos="fade-up">
+    <div class="offer" v-for="(offer, i) in offers" :key="i" data-aos="fade-up">
       <div class="header">
         <div class="base">W ofercie:</div>
         <div class="price">{{ offer.price }}</div>
@@ -17,6 +16,8 @@
 </template>
 
 <script setup lang="ts">
+import { useAOS } from "../../../hooks/useAOS";
+useAOS();
 interface Offer {
   price: string;
   extras: string[];
@@ -45,37 +46,39 @@ const offers: Offer[] = [
 </script>
 
 <style scoped lang="scss">
+@use "@/assets/scss/variables.scss" as *;
+
 .coffee-breaks {
-  max-width: 600px;
+  max-width: 30vw;
   margin: 0 auto;
   padding: 2vmin;
-  background: #fafafa;
-  border-radius: 0.5rem;
+  background: $bgColor;
+  border-radius: 0.5vmin;
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
 
   .title {
     text-align: center;
     font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: #5a5a5a;
+    margin-bottom: 1.5vmin;
+    color: $textColor;
   }
 
   .offer {
     border: 1px solid #ddd;
-    padding: 1rem 1.5rem;
-    border-radius: 0.5rem;
-    margin-bottom: 1.25rem;
-    background: #fff;
+    padding: 2.5vmin;
+    border-radius: 0.5vmin;
+    margin-bottom: 2vmin;
+    background-color: #fff;
 
     .header {
       display: flex;
       justify-content: space-between;
-      font-weight: 600;
-      font-size: 1.1rem;
-      margin-bottom: 0.75rem;
+      font-weight: bold;
+      font-size: 2.5vmin;
+      margin-bottom: 1vmin;
 
       .base {
-        color: #333;
+        color: $textColor;
       }
 
       .price {
@@ -86,18 +89,18 @@ const offers: Offer[] = [
     .extras {
       list-style: none;
       padding-left: 0;
-      margin: 0 0 0.5rem 0;
+      margin: 0 0 0.5vmin 0;
 
       li {
         display: flex;
         align-items: center;
-        font-size: 0.95rem;
+        font-size: 2vmin;
         color: #444;
-        margin-bottom: 0.35rem;
+        margin-bottom: 1vmin;
 
         .checkmark {
           color: #2e7d32;
-          margin-right: 0.5rem;
+          margin-right: 1vmin;
           font-weight: bold;
         }
       }

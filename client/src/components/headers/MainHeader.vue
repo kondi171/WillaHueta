@@ -238,9 +238,7 @@ onBeforeUnmount(() => {
       color: gold;
       z-index: 10;
       margin: 0 2vmin;
-      text-shadow:
-        0 0 1vmin rgba(0, 0, 0, 0.9),
-        0 0 2vmin rgba(0, 0, 0, 0.6),
+      text-shadow: 0 0 1vmin rgba(0, 0, 0, 0.9), 0 0 2vmin rgba(0, 0, 0, 0.6),
         0 0 3vmin rgba(0, 0, 0, 0.4);
       filter: drop-shadow(0 0 1vmin gold);
     }
