@@ -147,7 +147,11 @@ const scrollToSection = (selector: string) => {
     }
   }
 }
-
+@media (max-width: $mobileBreakpoint) {
+  .sub-nav {
+    display: none !important;
+  }
+}
 @keyframes pulse {
   0% {
     transform: scale(1.2);

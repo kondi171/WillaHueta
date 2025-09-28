@@ -9,10 +9,7 @@
         <font-awesome-icon :icon="item.icon" data-aos="fade-up" />
       </div>
 
-      <div
-        class="timeline-body"
-        :data-aos="index % 2 === 0 ? 'fade-left' : 'fade-right'"
-      >
+      <div class="timeline-body" :data-aos="getAos(index).value">
         <h4 class="timeline-title">{{ item.title }}</h4>
         <p>{{ item.text }}</p>
         <a
@@ -26,10 +23,7 @@
         </a>
       </div>
 
-      <div
-        class="timeline-date"
-        :data-aos="index % 2 === 0 ? 'fade-left' : 'fade-right'"
-      >
+      <div class="timeline-date" :data-aos="getAos(index).value">
         {{ item.date }}
       </div>
     </div>
@@ -39,6 +33,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useAOS } from "../../../hooks/useAOS";
+import { useAnimate } from "../../../hooks/useAnimate";
+
 useAOS();
 
 interface TimelineItem {
@@ -72,6 +68,12 @@ const timelineItems = ref<TimelineItem[]>([
     icon: "gem",
   },
 ]);
+
+const getAos = (index: number) => {
+  const reverse = index % 2 !== 0;
+  const { computedAos } = useAnimate(reverse);
+  return computedAos;
+};
 </script>
 
 <style scoped lang="scss">
@@ -221,6 +223,127 @@ const timelineItems = ref<TimelineItem[]>([
   .timeline-icon,
   .timeline-date {
     transition-duration: 0.8s;
+  }
+}
+@media screen and (max-width: $tabletBreakpoint) {
+  .timeline {
+    &:before {
+      display: none;
+    }
+
+    .timeline-container {
+      width: 100%;
+      left: 0;
+      margin-bottom: 4vmin;
+      padding: 0;
+
+      .timeline-icon {
+        display: none;
+      }
+
+      .timeline-body {
+        margin: 0;
+        padding: 3vmin 2vmin;
+        text-align: center;
+        border-radius: 1vmin;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+        &:before {
+          display: none;
+        }
+
+        p {
+          margin: 1vmin 0;
+          font-size: 2.2vmin;
+        }
+      }
+
+      .timeline-title {
+        font-size: 4vmin;
+        margin-bottom: 1vmin;
+      }
+
+      .timeline-date {
+        position: relative;
+        margin: 1vmin auto 0;
+        display: inline-block;
+        font-size: 2.2vmin;
+        box-shadow: none;
+      }
+    }
+  }
+}
+// @media screen and (max-width: $tabletBreakpoint) {
+//   .timeline-container {
+//     .timeline-title {
+//       font-size: 4.5vmin;
+//     }
+
+//     .timeline-body {
+//       p {
+//         font-size: 2.8vmin;
+//         line-height: 1.7;
+//       }
+
+//       .read-more-btn {
+//         font-size: 2.5vmin;
+//       }
+//     }
+
+//     .timeline-date {
+//       font-size: 2.5vmin;
+//     }
+//   }
+// }
+
+@media screen and (max-width: $mobileBreakpoint) {
+  .timeline {
+    &:before {
+      display: none;
+    }
+
+    .timeline-container {
+      width: 100%;
+      left: 0;
+      margin-bottom: 4vmin;
+      padding: 0;
+
+      .timeline-icon {
+        display: none;
+      }
+
+      .timeline-body {
+        margin: 0;
+        padding: 3vmin 2vmin;
+        text-align: center;
+        border-radius: 1vmin;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+        &:before {
+          display: none;
+        }
+
+        p {
+          margin: 1vmin 0;
+          font-size: 3vmin;
+          line-height: 1.8;
+        }
+      }
+
+      .timeline-title {
+        font-size: 5vmin;
+        margin-bottom: 1vmin;
+      }
+
+      .timeline-date {
+        position: relative;
+        margin: 1vmin auto 0;
+        display: inline-block;
+        font-size: 2.8vmin;
+        box-shadow: none;
+        padding: 0.7vmin 1.5vmin;
+      }
+    }
   }
 }
 

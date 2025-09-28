@@ -28,24 +28,24 @@ import TextBlock from "../../common/blocks/TextBlock.vue";
 .about {
   .history-link {
     display: flex;
-    width: 80%;
-    margin: 4vmin 10vmin 0 10vmin;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
     font-family: $fancyFont;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: transparent;
+    border: 0.5vmin solid transparent;
+    box-shadow: 0.5vmin 0.5vmin 0 0 $primaryColor,
+      -0.5vmin -0.5vmin 0 0 $primaryColor;
+    transition: all 0.4s;
+    margin: 4vmin auto 0 auto;
+    width: 30vmin;
     font-size: 2vmin;
     color: $primaryColor;
-    font-weight: bold;
-    width: 30vmin;
-    background-color: transparent;
-    border: 5px solid transparent;
-    box-shadow: 5px 5px 0 0 $primaryColor, -5px -5px 0 0 $primaryColor;
-    text-align: center;
-    transition-duration: 0.4s;
-    text-decoration: none;
     span.invisible {
       display: none;
     }
-
     span.visible {
       display: block;
     }
@@ -53,17 +53,46 @@ import TextBlock from "../../common/blocks/TextBlock.vue";
     &:hover {
       cursor: pointer;
       background-color: $secondaryColor;
-      box-shadow: -10px -10px 0 0 $secondaryColor, 10px 10px 0 0 $secondaryColor;
+      box-shadow: -1vmin -1vmin 0 0 $secondaryColor,
+        1vmin 1vmin 0 0 $secondaryColor;
       border-color: $bgColor;
-      transition-duration: 0.4s;
 
       & span.invisible {
         display: block;
         color: $bgColor;
       }
-
       & span.visible {
         display: none;
+      }
+    }
+    @media (max-width: $xLargeBreakpoint) {
+      width: 40vmin;
+      font-size: 2.5vmin;
+      margin: 3vmin auto 0 auto;
+    }
+
+    // @media (max-width: 992px) {
+    //   width: 50vmin;
+    //   font-size: 3vmin;
+    // }
+
+    @media (max-width: $mobileBreakpoint) {
+      width: 70%;
+      font-size: 4vmin;
+      margin: 2vmin auto 0 auto;
+    }
+
+    @media (max-width: $xSmallBreakpoint) {
+      width: 60%;
+      font-size: 3vmin;
+      padding: 1vmin 0;
+      margin: 4vmin auto 0 auto;
+      box-shadow: 0.5vmin 0.5vmin 0 0 $primaryColor,
+        -0.5vmin -0.5vmin 0 0 $primaryColor;
+
+      &:hover {
+        box-shadow: -1vmin -1vmin 0 0 $secondaryColor,
+          1vmin 1vmin 0 0 $secondaryColor;
       }
     }
   }

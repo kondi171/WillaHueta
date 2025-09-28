@@ -30,7 +30,7 @@
   justify-content: space-evenly;
   width: 30vw;
   color: $textColor;
-  font-size: 48px;
+  font-size: 6vmin;
 
   a {
     text-decoration: none;
@@ -38,11 +38,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 6rem;
-    height: 6rem;
+    width: 7vmin;
+    height: 7vmin;
     color: $textColor;
     transition-duration: 0.4s;
-    padding: 4rem;
+    padding: 7vmin;
     z-index: 1;
     span {
       font-size: 2vmin;
@@ -71,6 +71,18 @@
 
       &::after {
         transform: scale(1);
+      }
+    }
+  }
+}
+@media (max-width: $mobileBreakpoint) {
+  .footer-socials {
+    width: 100%;
+    font-size: 10vmin;
+    a {
+      padding: 10vmin 20vmin;
+      span {
+        font-size: 4vmin;
       }
     }
   }

@@ -330,6 +330,6 @@ onBeforeUnmount(() => {
   }
   to {
     transform: translateX(-50%);
-  } // przesunięcie dokładnie o połowę, bo mamy zdublowaną listę
+  }
 }
 </style>

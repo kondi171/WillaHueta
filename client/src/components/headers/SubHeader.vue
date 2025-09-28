@@ -3,7 +3,7 @@
     class="sub-header"
     v-if="headerImage"
     :key="headerImage"
-    data-aos="zoom-in-up"
+    :data-aos="computedAos"
   >
     <img class="background" :src="headerImage" :alt="displayName.title" />
     <div class="overlay">
@@ -16,7 +16,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
+import { useAnimate } from "../../hooks/useAnimate";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
@@ -109,6 +110,15 @@ const displayName = computed(() => {
 const headerImage = computed(() => {
   return routeImages[route.name as string] || "";
 });
+
+const props = defineProps({
+  reverse: { type: Boolean, default: false },
+});
+
+const { computedAos } = useAnimate(props.reverse, {
+  desktop: "zoom-in-up",
+  mobile: "fade-up",
+});
 </script>
 
 <style scoped lang="scss">
@@ -119,7 +129,7 @@ const headerImage = computed(() => {
   width: 95vw;
   height: 50vh;
   overflow: hidden;
-  border-radius: 1rem;
+  border-radius: 2vmin;
   margin: 15vmin 2.5vw 1vmin 2.5vw;
 
   .background {
@@ -175,6 +185,26 @@ const headerImage = computed(() => {
     animation: fadeInUp 0.8s ease forwards;
     animation-delay: 0.6s;
     margin-top: 1vmin;
+  }
+}
+
+@media (max-width: $mobileBreakpoint) {
+  .sub-header {
+    width: 100vw;
+    height: 80vh;
+    margin: 0;
+    border-radius: 0;
+    clip-path: polygon(0 0, 100% 0%, 100% 95%, 0 100%);
+    .overlay {
+      h1 {
+        margin-top: 10vmin;
+        font-size: 8vmin;
+      }
+
+      .subtitle {
+        font-size: 6vmin;
+      }
+    }
   }
 }
 </style>

@@ -45,10 +45,10 @@ const menuCategories = [
     name: "Przystawki",
     items: [
       {
-        name: "Krewetki duszone na maśle z białym winem",
+        name: "Krewetki ",
         weight: "150g",
         price: 39,
-        description: "",
+        description: "Duszone na maśle z białym winem",
       },
       {
         name: "Pielmieni nadziewane mięsem",
@@ -391,33 +391,20 @@ const menuCategories = [
       }
     }
   }
-
-  @media (max-width: 768px) {
-    padding: 3vmin 5vmin;
-
-    .menu-category h4 {
-      font-size: 4vmin;
+}
+@media (max-width: $mobileBreakpoint) {
+  .menu {
+    padding: 5vmin 10vmin;
+    .menu-category {
+      h4 {
+        width: 70%;
+      }
     }
-
     .menu-item {
-      flex-direction: column;
-      align-items: flex-start;
+      margin: 4vmin 0;
 
       .menu-item-info {
-        max-width: 100%;
-
-        .menu-item-name {
-          font-size: 4vmin;
-        }
-
-        .menu-item-description {
-          font-size: 3vmin;
-        }
-      }
-
-      .menu-item-price {
-        margin-top: 0.5em;
-        font-size: 4vmin;
+        margin-left: 2vmin;
       }
     }
   }

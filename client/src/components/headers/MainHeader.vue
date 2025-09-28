@@ -314,6 +314,90 @@ onBeforeUnmount(() => {
   filter: blur(0px);
 }
 
+@media (max-width: $xLargeBreakpoint) {
+  .hero-header {
+    .title {
+      &-top {
+        font-size: 9vmin;
+      }
+      &-bottom {
+        font-size: 14vmin;
+      }
+      &-description {
+        font-size: 3.5vmin;
+      }
+    }
+
+    .stars .star {
+      font-size: 8vmin;
+    }
+  }
+}
+
+@media (max-width: $mobileBreakpoint) {
+  .hero-header {
+    .overlay {
+      padding: 6vmin 2vmin;
+    }
+
+    .slide-content {
+      text-align: center !important;
+      align-self: center !important;
+    }
+
+    .title {
+      &-top {
+        font-size: 7vmin;
+      }
+      &-bottom {
+        font-size: 11vmin;
+      }
+      &-description {
+        font-size: 3vmin;
+        margin: 2vmin 0;
+      }
+    }
+
+    .stars .star {
+      font-size: 6vmin;
+    }
+  }
+}
+
+@media (max-width: $xSmallBreakpoint) {
+  .hero-header {
+    .overlay {
+      padding: 8vmin 2vmin;
+    }
+
+    .title {
+      &-top {
+        font-size: 8vmin;
+      }
+      &-bottom {
+        font-size: 9vmin;
+        letter-spacing: 0.02em;
+      }
+      &-description {
+        font-size: 6vmin;
+        line-height: 1.3;
+        margin: 3vmin 0;
+      }
+    }
+
+    .stars {
+      gap: 1vmin;
+      .star {
+        font-size: 10vmin;
+      }
+    }
+
+    .progress-bar-container {
+      height: 0.4vmin;
+    }
+  }
+}
+
 @keyframes zoomIn {
   0% {
     transform: scale(1);

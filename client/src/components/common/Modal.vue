@@ -87,7 +87,6 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
-@use "@/assets/scss/placeholders.scss" as *;
 
 .modal-backdrop {
   position: fixed;
@@ -107,13 +106,15 @@ onUnmounted(() => {
 .modal-content {
   background-color: $bgColor;
   max-width: 600px;
-  max-height: 90vh;
-  width: 100%;
+  width: 90vw;
+  max-height: 85vh;
   overflow-y: auto;
+  overflow-x: hidden;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   scrollbar-width: none;
   -ms-overflow-style: none;
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -121,9 +122,9 @@ onUnmounted(() => {
 
 .modal-close {
   position: fixed;
-  top: 2vmin;
-  right: 4vmin;
-  font-size: 5vmin;
+  top: 3vmin;
+  right: 5vmin;
+  font-size: 8vmin;
   color: $supportColor;
   cursor: pointer;
   z-index: 1000;
@@ -140,7 +141,7 @@ onUnmounted(() => {
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 8vmin;
+  font-size: 10vmin;
   color: $supportColor;
   cursor: pointer;
   user-select: none;
@@ -149,16 +150,10 @@ onUnmounted(() => {
 
   &.left {
     left: 5vw;
-    &:hover {
-      translate: -10px;
-    }
   }
 
   &.right {
     right: 5vw;
-    &:hover {
-      translate: 10px;
-    }
   }
 
   &:hover {
@@ -225,6 +220,28 @@ onUnmounted(() => {
   }
   to {
     opacity: 1;
+  }
+}
+@media (max-width: $mobileBreakpoint) {
+  .modal-content {
+    width: 95vw;
+    max-height: 80vh;
+    border-radius: 8px;
+  }
+
+  .arrow {
+    &.left {
+      left: 4vw;
+    }
+    &.right {
+      right: 4vw;
+    }
+  }
+}
+@media (max-width: $mobileBreakpoint) and (orientation: landscape) {
+  .modal-content {
+    width: 60vw; // zmniejszona szerokość w poziomie
+    // max-height: 75vh;
   }
 }
 </style>

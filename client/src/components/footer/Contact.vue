@@ -1,8 +1,11 @@
 <template>
-  <section class="footer-contact" data-aos="fade-left">
+  <section class="footer-contact" :data-aos="computedAos">
     <div class="banner">
       <div class="banner-img">
-        <img src="@/assets/img/landing/logo.png" alt="Willa Hueta Logo" />
+        <img
+          src="@/assets/img/landing/logo-desktop.png"
+          alt="Willa Hueta Logo"
+        />
       </div>
       <h5 class="banner-text">Willa Hueta</h5>
     </div>
@@ -45,8 +48,14 @@
 
 <script setup lang="ts">
 import Socials from "./Socials.vue";
-</script>
+import { useAnimate } from "../../hooks/useAnimate";
 
+const props = defineProps({
+  reverse: { type: Boolean, default: true },
+});
+
+const { computedAos } = useAnimate(props.reverse);
+</script>
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
 .footer-contact {
@@ -90,6 +99,55 @@ import Socials from "./Socials.vue";
         .text {
           color: $textColor;
           margin-left: 1vmin;
+        }
+      }
+    }
+  }
+}
+@media (max-width: $mobileBreakpoint) {
+  .footer-contact {
+    width: 100%;
+    text-align: center;
+
+    .banner {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4vmin;
+
+      &-img img {
+        width: 25vmin;
+        height: auto;
+      }
+
+      &-text {
+        margin: 2vmin 0 0;
+        font-size: 8vmin;
+      }
+    }
+
+    .contact-info-wrapper {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      .info-section {
+        margin: 3vmin 0;
+        width: 90%;
+        margin: 0 5%;
+        h6 {
+          font-size: 6vmin;
+        }
+
+        .line {
+          display: flex;
+          align-items: center;
+          font-size: 5vmin;
+          margin: 3vmin;
+          text-align: left;
+          .text {
+            margin-left: 5vmin;
+          }
         }
       }
     }

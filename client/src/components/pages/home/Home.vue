@@ -20,7 +20,7 @@ import Services from "./Services.vue";
 .home {
   display: flex;
   flex-direction: column;
-
+  overflow-x: hidden;
   .services {
     h2 {
       margin: 0 10vmin;

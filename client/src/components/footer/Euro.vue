@@ -1,5 +1,5 @@
 <template>
-  <div class="footer-euro" data-aos="fade-right">
+  <div class="footer-euro" :data-aos="computedAos">
     <div class="euro-image">
       <img
         src="@/assets/img/footer/Euro-Project.png"
@@ -17,7 +17,15 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useAnimate } from "../../hooks/useAnimate";
+
+const props = defineProps({
+  reverse: { type: Boolean, default: false },
+});
+
+const { computedAos } = useAnimate(props.reverse);
+</script>
 
 <style scoped lang="scss">
 @use "@/assets/scss/variables.scss" as *;
@@ -26,8 +34,12 @@
   display: flex;
   flex-direction: column;
   width: 45vw;
+  font-size: 2vmin;
   .euro-image {
     text-align: center;
+    img {
+      width: 100%;
+    }
   }
   .euro-text {
     font-family: $textFont;
@@ -36,8 +48,13 @@
     font-style: italic;
     letter-spacing: 0.5vmin;
     line-height: 200%;
-    font-size: 2vmin;
     margin-top: 4vmin;
+  }
+}
+@media (max-width: $mobileBreakpoint) {
+  .footer-euro .euro-text {
+    font-size: 3.5vmin;
+    margin: 4vmin 5vmin 0 5vmin;
   }
 }
 </style>

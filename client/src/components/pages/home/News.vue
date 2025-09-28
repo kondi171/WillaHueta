@@ -15,6 +15,7 @@
             ? 'right'
             : 'left'
         "
+        :data-aos="computedAos"
       />
     </div>
     <div class="news-btn-wrapper">
@@ -29,6 +30,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import Article from "./../news/Article.vue";
+import { useAnimate } from "../../../hooks/useAnimate";
 
 interface ArticleType {
   id: number;
@@ -75,8 +77,11 @@ const newsList = ref<ArticleType[]>([
     image: "https://picsum.photos/seed/5/600/400",
   },
 ]);
+
 const layoutReverse = ref(false);
 const latestNews = computed(() => newsList.value.slice(0, 2));
+
+const { computedAos } = useAnimate(false);
 </script>
 
 <style scoped lang="scss">
@@ -84,7 +89,8 @@ const latestNews = computed(() => newsList.value.slice(0, 2));
 @use "@/assets/scss/placeholders.scss" as *;
 
 .news {
-  padding: 0 20vmin;
+  width: 100%;
+  padding: 0 5vmin;
 
   h3 {
     @extend %title-header;
@@ -97,6 +103,7 @@ const latestNews = computed(() => newsList.value.slice(0, 2));
   .news-list {
     display: flex;
     flex-direction: column;
+    gap: 5vmin;
   }
 
   .news-btn-wrapper {
@@ -110,6 +117,41 @@ const latestNews = computed(() => newsList.value.slice(0, 2));
       font-size: 2vmin;
       .icon {
         font-size: 2vmin;
+      }
+    }
+  }
+
+  @media (max-width: $tabletBreakpoint) {
+    h3 {
+      font-size: 4vmin;
+      margin-bottom: 3vmin;
+    }
+  }
+
+  @media (max-width: $mobileBreakpoint) {
+    h3 {
+      font-size: 5vmin;
+      margin-bottom: 2vmin;
+    }
+
+    .news-btn {
+      font-size: 3vmin;
+      .icon {
+        font-size: 3vmin;
+      }
+    }
+  }
+
+  @media (max-width: $xSmallBreakpoint) {
+    h3 {
+      font-size: 6vmin;
+      margin-bottom: 2vmin;
+    }
+
+    .news-btn {
+      font-size: 4vmin;
+      .icon {
+        font-size: 4vmin;
       }
     }
   }

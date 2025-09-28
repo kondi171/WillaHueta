@@ -18,6 +18,7 @@
 <script setup lang="ts">
 import { useAOS } from "../../../hooks/useAOS";
 useAOS();
+
 interface Offer {
   price: string;
   extras: string[];
@@ -56,11 +57,21 @@ const offers: Offer[] = [
   border-radius: 0.5vmin;
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
 
-  .title {
-    text-align: center;
-    font-weight: 700;
-    margin-bottom: 1.5vmin;
-    color: $textColor;
+  @media (max-width: $mobileBreakpoint) {
+    max-width: 90vw;
+    padding: 4vmin;
+
+    .offer {
+      .header {
+        font-size: 1.2rem;
+      }
+      .extras li {
+        font-size: 1rem;
+      }
+      .note {
+        font-size: 0.95rem;
+      }
+    }
   }
 
   .offer {

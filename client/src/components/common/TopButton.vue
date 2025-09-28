@@ -147,4 +147,44 @@ onUnmounted(() => {
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: $tabletBreakpoint) {
+  .button-wrapper {
+    width: 28vmin;
+    height: 28vmin;
+    right: 2vmin;
+
+    .button {
+      width: 10vmin;
+      height: 10vmin;
+
+      .icon {
+        font-size: 4vmin;
+      }
+    }
+  }
+  .orbit-svg text {
+    font-size: 1.2vmin;
+  }
+}
+
+@media (max-width: $mobileBreakpoint) {
+  .button-wrapper {
+    width: 32vmin;
+    height: 32vmin;
+    right: 2vmin;
+
+    .button {
+      width: 12vmin;
+      height: 12vmin;
+
+      .icon {
+        font-size: 5vmin;
+      }
+    }
+  }
+  .orbit-svg text {
+    font-size: 1.8vmin;
+  }
+}
 </style>

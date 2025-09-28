@@ -34,7 +34,7 @@ import Euro from "./Euro.vue";
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url("@/assets/img/footer/footer-underlay-v1.jpg");
+    background-image: url("@/assets/img/footer/footer-underlay.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -43,6 +43,26 @@ import Euro from "./Euro.vue";
     opacity: 0.3;
     z-index: -1;
   }
+  .footer-contact {
+    .banner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 2vmin;
+
+      &-img img {
+        max-width: 25vmin;
+        height: auto;
+      }
+
+      &-text {
+        font-size: 8vmin;
+        text-align: center;
+      }
+    }
+  }
+
   .faded-vertical-line {
     width: 2px;
     align-self: stretch;
@@ -73,6 +93,94 @@ import Euro from "./Euro.vue";
     &:hover {
       color: $supportColor;
     }
+  }
+}
+
+@media (max-width: $mobileBreakpoint) {
+  .main-footer {
+    flex-direction: column;
+    padding: 6vmin 4vmin;
+
+    .faded-vertical-line {
+      display: none;
+    }
+  }
+
+  .footer-contact {
+    width: 100%;
+
+    .banner {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      &-img img {
+        width: 25vmin;
+        height: auto;
+      }
+
+      &-text {
+        margin: 2vmin 0 0;
+        font-size: 8vmin;
+      }
+    }
+
+    .contact-info-wrapper {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      .info-section {
+        margin: 3vmin 0;
+
+        h6 {
+          font-size: 4vmin;
+        }
+        .line {
+          font-size: 3.5vmin;
+        }
+      }
+    }
+  }
+
+  .footer-euro {
+    width: 100%;
+    .euro-image img {
+      max-width: 70%;
+      height: auto;
+    }
+    .euro-text {
+      font-size: 3.5vmin;
+      letter-spacing: normal;
+      line-height: 160%;
+      margin-top: 3vmin;
+      padding: 0 2vmin;
+      text-align: center;
+    }
+  }
+
+  .footer-socials {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4vmin;
+    margin-top: 4vmin;
+
+    a {
+      width: 4rem;
+      height: 4rem;
+      font-size: 32px;
+      padding: 2rem;
+
+      span {
+        display: none;
+      }
+    }
+  }
+
+  .author {
+    font-size: 3.5vmin;
+    padding: 4vmin 2vmin;
   }
 }
 </style>

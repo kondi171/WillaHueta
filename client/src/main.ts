@@ -34,7 +34,7 @@ import {
 // 🔹 AOS
 import AOS from "aos";
 import "aos/dist/aos.css";
-
+import { MotionPlugin } from '@vueuse/motion';
 const app = createApp(App);
 
 app.use(router);
@@ -69,12 +69,13 @@ library.add(
 );
 
 app.component("font-awesome-icon", FontAwesomeIcon);
-
+app.use(MotionPlugin);
 app.mount("#app");
 
 AOS.init({
   duration: 800,
-  offset: 200,
+  // offset: 200,
+  // offset: 150,
   easing: "ease-in-out",
   once: false,
   // mirror: true 

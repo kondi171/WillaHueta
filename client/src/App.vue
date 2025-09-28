@@ -1,19 +1,5 @@
 <script setup lang="ts">
 import Landing from "./components/Landing.vue";
-// import "aos/dist/aos.css";
-// import AOS from "aos";
-// import { onMounted } from "vue";
-
-// onMounted(() => {
-//   AOS.init({
-//     duration: 1200,
-//     once: false,
-//   });
-
-//   setTimeout(() => {
-//     AOS.refresh();
-//   }, 1000);
-// });
 </script>
 
 <template>

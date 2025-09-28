@@ -78,13 +78,14 @@ declare global {
 
 .contact-page {
   padding: 5vmin 15vmin;
-
+  overflow-x: hidden;
   .contact-wrapper {
     display: flex;
     width: 100%;
     justify-content: center;
     flex-wrap: wrap;
     gap: 10vmax;
+
     .contact-column {
       line-height: 250%;
       text-align: center;
@@ -93,6 +94,7 @@ declare global {
       h4 {
         text-transform: uppercase;
       }
+
       p {
         margin: 0.5vmin 0;
         font-family: $textFont;
@@ -117,12 +119,48 @@ declare global {
       }
     }
   }
+
   .map {
     width: 100%;
     height: 70vh;
     border: 2px solid $primaryColor;
     border-radius: 8px;
     margin-top: 4vmin;
+  }
+
+  @media (max-width: $mobileBreakpoint) {
+    padding: 0;
+
+    .contact-wrapper {
+      .contact-column {
+        flex-basis: 90%;
+        font-size: 4vmin;
+        line-height: 300%;
+
+        .label {
+          font-size: 6vmin;
+        }
+
+        p {
+          margin: 2vw 0;
+          font-size: 6vmin;
+        }
+        &:first-of-type {
+          margin-top: 10vmin;
+        }
+        &:last-of-type {
+          margin-bottom: 10vmin;
+        }
+      }
+    }
+
+    .map {
+      width: 100%;
+      height: 80vh;
+      border: none;
+      border-radius: 0;
+      margin-top: 2vmin;
+    }
   }
 }
 </style>

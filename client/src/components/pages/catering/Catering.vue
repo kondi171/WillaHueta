@@ -13,7 +13,7 @@
       </TextBlock>
       <TextBlock>
         <p>
-          W Willa Hueta stawiamy na świeże, sezonowe składniki i kreatywne
+          W Willi Hueta stawiamy na świeże, sezonowe składniki i kreatywne
           podejście do kulinariów. Nasz doświadczony zespół kucharzy,
           cukierników i profesjonalnych kelnerów dba o to, aby każde danie było
           nie tylko smaczne, ale także pięknie podane, tworząc wspaniałą
@@ -68,7 +68,7 @@
       <CentralBlock>
         <h3 class="cards-title">Spotkania Klubowe</h3>
         <div class="cards-wrapper">
-          <div class="card" data-aos="fade-up-right">
+          <div class="card">
             <h4 class="card-title">
               Nowe, luksusowe mercedesy i pokaz mody w kieleckiej Willi Hueta
             </h4>
@@ -81,7 +81,7 @@
               <font-awesome-icon icon="fa-solid fa-arrow-right" class="icon" />
             </a>
           </div>
-          <div class="card" data-aos="fade-up-left">
+          <div class="card">
             <h4 class="card-title">
               Elegancki wieczór w Willi Hueta. Pokaz mody i wyszukane potrawy
               gotowane na żywo
@@ -134,6 +134,8 @@ const navItems = [
 @use "@/assets/scss/placeholders.scss" as *;
 
 .catering-page {
+  overflow-x: hidden;
+  overflow-y: hidden;
   .recurring-events-title {
     margin-bottom: 4vmin;
   }
@@ -144,13 +146,16 @@ const navItems = [
   }
   .cards-wrapper {
     display: flex;
-    justify-content: space-evenly;
-    max-width: 70vw;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2vmin;
+    max-width: 100%;
     margin: 0 auto;
     padding: 2vmin;
 
     .card {
-      max-width: 30vw;
+      flex: 1 1 300px;
+      max-width: 100%;
       background-color: $bgColor;
       border-radius: 1vmin;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -174,6 +179,7 @@ const navItems = [
         font-size: 2vmin;
         padding: 1vmin 2vmin;
         text-align: center;
+
         .icon {
           font-size: 2vmin;
         }

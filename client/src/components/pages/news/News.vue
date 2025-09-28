@@ -152,5 +152,8 @@ const changePage = (page: number) => {
       }
     }
   }
+  @media (max-width: $mobileBreakpoint) {
+    padding: 0 10vmin;
+  }
 }
 </style>

@@ -8,17 +8,21 @@
             <th colspan="3">Ułożenie</th>
           </tr>
           <tr>
-            <th><font-awesome-icon :icon="['fas', 'theater-masks']" /> Teatr</th>
+            <th>
+              <font-awesome-icon :icon="['fas', 'theater-masks']" /> Teatr
+            </th>
             <th><font-awesome-icon :icon="['fas', 'utensils']" /> Bankiet</th>
-            <th><font-awesome-icon :icon="['fas', 'chalkboard-teacher']" /> Szkoła</th>
+            <th>
+              <font-awesome-icon :icon="['fas', 'chalkboard-teacher']" /> Szkoła
+            </th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="room in rooms" :key="room.name">
-            <td>{{ room.name }}</td>
-            <td>{{ room.theater }} osób</td>
-            <td>{{ room.banquet }} osób</td>
-            <td>{{ room.classroom }} osób</td>
+            <td data-label="Sala" class="thead">{{ room.name }}</td>
+            <td data-label="Teatr">{{ room.theater }} osób</td>
+            <td data-label="Bankiet">{{ room.banquet }} osób</td>
+            <td data-label="Szkoła">{{ room.classroom }} osób</td>
           </tr>
         </tbody>
       </table>
@@ -32,13 +36,18 @@ export default {
   data() {
     return {
       rooms: [
-        { name: "Sala Kryształowa", theater: 200, banquet: 120, classroom: 120 },
+        {
+          name: "Sala Kryształowa",
+          theater: 200,
+          banquet: 120,
+          classroom: 120,
+        },
         { name: "Sala Perłowa", theater: 100, banquet: 70, classroom: 70 },
         { name: "Sala Diamentowa", theater: 40, banquet: 30, classroom: 30 },
-        { name: "Sala Brylantowa", theater: 10, banquet: 10, classroom: 10 }
-      ]
+        { name: "Sala Brylantowa", theater: 10, banquet: 10, classroom: 10 },
+      ],
     };
-  }
+  },
 };
 </script>
 
@@ -81,6 +90,61 @@ export default {
     td {
       font-size: 2vmin;
       color: $blackColor;
+    }
+  }
+
+  @media (max-width: $mobileBreakpoint) {
+    .rooms-table {
+      border: 0;
+      min-width: 0;
+      .thead {
+        border-bottom: 2px solid $primaryColor;
+      }
+      thead {
+        display: none;
+      }
+
+      tbody {
+        display: flex;
+        flex-direction: column;
+        gap: 3vmin;
+      }
+
+      tr {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid $bgColor;
+        border-radius: 8px;
+        padding: 2vmin;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      td {
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        font-size: 4vmin;
+        padding: 1vmin 0;
+        border: none;
+
+        &:before {
+          content: attr(data-label);
+          font-weight: bold;
+          color: $primaryColor;
+        }
+      }
+
+      td:first-child {
+        font-size: 5vmin;
+        font-weight: bold;
+        color: $primaryColor;
+        margin-bottom: 1vmin;
+
+        &:before {
+          content: "";
+        }
+      }
     }
   }
 }

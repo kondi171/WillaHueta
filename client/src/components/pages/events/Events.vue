@@ -143,6 +143,7 @@ const prevMenu = () => {
     width: 80%;
     margin: 2vmin 10%;
     justify-content: space-evenly;
+
     .btn {
       margin: 1vw auto;
       font-family: $fancyFont;
@@ -180,6 +181,23 @@ const prevMenu = () => {
 
         & span.visible {
           display: none;
+        }
+      }
+    }
+
+    @media (max-width: $mobileBreakpoint) {
+      flex-direction: column;
+      width: 90%;
+      margin: 2vmin 5%;
+      gap: 2vmin;
+
+      .btn {
+        width: 80%;
+        border-width: 3px;
+        box-shadow: 3px 3px 0 0 $primaryColor, -3px -3px 0 0 $primaryColor;
+        font-size: 3vmin;
+        &:hover {
+          box-shadow: -6px -6px 0 0 $secondaryColor, 6px 6px 0 0 $secondaryColor;
         }
       }
     }

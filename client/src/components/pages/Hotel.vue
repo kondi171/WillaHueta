@@ -27,12 +27,14 @@
       </TextBlock>
 
       <CentralBlock>
-        Oddajemy do Państwa dyspozycji
-        <strong>12 luksusowych, klimatyzowanych pokoi</strong>, wyposażonych w
-        mini-barek, sejf i łazienki z wanną lub prysznicem. Pokoje posiadają
-        stały, bezprzewodowy dostęp do Internetu. Wyjątkowy styl hotelu
-        uzupełniają nowoczesne rozwiązania przygotowane specjalnie nawet dla
-        najbardziej wymagających gości.
+        <p>
+          Oddajemy do Państwa dyspozycji
+          <strong>12 luksusowych, klimatyzowanych pokoi</strong>, wyposażonych w
+          mini-barek, sejf i łazienki z wanną lub prysznicem. Pokoje posiadają
+          stały, bezprzewodowy dostęp do Internetu. Wyjątkowy styl hotelu
+          uzupełniają nowoczesne rozwiązania przygotowane specjalnie nawet dla
+          najbardziej wymagających gości.
+        </p>
       </CentralBlock>
     </section>
     <section id="gallery">
@@ -108,5 +110,6 @@ const navItems = [
 @use "@/assets/scss/placeholders.scss" as *;
 
 .hotel-page {
+  overflow-x: hidden;
 }
 </style>

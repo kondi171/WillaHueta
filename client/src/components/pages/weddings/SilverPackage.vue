@@ -1,8 +1,10 @@
 <template>
   <section class="silver">
     <h2 class="title">Pakiet Srebrny</h2>
-    <h3 class="subtitle">Menu weselne - 220,00 zł / osoba</h3>
-    <ListBlock>
+    <h3 class="subtitle" data-aos="fade-up">
+      Menu weselne - 220,00 zł / osoba
+    </h3>
+    <ListBlock :force-mobile-fade="true">
       <div class="section">
         <h3>W cenie każdego Menu:</h3>
         <ul>
@@ -182,57 +184,13 @@ import ListBlock from "@/components/common/blocks/ListBlock.vue";
     background-position: -1vmin 0vmin;
     text-align: center;
     background-color: $bgColor;
-    padding: 2vmin 2vmin;
+    padding: 2vmin;
     border-bottom: 2px solid $primaryColor;
     z-index: 1;
     font-size: 4vmin;
     color: $bgColor;
     margin-bottom: 4vmin;
   }
-  .subtitle {
-    font-size: 2.5vmin;
-    font-weight: 600;
-    text-align: center;
-    color: $secondaryColor;
-    margin: 1vmin;
-  }
-  .image {
-    width: 100%;
-    img {
-      width: 50%;
-      margin: 0 25%;
-    }
-  }
-
-  .section {
-    padding: 1vmin 6vmin 2vmin 6vmin;
-    &:first-of-type {
-      margin-top: -3vmin;
-    }
-    &:last-of-type {
-      margin-bottom: -3vmin;
-    }
-  }
-  span {
-    color: $secondaryColor;
-    font-weight: bold;
-    font-style: italic;
-  }
-  strong {
-    display: block;
-    font-size: 1.5vmin;
-    font-weight: 600;
-    color: $secondaryColor;
-    margin: 1vmin 1vmin 1vmin 0;
-    font-style: italic;
-  }
-  hr {
-    border: none;
-    height: 2px;
-    background: linear-gradient(to right, $primaryColor, transparent);
-    margin: 3vmin 0;
-    opacity: 0.5;
-    margin: 5vmin 0;
-  }
+  @extend %wedding-modal;
 }
 </style>

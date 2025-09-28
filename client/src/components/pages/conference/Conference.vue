@@ -358,6 +358,7 @@ const buffetProposals = [
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    justify-content: center;
     h4 {
       text-align: center;
       font-size: 1.6rem;
